@@ -20,7 +20,7 @@ class UserController extends Controller
    {
    		$users = User::latest()->get();
 
-   		return view('admin', [
+   		return view('admin.admin', [
 
    			'users' => $users
 
@@ -50,7 +50,7 @@ class UserController extends Controller
    public function edit(User $user)
    {
 
-   		return view('editUsers', [
+   		return view('admin.editUsers', [
 
    			'user' => $user
 

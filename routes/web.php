@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('/store', 'store');
+Route::view('/store', 'store.store');
 
 Auth::routes(['verify' => true]);
 
@@ -25,10 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::get('/admin', 'UserController@index')->name('users.show')->middleware('admin');
 Route::post('/admin', 'UserController@store')->name('users.store');
 Route::delete('/admin/{user}', 'UserController@destroy')->name('users.destroy');
-Route::get('/admin/{user}/editUsers', 'UserController@edit')->name('users.edit');
-Route::patch('/admin/{user}/editUsers', 'UserController@update')->name('users.update');
+Route::get('/admin/{user}/admin.editUsers', 'UserController@edit')->name('users.edit');
+Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('users.update');
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
 
 //Admin create user
-Route::view('/admin/createUser', 'createUser')->name('create.user');
+Route::view('/admin/createUser', 'admin.createUser')->name('create.user');
 Route::post('/admin/createUser', 'UserController@adminCreateUser')->name('admin.create.user');
