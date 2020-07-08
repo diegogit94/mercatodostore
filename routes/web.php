@@ -22,7 +22,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 //Admin CRUD
-Route::get('/admin', 'UserController@index')->name('users.show')->middleware('admin');
+Route::get('/admin', 'UserController@index')->name('users.index')->middleware('admin');
 Route::view('/admin/createUser', 'admin.createUser')->name('users.create');
 Route::post('/admin/createUser', 'UserController@store')->name('users.store');
 Route::delete('/admin/{user}', 'UserController@destroy')->name('users.destroy');

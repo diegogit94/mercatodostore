@@ -29,6 +29,14 @@ class UserController extends Controller
 
    public function store(Request $request)
    {
+         request()->validate([
+
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
+
+         ]);
+
    		User::create([
 
    			'name' => $request->name,
@@ -62,6 +70,11 @@ class UserController extends Controller
 
    public function update(User $user)
    {
+         request()->validate([
+               'name' => 'required',
+               'email' => 'required|email',
+         ]);
+
    		$user->update([
 
    			'name' => request('name'),
@@ -70,7 +83,7 @@ class UserController extends Controller
 
    		]);
 
-   		return redirect()->route('users.show', $user);
+   		return redirect()->route('users.index', $user);
    } 
 
    public function activate(User $user)
@@ -92,6 +105,6 @@ class UserController extends Controller
    		]);
    		};
 
-   		return redirect()->route('users.show', $user);
+   		return redirect()->route('users.index', $user);
    }
 }

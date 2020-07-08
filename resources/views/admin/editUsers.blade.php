@@ -71,7 +71,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Editar') }}
                                 </button>
-                                <a href="/admin.admin" class="btn btn-dark">Cancelar</a>
+                                <a href="{{ route("users.index") }}" class="btn btn-dark">Cancelar</a>
                             </div>
                         </div>
                     </form>
