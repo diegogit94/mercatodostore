@@ -33,7 +33,7 @@ class UserController extends Controller
 
    			'name' => $request->name,
    			'email' => $request->email,
-   			'password' => $request->password,
+   			'password' => encrypt($request->password),
 
    		]);
 
@@ -93,7 +93,5 @@ class UserController extends Controller
    		};
 
    		return redirect()->route('users.show', $user);
-
-   		
    }
 }
