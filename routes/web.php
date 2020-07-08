@@ -23,12 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 //Admin CRUD
 Route::get('/admin', 'UserController@index')->name('users.show')->middleware('admin');
-Route::post('/admin', 'UserController@store')->name('users.store');
+Route::view('/admin/createUser', 'admin.createUser')->name('users.create');
+Route::post('/admin/createUser', 'UserController@store')->name('users.store');
 Route::delete('/admin/{user}', 'UserController@destroy')->name('users.destroy');
 Route::get('/admin/{user}/admin.editUsers', 'UserController@edit')->name('users.edit');
 Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('users.update');
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
 
-//Admin create user
-Route::view('/admin/createUser', 'admin.createUser')->name('create.user');
-Route::post('/admin/createUser', 'UserController@adminCreateUser')->name('admin.create.user');

@@ -37,7 +37,9 @@ class UserController extends Controller
 
    		]);
 
-   		return back();
+   		Mail::to($request['email'])->send(new MessageAdmin($request));
+
+         return redirect()->route('users.create', $request);
    }
 
    public function destroy(User $user)
@@ -94,22 +96,4 @@ class UserController extends Controller
 
    		
    }
-
-   public function adminCreateUser(Request $request)
-   {
-   		User::create([
-
-   			'name' => $request->name,
-   			'email' => $request->email,
-   			'password' => encrypt($request->password),
-
-   		]);
-
-   		Mail::to($request['email'])->send(new MessageAdmin($request));
-
-   		return redirect()->route('admin.create.user', $request);
-
-
-   }
-
 }

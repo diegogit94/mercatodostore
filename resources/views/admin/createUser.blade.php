@@ -10,7 +10,7 @@
                 class="btn btn-sm btn-secondary float-right">{{ __('Volver') }}</a>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.create.user') }}">
+                    <form method="POST" action="{{ route('users.create') }}">
                         @csrf
 
                         <div class="form-group row">

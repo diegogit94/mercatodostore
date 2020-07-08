@@ -27,7 +27,7 @@
                                 <th>Email</th>
                                 <th>Estado</th>
                                 <th>Opciones</th>
-                                <th><a href="{{ route('admin.create.user') }}" class="btn btn-sm btn-dark">Agregar Usuario</a></th>
+                                <th><a href="{{ route('users.create') }}" class="btn btn-sm btn-dark">Agregar Usuario</a></th>
                             </tr>
                         </thead>
                         <tbody>
