@@ -84,7 +84,7 @@ class UserController extends Controller
    		]);
 
    		return redirect()->route('users.index', $user);
-   } 
+   }
 
    public function activate(User $user)
    {
