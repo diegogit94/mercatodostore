@@ -66,7 +66,19 @@ class UserTest extends TestCase
     /** @test */
     public function anAuthenticatedAdminCanUpdateAnUser()
     {
+        $userAdmin = factory(User::class)->create(['user_type' => 'admin']);
+        $user = factory(User::class)->create();
 
+        $response = $this->actingAs($userAdmin)
+            ->patch(route('users.update'), [
+                'name' => 'pruebin',
+                'email' => 'pruebin@test.com'
+            ]);
+        dd($user);
+        $this->assertDatabaseHas('users', [
+            'name' => 'pruebin',
+            'email' => 'pruebin@test.com'
+        ]);
     }
 
 }

@@ -29,4 +29,3 @@ Route::delete('/admin/{user}', 'UserController@destroy')->name('users.destroy');
 Route::get('/admin/{user}/admin.editUsers', 'UserController@edit')->name('users.edit');
 Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('users.update');
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
-
