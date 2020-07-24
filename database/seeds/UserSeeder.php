@@ -16,18 +16,22 @@ class UserSeeder extends Seeder
            'id' => 1,
            'name' => 'Diego',
            'email' => 'diego@mercatodo.com',
-           'password' => '123456789',
+           'password' => bcrypt('123456789'),
             'user_type' => 'admin',
             'active' => true,
+            'created_at' => '2020-07-24 20:34:47',
+            'updated_at' => '2020-07-24 20:34:47'
         ]);
 
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Cliente',
             'email' => 'cliente@mercatodo.com',
-            'password' => '123456789',
+            'password' => bcrypt('123456789'),
             'user_type' => 'client',
             'active' => true,
+            'created_at' => '2020-07-24 21:34:47',
+            'updated_at' => '2020-07-24 21:34:47'
         ]);
     }
 }

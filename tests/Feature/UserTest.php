@@ -70,15 +70,17 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($userAdmin)
-            ->patch(route('users.update'), [
+            ->patch("/admin/" . $user . "/admin.editUsers", $user = [
                 'name' => 'pruebin',
                 'email' => 'pruebin@test.com'
             ]);
-        dd($user);
-        $this->assertDatabaseHas('users', [
+//        dd($user);
+        $this->assertEquals($user,  [
             'name' => 'pruebin',
             'email' => 'pruebin@test.com'
         ]);
-    }
 
+        $response->assertSessionHasNoErrors();
+//        $response->assertRedirect(route('users.index'));
+    }
 }

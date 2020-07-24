@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,10 +28,9 @@ class DatabaseSeeder extends Seeder
      * once the seeders have been generated again, as a parameter it recieves
      * the name of the tables that you want to delete
      * @param $tables
-     * @return array
      */
 
-    protected function truncateTables($tables): array
+    protected function truncateTables($tables)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
 
