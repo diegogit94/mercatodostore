@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -11,6 +13,14 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Category::class)->create([
+            'id' => '1',
+            'name' => 'Shooters'
+        ]);
+
+        factory(Category::class)->create([
+            'id' => '2',
+            'name' => 'Terror'
+        ]);
     }
 }
