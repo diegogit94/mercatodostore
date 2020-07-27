@@ -47,7 +47,7 @@ class UserController extends Controller
 
    		Mail::to($request['email'])->send(new MessageAdmin($request));
 
-         return redirect()->route('users.create', $request);
+         return redirect()->route('users.create');
    }
 
    public function destroy(User $user)
@@ -90,20 +90,10 @@ class UserController extends Controller
    {
 
    		if ($user['active'] == 1) {
-
-   			$user->update([
-
-   			'active' => 0
-
-   		]);
-   		}else{
-
-   			$user->update([
-
-   			'active' => 1,
-
-   		]);
-   		};
+   		    $user->update(['active' => 0]);
+   		}else {
+            $user->update(['active' => 1,]);
+        }
 
    		return redirect()->route('users.index', $user);
    }

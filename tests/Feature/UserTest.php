@@ -45,10 +45,12 @@ class UserTest extends TestCase
                 'email' => 'prueba@mail.com',
                 'password' => 'pruebapass'
             ]);
+
         $this->assertDatabaseHas('users', [
             'name' => 'prueba',
             'email' => 'prueba@mail.com',
         ]);
+        $response->assertRedirect(route('users.create'));
     }
 
     /** @test */
@@ -74,7 +76,7 @@ class UserTest extends TestCase
                 'name' => 'pruebin',
                 'email' => 'pruebin@test.com'
             ]);
-//        dd($user);
+
         $this->assertEquals($user,  [
             'name' => 'pruebin',
             'email' => 'pruebin@test.com'

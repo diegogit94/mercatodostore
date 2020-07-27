@@ -11,7 +11,7 @@
 {{--         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> --}}
 
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-        
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -33,7 +33,7 @@
             @endif
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="../images/tienda.png" alt="logo tienda" height="100px" width="100px">
+                    <img src="../images/store-logo.png" alt="logo tienda" height="100px" width="100px">
                     MercaTodo
                 </div>
 
