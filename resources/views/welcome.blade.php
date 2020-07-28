@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CSS Grid Example</title>
+    <title>{{ env('app.name') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,400,700" rel="stylesheet">
@@ -13,24 +13,33 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">--}}
 
 </head>
 <body>
 <header>
     <div class="top-nav container">
-        <div class="logo">CSS Grid Example</div>
+        <div class="logo"><img src="/img/store-logo.png" alt="Store logo" width="30mx" height="30mx"></div>
         <ul>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Cart</a></li>
+            @auth
+                @if (Auth::user()->user_type=='admin')
+                    <a href="{{ route('users.index') }}">Admin</a>
+                @endif
+                <li><a href="/">Shop</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="#"><img src="/img/cart.png" alt="cart image" width="30mx" height="30mx"></a></li>
+            @else
+                <li></li>
+                <li></li>
+                <li><a href="{{ route('register') }}">Register</a></li>
+                <li><a href="{{ route('login') }}">Login</a></li>
+            @endauth
         </ul>
     </div> <!-- end top-nav -->
 
     <div class="hero container">
         <div class="hero-copy">
-            <h1>CSS Grid Example</h1>
+            <h1>Mercatodo</h1>
             <p>A practical example of using CSS Grid for a typical website layout.</p>
             <div class="hero-buttons">
                 <a href="#" class="button button-white">Button 1</a>

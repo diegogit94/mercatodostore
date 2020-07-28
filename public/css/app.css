@@ -11034,6 +11034,7 @@ header .top-nav ul {
   text-transform: uppercase;
   justify-content: space-between;
   width: 40%;
+  list-style: none;
 }
 
 header .top-nav ul a {
