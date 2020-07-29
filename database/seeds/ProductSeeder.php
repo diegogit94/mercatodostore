@@ -12,7 +12,9 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 2)->create(['category_id' => '1']);
-        factory(Product::class, 2)->create(['category_id' => '2']);
+        factory(Product::class)->create(['category_id' => '1', 'slug' => 'game-1']);
+        factory(Product::class)->create(['category_id' => '2', 'slug' => 'game-2']);
+        factory(Product::class)->create(['category_id' => '2', 'slug' => 'game-3']);
+        factory(Product::class)->create(['category_id' => '2', 'slug' => 'game-4']);
     }
 }
