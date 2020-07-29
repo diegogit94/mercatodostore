@@ -51,6 +51,7 @@ class UserTest extends TestCase
             'email' => 'prueba@mail.com',
         ]);
         $response->assertRedirect(route('users.create'));
+
     }
 
     /** @test */

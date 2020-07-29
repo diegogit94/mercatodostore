@@ -21,28 +21,22 @@ class UserController extends Controller
    		$users = User::latest()->get();
 
    		return view('admin.admin', [
-
    			'users' => $users
-
    		]);
    }
 
    public function store(Request $request)
    {
          request()->validate([
-
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required'
-
          ]);
 
    		User::create([
-
    			'name' => $request->name,
    			'email' => $request->email,
    			'password' => encrypt($request->password),
-
    		]);
 
    		Mail::to($request['email'])->send(new MessageAdmin($request));
@@ -61,9 +55,7 @@ class UserController extends Controller
    {
 
    		return view('admin.editUsers', [
-
    			'user' => $user
-
    		]);
 
    }
