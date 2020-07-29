@@ -24,7 +24,7 @@
         <div class="logo"><img src="/img/store-logo.png" alt="Store logo" width="30mx" height="30mx"></div>
         <ul>
             @auth
-                @if (Auth::user()->user_type=='admin')
+                @if (Auth::user()->user_type == 'admin')
                     <a href="{{ route('users.index') }}">Admin</a>
                 @endif
                 <li><a href="/">Shop</a></li>
@@ -88,46 +88,15 @@
 
 
         <div class="products text-center">
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
-            <div class="product">
-                <a href="#"><img src="img/macbook-pro.png" alt="product"></a>
-                <a href="#"><div class="product-name">MacBook Pro</div></a>
-                <div class="product-price">$2499.99</div>
-            </div>
+
+            @foreach($products as $product)
+                <div class="product">
+                    <a href="#"><img src="{{ $product->image }}" alt="product"></a>
+                    <a href="#"><div class="product-name">{{ $product->name }}</div></a>
+                    <div class="product-price">${{ $product->price }}</div>
+                </div>
+            @endforeach
+
         </div> <!-- end products -->
 
         <div class="text-center button-container">

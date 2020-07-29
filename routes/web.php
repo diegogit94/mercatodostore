@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::view('/', 'welcome')->name('welcome');
+//Route::view('/', 'welcome')->name('welcome');
+Route::resource('/', 'WelcomeController');
 
 Route::view('/store', 'store.store');
 
