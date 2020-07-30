@@ -77,7 +77,7 @@
                     </div> <!-- end products -->
 
                     <div class="text-center button-container">
-                        <a href="" class="button">View more products</a>
+                        <a href="#" class="button">View more products</a>
                     </div>
 
                 </div> <!-- end container -->

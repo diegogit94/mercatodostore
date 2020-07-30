@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 Route::resource('/', 'WelcomeController');
 
-Route::view('/store', 'store.store');
+Route::view('/store', 'store.store')->name('store');
 
 Auth::routes(['verify' => true]);
 
