@@ -8,7 +8,7 @@
         <li><a href="#"><img src="/img/cart.png" alt="cart image" width="30mx" height="30mx"></a></li>
 
     @else
-
+        <li><a href="{{ route('store') }}">Store</a></li>
         <li><a href="{{ route('register') }}">Register</a></li>
         <li><a href="{{ route('login') }}">Login</a></li>
     @endauth
