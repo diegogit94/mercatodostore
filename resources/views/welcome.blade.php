@@ -21,7 +21,7 @@
             <header class="with-background">
                 <div class="top-nav container">
                     <div class="top-nav-left">
-                        <div class="logo">Ecommerce</div>
+                        <div class="logo"><img src="/img/store-logo.png" alt="store logo" width="80mx" height="80mx"></div>
 {{--                        {{ menu('main', 'partials.menus.main') }}--}}
                     </div>
                     <div class="top-nav-right">
@@ -114,17 +114,17 @@
 
                         <div class="blog-posts">
                             <div class="blog-post" id="blog1">
-                                <a href="#"><img src="img/blog1.png" alt="blog image"></a>
+                                <a href="#"><img src="img/carousel-1.jpeg" alt="blog image"></a>
                                 <a href="#"><h2 class="blog-title">Blog Post Title 1</h2></a>
                                 <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est ullam, ipsa quasi?</div>
                             </div>
                             <div class="blog-post" id="blog2">
-                                <a href="#"><img src="img/blog2.png" alt="blog image"></a>
+                                <a href="#"><img src="img/carousel-2.jpeg" alt="blog image"></a>
                                 <a href="#"><h2 class="blog-title">Blog Post Title 2</h2></a>
                                 <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est ullam, ipsa quasi?</div>
                             </div>
                             <div class="blog-post" id="blog3">
-                                <a href="#"><img src="img/blog3.png" alt="blog image"></a>
+                                <a href="#"><img src="img/carousel-3.jpeg" alt="blog image"></a>
                                 <a href="#"><h2 class="blog-title">Blog Post Title 3</h2></a>
                                 <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est ullam, ipsa quasi?</div>
                             </div>
