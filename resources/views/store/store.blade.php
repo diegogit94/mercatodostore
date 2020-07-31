@@ -11,7 +11,7 @@
     @component('components.breadcrumbs')
     <a href="/">Home</a>
     <i class="fa fa-chevron-right breadcrumb-separator"></i>
-    <span>Shop</span>
+    <span>Store</span>
     @endcomponent
 
     <div class="container">
@@ -36,9 +36,9 @@
         <div class="sidebar">
             <h3>By Category</h3>
             <ul>
-{{--                @foreach ($categories as $category)--}}
-{{--                    <li class="{{ setActiveCategory($category->slug) }}"><a href="{{ route('shop.index', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>--}}
-{{--                @endforeach--}}
+                @foreach ($categories as $category)
+                    <li class="{{ $category->slug }}"><a href="{{ route('store.index', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
+                @endforeach
             </ul>
         </div> <!-- end sidebar -->
         <div>
@@ -53,15 +53,15 @@
             </div>
 
             <div class="products text-center">
-{{--                @forelse ($products as $product)--}}
-{{--                    <div class="product">--}}
-{{--                        <a href="{{ route('shop.show', $product->slug) }}"><img src="{{ productImage($product->image) }}" alt="product"></a>--}}
-{{--                        <a href="{{ route('shop.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>--}}
-{{--                        <div class="product-price">{{ $product->presentPrice() }}</div>--}}
-{{--                    </div>--}}
-{{--                @empty--}}
-{{--                    <div style="text-align: left">No items found</div>--}}
-{{--                @endforelse--}}
+                @forelse ($products as $product)
+                    <div class="product">
+                        <a href=""><img src="{{ $product->image }}" alt="product"></a>
+                        <a href=""><div class="product-name">{{ $product->name }}</div></a>
+                        <div class="product-price">{{ $product->price}}</div>
+                    </div>
+                @empty
+                    <div style="text-align: left">No items found</div>
+                @endforelse
             </div> <!-- end products -->
 
             <div class="spacer"></div>

@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 Route::resource('/', 'WelcomeController');
 
-Route::view('/store', 'store.store')->name('store');
-
+//Route::view('/store', 'store.store')->name('store');
+Route::get('/store', 'StoreController@index')->name('store.index');
+Route::get('/search', 'StoreController@search')->name('store.search');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
