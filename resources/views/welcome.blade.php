@@ -89,7 +89,7 @@
                     <div class="products text-center">
                         @foreach ($products as $product)
                             <div class="product">
-                                <a href=""><img src="{{ $product->image }}" alt="product"></a>
+                                <a href=""><img src="{{ $product->image }}" alt="product" class="product-section-image"></a>
                                 <a href=""><div class="product-name">{{ $product->name }}</div></a>
                                 <div class="product-price">{{ $product->price }}</div>
                             </div>
