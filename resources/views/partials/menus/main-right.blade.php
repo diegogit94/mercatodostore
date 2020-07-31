@@ -3,12 +3,12 @@
         @if (Auth::user()->user_type == 'admin')
             <li><a href="{{ route('users.index') }}">Admin</a></li>
         @endif
-        <li><a href="{{ route('store') }}">Store</a></li>
+        <li><a href="{{ route('store.index') }}">Store</a></li>
         <li><a href="{{ route('home') }}">Home</a></li>
-        <li><a href="#"><img src="/img/cart.png" alt="cart image" width="30mx" height="30mx"></a></li>
+        <li><a href="#"><img src="/img/cart.png" alt="cart image" width="30px" height="30px"></a></li>
 
     @else
-        <li><a href="{{ route('store') }}">Store</a></li>
+        <li><a href="{{ route('store.index') }}">Store</a></li>
         <li><a href="{{ route('register') }}">Register</a></li>
         <li><a href="{{ route('login') }}">Login</a></li>
     @endauth
