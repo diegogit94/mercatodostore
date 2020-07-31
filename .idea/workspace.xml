@@ -27,8 +27,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/store-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/store-logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/search.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +221,8 @@
       <workItem from="1595810448915" duration="2868000" />
       <workItem from="1595968478145" duration="16067000" />
       <workItem from="1596027080177" duration="4765000" />
-      <workItem from="1596132566919" duration="4955000" />
+      <workItem from="1596132566919" duration="20583000" />
+      <workItem from="1596225528768" duration="4286000" />
     </task>
     <servers />
   </component>
@@ -253,10 +254,18 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="167" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1294.741@72.27.1294.741" timestamp="1594844010657" />
+    <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596145630104">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1294.741@72.27.1294.741" timestamp="1596145630104" />
     <state x="323" y="27" width="796" height="741" key="#phpunit.xml" timestamp="1594843431084">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="323" y="27" width="796" height="741" key="#phpunit.xml/72.27.1294.741@72.27.1294.741" timestamp="1594843431084" />
+    <state x="353" y="171" width="722" height="460" key="EditFileWatcherDialog" timestamp="1596226677128">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="353" y="171" width="722" height="460" key="EditFileWatcherDialog/72.27.1294.741@72.27.1294.741" timestamp="1596226677128" />
     <state width="1248" height="163" key="GridCell.Tab.0.bottom" timestamp="1594948912430">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
@@ -297,6 +306,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="376" y="27" width="676" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1294.741@72.27.1294.741" timestamp="1594948685791" />
+    <state x="145" y="124" width="996" height="685" key="dock-window-1" timestamp="1596147711320">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="145" y="124" width="996" height="685" key="dock-window-1/72.27.1294.741@72.27.1294.741" timestamp="1596147711320" />
     <state x="368" y="113" width="700" height="530" key="recent.locations.popup" timestamp="1594844603027">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
