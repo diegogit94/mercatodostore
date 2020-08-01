@@ -15,12 +15,14 @@ class CategorySeeder extends Seeder
     {
         factory(Category::class)->create([
             'id' => '1',
-            'name' => 'Shooters'
+            'name' => 'Shooters',
+            'slug' => 'shooters-games'
         ]);
 
         factory(Category::class)->create([
             'id' => '2',
-            'name' => 'Terror'
+            'name' => 'Horror',
+            'slug' => 'horror-games'
         ]);
     }
 }

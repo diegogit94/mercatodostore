@@ -15,7 +15,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $products = Product::all()->random()->get();
+        $products = Product::paginate(3);
         $categories = Category::latest()->get();
 
         return view('store.store', [
@@ -25,10 +25,17 @@ class StoreController extends Controller
     }
 
     public function search(Request $request)
-    { //searchable en modelo product
+    {
+        $request->validate([
+           'query' => 'required|min:1'
+        ]);
+
         $query = $request->input('query');
 
-        $products = Product::where('name', 'like', "%$query%")->get();
+        $products = Product::where('name', 'like', "%$query%")
+            ->orwhere('short_description', 'like', "%$query%")
+            ->orwhere('description', 'like', "%$query%")
+            ->get();
 
         return view('searchResults', [
             'products' => $products
