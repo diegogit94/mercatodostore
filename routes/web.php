@@ -18,6 +18,7 @@ Route::resource('/', 'WelcomeController');
 //Route::view('/store', 'store.store')->name('store');
 Route::get('/store', 'StoreController@index')->name('store.index');
 Route::get('/search', 'StoreController@search')->name('store.search');
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
@@ -30,3 +31,6 @@ Route::delete('/admin/{user}', 'UserController@destroy')->name('users.destroy');
 Route::get('/admin/{user}/admin.editUsers', 'UserController@edit')->name('users.edit');
 Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('users.update');
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
+
+Route::get('/products' , 'ProductController@index')->name('products.index');
+Route::view('/products/createProduct', 'admin.createProduct')->name('products.create');

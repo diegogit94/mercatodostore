@@ -11,7 +11,7 @@
 
         <!-- Fonts -->
         {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
-        
+
         <!-- Styles -->
 
     </head>
@@ -28,6 +28,7 @@
                                 <th>Estado</th>
                                 <th>Opciones</th>
                                 <th><a href="{{ route('users.create') }}" class="btn btn-sm btn-dark">Agregar Usuario</a></th>
+                                <th><a href="{{ route('products.index') }}" class="btn btn-sm btn-dark">Productos</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,23 +47,23 @@
                                         @method('PATCH')
                                         @csrf
                                         @if ($user->active == 1)
-                                        <input type="submit" 
-                                        value="Desactivar" 
+                                        <input type="submit"
+                                        value="Desactivar"
                                         class="btn btn-sm btn-secondary">
                                         @else
-                                        <input type="submit" 
-                                        value="Activar" 
+                                        <input type="submit"
+                                        value="Activar"
                                         class="btn btn-sm btn-secondary">
                                         @endif
                                     </form>
                                     <form action="{{ route('users.destroy', $user) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <a href="{{ route('users.edit', $user->id) }}" 
+                                        <a href="{{ route('users.edit', $user->id) }}"
                                         type="submit"
                                         class="btn btn-sm btn-info">Editar</a>
-                                        <input type="submit" 
-                                        value="Eliminar" 
+                                        <input type="submit"
+                                        value="Eliminar"
                                         class="btn btn-sm btn-danger"
                                         onclick="return confirm('¿Desea elminar?')">
                                     </form>
