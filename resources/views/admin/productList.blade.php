@@ -56,17 +56,17 @@
 {{--                                           class="btn btn-sm btn-secondary">--}}
 {{--                                @endif--}}
 {{--                            </form>--}}
-{{--                            <form action="{{ route('users.destroy', $user) }}" method="POST">--}}
-{{--                                @method('DELETE')--}}
-{{--                                @csrf--}}
-{{--                                <a href="{{ route('users.edit', $user->id) }}"--}}
-{{--                                   type="submit"--}}
-{{--                                   class="btn btn-sm btn-info">Editar</a>--}}
-{{--                                <input type="submit"--}}
-{{--                                       value="Eliminar"--}}
-{{--                                       class="btn btn-sm btn-danger"--}}
-{{--                                       onclick="return confirm('¿Desea elminar?')">--}}
-{{--                            </form>--}}
+                            <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <a href="{{ route('products.edit', $product->id) }}"
+                                   type="submit"
+                                   class="btn btn-sm btn-info">Editar</a>
+                                <input type="submit"
+                                       value="Eliminar"
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('¿Desea elminar?')">
+                            </form>
                         </td>
                     </tr>
                 @endforeach
