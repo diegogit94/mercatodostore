@@ -39,10 +39,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('image')) {
+            $request->image = $request->file('image')->store('public');
+        }
         request()->validate([
-            'name' => 'required',
-            'short_description' => 'required|min:10',
-            'description' => 'required|min:10',
+            'name' => 'required|unique:products',
+            'short_description' => 'required|min:2|max:200',
+            'description' => 'required|min:2|max:200',
             'image' => 'required|file'
         ]);
 
@@ -50,8 +53,11 @@ class ProductController extends Controller
             'name' => $request->name,
             'short_description' => $request->short_description,
             'description' => $request->description,
+            'price' => $request->price,
             'image' => $request->image
         ]);
+        return 'done';
+//        return back()->with('info', 'Producto Creado');
     }
 
     /**
