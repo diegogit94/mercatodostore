@@ -11,6 +11,5 @@ $factory->define(Category::class, function (Faker $faker) {
         'name' => '',
         'slug' => $faker->unique()->slug,
         'description' => $faker->paragraph(3),
-        'color' => $faker->unique()->safeColorName,
     ];
 });
