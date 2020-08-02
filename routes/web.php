@@ -34,3 +34,4 @@ Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate')
 
 Route::get('/products' , 'ProductController@index')->name('products.index');
 Route::view('/products/createProduct', 'admin.createProduct')->name('products.create');
+Route::post('/products/createProduct', 'ProductController@store')->name('products.store');
