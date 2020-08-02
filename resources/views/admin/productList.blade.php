@@ -77,6 +77,11 @@
 </div>
 </body>
 </html>
+
+<div class="pagination"></div>
+{{ $products->links() }}
+</div>
+
 @endsection
 
 {{--      @if ($user->active==1)

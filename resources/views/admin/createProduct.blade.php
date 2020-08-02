@@ -10,7 +10,7 @@
                            class="btn btn-sm btn-secondary float-right">{{ __('Volver') }}</a>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('products.create') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripcion') }}</label>
+                                <label for="description" class="col-md-4 col-form-label text-md-right" value="{{ old('short_description') }}">{{ __('Descripcion') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="new-description">
@@ -56,10 +56,24 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Precio') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" placeholder="$" name="price" value="{{ old('price') }}" required autocomplete="price">
+
+                                    @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Imagen') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="image" type="file" name="image" accept="image/png, image/jpeg">
+                                    <input id="image" type="file" name="image" accept="image/png, image/jpeg, image/jpg">
                                 </div>
                             </div>
 
