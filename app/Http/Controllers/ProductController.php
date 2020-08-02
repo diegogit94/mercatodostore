@@ -56,8 +56,8 @@ class ProductController extends Controller
             'price' => $request->price,
             'image' => $request->image
         ]);
-        return 'done';
-//        return back()->with('info', 'Producto Creado');
+
+        return back()->with('info', 'Producto Creado');
     }
 
     /**

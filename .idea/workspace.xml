@@ -26,9 +26,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/mercatodo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mercatodo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/store/store.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/store.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +145,9 @@
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-sluggable" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
     </include_path>
   </component>
   <component name="ProjectId" id="1egkVu8DpwDPiQ98jJW6WBfLtuM" />
@@ -223,7 +228,9 @@
       <workItem from="1596027080177" duration="4765000" />
       <workItem from="1596132566919" duration="20583000" />
       <workItem from="1596225528768" duration="16866000" />
-      <workItem from="1596301812672" duration="8712000" />
+      <workItem from="1596301812672" duration="17689000" />
+      <workItem from="1596332198676" duration="12247000" />
+      <workItem from="1596393089217" duration="4151000" />
     </task>
     <servers />
   </component>
@@ -255,10 +262,18 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="167" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1294.741@72.27.1294.741" timestamp="1594844010657" />
-    <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596318234091">
+    <state x="389" y="189" width="649" height="423" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596345788144">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1294.741@72.27.1294.741" timestamp="1596318234091" />
+    <state x="389" y="189" width="649" height="423" key="#com.intellij.fileTypes.FileTypeChooser/72.27.1294.741@72.27.1294.741" timestamp="1596345788144" />
+    <state x="452" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596396882758">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="452" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1294.741@72.27.1294.741" timestamp="1596396882758" />
+    <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596346874663">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1294.741@72.27.1294.741" timestamp="1596346874663" />
     <state x="323" y="27" width="796" height="741" key="#phpunit.xml" timestamp="1594843431084">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
@@ -315,13 +330,13 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="368" y="113" width="700" height="530" key="recent.locations.popup/72.27.1294.741@72.27.1294.741" timestamp="1594844603027" />
-    <state x="383" y="174" width="672" height="677" key="run.anything.popup" timestamp="1596060819876">
+    <state x="383" y="174" width="672" height="677" key="run.anything.popup" timestamp="1596333132968">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1596060819876" />
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1596054973436">
+    <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1596333132968" />
+    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1596346017464">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1596054973436" />
+    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1596346017464" />
   </component>
 </project>
