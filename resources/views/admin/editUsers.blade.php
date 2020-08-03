@@ -9,7 +9,7 @@
     <!-- Fonts -->
         {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
 
-        
+
 </head>
 <body>
     <div class="container">
@@ -64,7 +64,7 @@
                                 </select>
                             </div> --}}
 
-                        </div>
+{{--                        </div>--}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

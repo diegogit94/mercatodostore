@@ -45,7 +45,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-right" value="{{ old('short_description') }}">{{ __('Descripcion') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="new-description">
+                                    <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="new-description"></textarea>
 
                                     @error('description')
                                     <span class="invalid-feedback" role="alert">
