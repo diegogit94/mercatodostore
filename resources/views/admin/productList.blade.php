@@ -37,25 +37,25 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->short_description }}</td>
                         <td>{{ $product->description }}</td>
-{{--                        @if ($product->active == 1)--}}
-{{--                            <td>{{ 'Activo' }}</td>--}}
-{{--                        @else--}}
-{{--                            <td>{{ 'Inactivo' }}</td>--}}
-{{--                        @endif--}}
+                        @if ($product->visible == 1)
+                            <td>{{ 'Activo' }}</td>
+                        @else
+                            <td>{{ 'Inactivo' }}</td>
+                        @endif
                         <td>
-{{--                            <form action="{{ route('users.activate', $user) }}" method="POST">--}}
-{{--                                @method('PATCH')--}}
-{{--                                @csrf--}}
-{{--                                @if ($user->active == 1)--}}
-{{--                                    <input type="submit"--}}
-{{--                                           value="Desactivar"--}}
-{{--                                           class="btn btn-sm btn-secondary">--}}
-{{--                                @else--}}
-{{--                                    <input type="submit"--}}
-{{--                                           value="Activar"--}}
-{{--                                           class="btn btn-sm btn-secondary">--}}
-{{--                                @endif--}}
-{{--                            </form>--}}
+                            <form action="{{ route('products.visible', $product) }}" method="POST">
+                                @method('PATCH')
+                                @csrf
+                                @if ($product->visible == 1)
+                                    <input type="submit"
+                                           value="Desactivar"
+                                           class="btn btn-sm btn-secondary">
+                                @else
+                                    <input type="submit"
+                                           value="Activar"
+                                           class="btn btn-sm btn-secondary">
+                                @endif
+                            </form>
                             <form action="{{ route('products.destroy', $product) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
