@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -126,6 +127,10 @@ class ProductController extends Controller
         return redirect()->route('products.index', $product);
     }
 
+    /**
+     * @param Product $product
+     * @return RedirectResponse
+     */
     public function visible (Product $product)
     {
         if ($product['visible'] == 1) {

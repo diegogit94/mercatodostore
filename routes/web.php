@@ -32,9 +32,10 @@ Route::get('/admin/{user}/admin.editUsers', 'UserController@edit')->name('users.
 Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('users.update');
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
 
-Route::get('/products' , 'ProductController@index')->name('products.index')->middleware('admin');
+Route::get('/products' , 'ProductController@index')->name('products.index');
 Route::view('/products/createProduct', 'admin.createProduct')->name('products.create');
 Route::post('/products/createProduct', 'ProductController@store')->name('products.store');
 Route::get('/products/{product}/admin.editProduct', 'ProductController@edit')->name('products.edit');
 Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 Route::patch('/products/{product}/admin.editProduct', 'ProductController@update')->name('products.update');
+Route::patch('/products/{product}', 'ProductController@visible')->name('products.visible');
