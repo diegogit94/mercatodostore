@@ -80,7 +80,6 @@ class UserController extends Controller
 
    public function activate(User $user)
    {
-
    		if ($user['active'] == 1) {
    		    $user->update(['active' => 0]);
    		}else {
