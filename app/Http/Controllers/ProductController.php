@@ -47,6 +47,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products',
             'short_description' => 'required|min:2|max:200',
             'description' => 'required|min:2|max:200',
+            'price' => 'required|numeric',
             'image' => 'required|file'
         ]);
 
