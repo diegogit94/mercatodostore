@@ -78,37 +78,11 @@ class ProductController extends Controller
      * @param $product
      * @return Response
      */
-    public function edit($product)
+    public function edit(Product $product)
     {
         return view('admin.editProduct', [
             'product' => $product
         ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Product $product
-     * @return void
-     */
-    public function update(Product $product)
-    {
-        request()->validate([
-            'name' => 'unique:products',
-            'short_description' => 'min:2|max:200',
-            'description' => 'min:2|max:200',
-            'image' => 'file'
-        ]);
-
-        $product->update([
-            'name' => request('name'),
-            'short_description' => request('short_description'),
-            'description' => request('description'),
-            'price' => request('price'),
-            'image' => request('image')
-        ]);
-
-        return redirect()->route('products.index');
     }
 
     /**
@@ -123,5 +97,31 @@ class ProductController extends Controller
         $product->delete();
 
         return back();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Product $product
+     *
+     */
+    public function update(Product $product)
+    {
+        request()->validate([
+            'name' => 'required',
+            'short_description' => 'required|min:2|max:200',
+            'description' => 'required|min:2|max:200',
+            'price' => 'required|numeric'
+        ]);
+
+        $product->update([
+            'name' => request('name'),
+            'short_description' => request('short_description'),
+            'description' => request('description'),
+            'price' => request('price'),
+            'image' => request('image')
+        ]);
+
+        return redirect()->route('products.index', $product);
     }
 }
