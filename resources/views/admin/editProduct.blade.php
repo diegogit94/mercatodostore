@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Editar Producto') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('products.update', $product) }}">
+                    <form method="POST" action="{{ route('products.update', $product) }}" enctype="multipart/form-data">
                         @method('PATCH')
                         @csrf
 
