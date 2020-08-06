@@ -87,13 +87,15 @@
 {{--                    </div>--}}
 
                     <div class="products text-center">
-                        @foreach ($products as $product)
+                        @forelse ($products as $product)
                             <div class="product">
                                 <a href=""><img src="{{ $product->image }}" alt="product" class="product-section-image"></a>
                                 <a href=""><div class="product-name">{{ $product->name }}</div></a>
                                 <div class="product-price">{{ $product->price }}</div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div>No items found</div>
+                        @endforelse
 
                     </div> <!-- end products -->
 
