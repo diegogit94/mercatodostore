@@ -2,12 +2,12 @@
 
 namespace App;
 
-use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
-use SebastianBergmann\Comparator\Book;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
+    use Searchable;
     /**
      * @var string[]
      */
@@ -29,4 +29,9 @@ class Product extends Model
 //
 //        return $value;
 //    }
+
+public function toggleVisibility(): bool
+{
+    return $this->update(['visible' => !$this->visible]);
+}
 }

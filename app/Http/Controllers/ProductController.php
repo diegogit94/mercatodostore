@@ -133,11 +133,7 @@ class ProductController extends Controller
      */
     public function visible (Product $product)
     {
-        if ($product['visible'] == 1) {
-            $product->update(['visible' => 0]);
-        }else {
-            $product->update(['visible' => 1,]);
-        }
+        $product->toggleVisibility();
 
         return redirect()->route('products.index', $product);
     }
