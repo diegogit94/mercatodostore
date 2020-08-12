@@ -23,7 +23,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
-//Admin CRUD
+//Admin routes
 Route::get('/admin', 'UserController@index')->name('users.index')->middleware('admin');
 Route::view('/admin/createUser', 'admin.createUser')->name('users.create');
 Route::post('/admin/createUser', 'UserController@store')->name('users.store');
@@ -32,6 +32,7 @@ Route::get('/admin/{user}/admin.editUsers', 'UserController@edit')->name('users.
 Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('users.update');
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
 
+//product routes
 Route::get('/products' , 'ProductController@index')->name('products.index');
 Route::view('/products/createProduct', 'admin.createProduct')->name('products.create');
 Route::post('/products/createProduct', 'ProductController@store')->name('products.store');
