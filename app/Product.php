@@ -22,16 +22,8 @@ class Product extends Model
         'email_verified_at' => 'datetime',
     ];
 
-//    public function visible ($product)
-//    {
-//        $value = $product;
-//        $value = ($value == true) ? false : true;
-//
-//        return $value;
-//    }
-
-public function toggleVisibility(): bool
-{
-    return $this->update(['visible' => !$this->visible]);
-}
+    public function toggleVisibility(): bool
+    {
+        return $this->update(['visible' => !$this->visible]);
+    }
 }

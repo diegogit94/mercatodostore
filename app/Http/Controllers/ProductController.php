@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Route;
 
 class ProductController extends Controller
 {
@@ -36,29 +40,16 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreProductRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         if ($request->hasFile('image')) {
             $request->image = $request->file('image')->store('public');
         }
-        request()->validate([
-            'name' => 'required|unique:products',
-            'short_description' => 'required|min:2|max:200',
-            'description' => 'required|min:2|max:200',
-            'price' => 'required|numeric',
-            'image' => 'required|file'
-        ]);
 
-        Product::create([
-            'name' => $request->name,
-            'short_description' => $request->short_description,
-            'description' => $request->description,
-            'price' => $request->price,
-            'image' => $request->image
-        ]);
+        Product::create($request->validated());
 
         return back();
     }
@@ -66,8 +57,8 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
     public function show($id)
     {
@@ -104,25 +95,16 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param UpdateProductRequest $request
      * @param Product $product
-     *
+     * @return RedirectResponse
      */
-    public function update(Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        request()->validate([
-            'name' => 'required',
-            'short_description' => 'required|min:2|max:200',
-            'description' => 'required|min:2|max:200',
-            'price' => 'required|numeric'
-        ]);
-
-        $product->update([
-            'name' => request('name'),
-            'short_description' => request('short_description'),
-            'description' => request('description'),
-            'price' => request('price'),
-            'image' => request('image')
-        ]);
+        if ($request->hasFile('image')) {
+            $request->image = $request->file('image')->store('public');
+        }
+        $product->update($request->validated());
 
         return redirect()->route('products.index', $product);
     }
