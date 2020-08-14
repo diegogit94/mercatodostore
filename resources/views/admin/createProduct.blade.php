@@ -10,7 +10,8 @@
 {{--                    </div>--}}
                     <div class="card-header">{{ __('Crear Producto') }}
                         <a href="{{ route('products.index') }}" type="submit"
-                           class="btn btn-sm btn-secondary float-right">{{ __('Volver') }}</a>
+                           class="btn btn-sm btn-secondary float-right">{{ __('Volver') }}
+                        </a>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
