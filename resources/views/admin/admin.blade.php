@@ -28,7 +28,6 @@
                                 <th>Estado</th>
                                 <th>Opciones</th>
                                 <th><a href="{{ route('users.create') }}" class="btn btn-sm btn-dark">Agregar Usuario</a></th>
-                                <th><a href="{{ route('products.index') }}" class="btn btn-sm btn-dark">Productos</a></th>
                             </tr>
                         </thead>
                         <tbody>

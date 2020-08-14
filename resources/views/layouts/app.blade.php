@@ -26,6 +26,12 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
+
+            @auth
+            <a class="nav-link" href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ route('products.index') }}">Productos <span class="sr-only">(current)</span></a>
+            @endauth
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -49,6 +55,12 @@
                             </li>
                         @endif
                     @else
+{{--                            //Optional navbar--}}
+{{--                        <form class="form-inline my-2 my-lg-0">--}}
+{{--                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
+{{--                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
+{{--                        </form>--}}
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
