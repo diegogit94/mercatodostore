@@ -33,7 +33,7 @@ Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('us
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
 
 //product routes
-Route::get('/products' , 'ProductController@index')->name('products.index');
+Route::get('/products' , 'ProductController@index')->name('products.index')->middleware('admin');
 Route::view('/products/createProduct', 'admin.createProduct')->name('products.create');
 Route::post('/products/createProduct', 'ProductController@store')->name('products.store');
 Route::get('/products/{product}/admin.editProduct', 'ProductController@edit')->name('products.edit');
