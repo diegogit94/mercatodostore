@@ -20,24 +20,28 @@ class UserController extends Controller
    {
    		$users = User::latest()->get();
 
-   		return view('admin', [
-
+   		return view('admin.admin', [
    			'users' => $users
-
    		]);
    }
 
    public function store(Request $request)
    {
-   		User::create([
+         request()->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
+         ]);
 
+   		User::create([
    			'name' => $request->name,
    			'email' => $request->email,
-   			'password' => $request->password,
-
+   			'password' => encrypt($request->password),
    		]);
 
-   		return back();
+   		Mail::to($request['email'])->send(new MessageAdmin($request));
+
+         return redirect()->route('users.create');
    }
 
    public function destroy(User $user)
@@ -50,16 +54,19 @@ class UserController extends Controller
    public function edit(User $user)
    {
 
-   		return view('editUsers', [
-
+   		return view('admin.editUsers', [
    			'user' => $user
-
    		]);
 
    }
 
    public function update(User $user)
    {
+         request()->validate([
+               'name' => 'required',
+               'email' => 'required|email',
+         ]);
+
    		$user->update([
 
    			'name' => request('name'),
@@ -68,48 +75,17 @@ class UserController extends Controller
 
    		]);
 
-   		return redirect()->route('users.show', $user);
-   } 
+   		return redirect()->route('users.index', $user);
+   }
 
    public function activate(User $user)
    {
-
    		if ($user['active'] == 1) {
+   		    $user->update(['active' => 0]);
+   		}else {
+            $user->update(['active' => 1,]);
+        }
 
-   			$user->update([
-
-   			'active' => 0
-
-   		]);
-   		}else{
-
-   			$user->update([
-
-   			'active' => 1,
-
-   		]);
-   		};
-
-   		return redirect()->route('users.show', $user);
-
-   		
+   		return redirect()->route('users.index', $user);
    }
-
-   public function adminCreateUser(Request $request)
-   {
-   		User::create([
-
-   			'name' => $request->name,
-   			'email' => $request->email,
-   			'password' => encrypt($request->password),
-
-   		]);
-
-   		Mail::to($request['email'])->send(new MessageAdmin($request));
-
-   		return redirect()->route('admin.create.user', $request);
-
-
-   }
-
 }
