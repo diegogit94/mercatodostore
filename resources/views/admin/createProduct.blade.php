@@ -5,9 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+{{--                    <div class="alert alert-success" role="alert">--}}
+{{--                        This is a success alert—check it out!--}}
+{{--                    </div>--}}
                     <div class="card-header">{{ __('Crear Producto') }}
-                        <a href="/products" type="submit"
-                           class="btn btn-sm btn-secondary float-right">{{ __('Volver') }}</a>
+                        <a href="{{ route('products.index') }}" type="submit"
+                           class="btn btn-sm btn-secondary float-right">{{ __('Volver') }}
+                        </a>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">

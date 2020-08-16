@@ -89,8 +89,8 @@
                     <div class="products text-center">
                         @forelse ($products as $product)
                             <div class="product">
-                                <a href=""><img src="{{ $product->image }}" alt="product" class="product-section-image"></a>
-                                <a href=""><div class="product-name">{{ $product->name }}</div></a>
+                                <a href="{{ route('store.show', $product->slug) }}"><img src="{{ $product->image }}" alt="product" class="product-section-image"></a>
+                                <a href="{{ route('store.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>
                                 <div class="product-price">{{ $product->price }}</div>
                             </div>
                         @empty
