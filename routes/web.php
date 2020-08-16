@@ -18,6 +18,7 @@ Route::resource('/', 'WelcomeController');
 //Route::view('/store', 'store.store')->name('store');
 Route::get('/store', 'StoreController@index')->name('store.index');
 Route::get('/search', 'StoreController@search')->name('store.search');
+Route::get('/store/{product}', 'StoreController@show')->name('store.show');
 
 Auth::routes(['verify' => true]);
 
