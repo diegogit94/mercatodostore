@@ -66,10 +66,10 @@
             <p>&nbsp;</p>
 
 {{--            @if ($product->quantity > 0)--}}
-{{--                <form action="{{ route('cart.store', $product) }}" method="POST">--}}
-{{--                    {{ csrf_field() }}--}}
-{{--                    <button type="submit" class="button button-plain">Add to Cart</button>--}}
-{{--                </form>--}}
+                <form action="{{ route('cart.store', $product) }}" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit" class="button button-plain">Agregar al carrito</button>
+                </form>
 {{--            @endif--}}
         </div>
     </div> <!-- end product-section -->
