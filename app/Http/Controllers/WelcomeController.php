@@ -16,7 +16,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
+        $products = Product::all()->random(4);
 
         return view('welcome', [
            'products' => $products
