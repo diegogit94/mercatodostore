@@ -100,7 +100,7 @@
                     </div> <!-- end products -->
 
                     <div class="text-center button-container">
-                        <a href="#" class="button">View more products</a>
+                        <a href="{{ route('store.index') }}" class="button">Ver mas productos</a>
                     </div>
 
                 </div> <!-- end container -->
