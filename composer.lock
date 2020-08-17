@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6dd8a663ae2b8f3ad45aba62859ddb32",
+    "content-hash": "e2d13285c4d9596acbe4a5f0a8fc47b7",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -1337,6 +1337,64 @@
                 }
             ],
             "time": "2020-07-26T07:20:36+00:00"
+        },
+        {
+            "name": "melihovv/laravel-shopping-cart",
+            "version": "7.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/melihovv/laravel-shopping-cart.git",
+                "reference": "fd43386b191ed07cd0a550aaf33520905b898efc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/melihovv/laravel-shopping-cart/zipball/fd43386b191ed07cd0a550aaf33520905b898efc",
+                "reference": "fd43386b191ed07cd0a550aaf33520905b898efc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/container": "^6.0|^7.0",
+                "illuminate/database": "^6.0|^7.0",
+                "illuminate/redis": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0",
+                "phpunit/phpunit": "^8.4|^9.0",
+                "predis/predis": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Melihovv\\ShoppingCart\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Melihovv\\ShoppingCart\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Melihov",
+                    "email": "amelihovv@ya.ru"
+                }
+            ],
+            "description": "Shopping cart package for laravel",
+            "keywords": [
+                "cart",
+                "laravel",
+                "shopping cart"
+            ],
+            "time": "2020-03-28T07:41:20+00:00"
         },
         {
             "name": "monolog/monolog",
