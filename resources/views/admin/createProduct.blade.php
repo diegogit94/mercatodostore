@@ -5,9 +5,23 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-{{--                    <div class="alert alert-success" role="alert">--}}
-{{--                        This is a success alert—check it out!--}}
-{{--                    </div>--}}
+
+                    @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                    @endif
+
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <div class="card-header">{{ __('Crear Producto') }}
                         <a href="{{ route('products.index') }}" type="submit"
                            class="btn btn-sm btn-secondary float-right">{{ __('Volver') }}

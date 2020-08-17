@@ -17,6 +17,23 @@
 </head>
 <body>
 <div class="container">
+
+    @if (session()->has('success_message'))
+        <div class="alert alert-success">
+            {{ session()->get('success_message') }}
+        </div>
+    @endif
+
+    @if(count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-sm-12 mx-auto">
             <table class="table">
@@ -24,6 +41,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Cantidad</th>
                     <th>Detalles</th>
                     <th>Descripcion</th>
                     <th>Opciones</th>
@@ -35,6 +53,7 @@
                     <tr>
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->name }}</td>
+                        <td>{{ $product->quantity }}</td>
                         <td>{{ $product->short_description }}</td>
                         <td>{{ $product->description }}</td>
                         @if ($product->visible == 1)

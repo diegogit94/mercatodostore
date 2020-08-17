@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return back();
+        return back()->with('success_message', 'Se creo el producto satisfactoriamente');
     }
 
     /**
@@ -111,7 +111,9 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index', $product);
+        return redirect()
+            ->route('products.index', $product)
+            ->with('success_message', 'Se modifico el producto satisfactoriamente');
     }
 
     /**
