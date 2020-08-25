@@ -32,23 +32,23 @@
                 </div>
             @endif
 
-{{--            @if (Cart::count() > 0)--}}
+            @if (Cart::count() > 0)
 
-{{--            <h2>{{ Cart::count() }} item(s) in Shopping Cart</h2>--}}
+            <h2>{{ Cart::count() }} item(s) in Shopping Cart</h2>
 
             <div class="cart-table">
-{{--                @foreach (Cart::content() as $item)--}}
+                @foreach (Cart::content() as $item)
                 <div class="cart-table-row">
                     <div class="cart-table-row-left">
-                        <a href="{{-- route('store.show', $item->model->slug) --}}"><img src="{{-- $item->model->image --}}" alt="item" class="cart-table-img"></a>
+                        <a href="{{ route('store.show', $item->model->slug) }}"><img src="{{ $item->model->image }}" alt="item" class="cart-table-img"></a>
                         <div class="cart-item-details">
-                            <div class="cart-table-item"><a href="{{-- route('store.show', $item->model->slug) --}}">{{-- $item->model->name --}}</a></div>
-                            <div class="cart-table-description">{{-- $item->model->details --}}</div>
+                            <div class="cart-table-item"><a href="{{ route('store.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
+{{--                            <div class="cart-table-description">{{ $item->model->short_description }}</div>--}}
                         </div>
                     </div>
                     <div class="cart-table-row-right">
                         <div class="cart-table-actions">
-                            <form action="{{-- route('cart.destroy', $item->rowId) --}}" method="POST">
+                            <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
 
@@ -62,20 +62,16 @@
 {{--                            </form>--}}
                         </div>
                         <div>
-                            <select class="quantity" data-id="{{-- $item->rowId --}}" data-productQuantity="{{-- $item->model->quantity --}}">
-{{--                                @for ($i = 1; $i < 5 + 1 ; $i++)--}}
-{{--                                    <option {{ $item->qty == $i ? 'selected' : ''{{ $i }}</option>--}}
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-{{--                                @endfor--}}
+                            <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
+                                @for ($i = 1; $i < 5 + 1 ; $i++)
+                                <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor
                             </select>
                         </div>
-                        <div>{{-- $item->price --}}</div>
+                        <div>${{ $item->price }}</div>
                     </div>
                 </div> <!-- end cart-table-row -->
-{{--                @endforeach--}}
+                @endforeach
 
             </div> <!-- end cart-table -->
 
@@ -94,7 +90,7 @@
 
             <div class="cart-totals">
                 <div class="cart-totals-left">
-                    Shipping is free because we’re awesome like that. Also because that’s additional stuff I don’t feel like figuring out :).
+                    El envío no tiene costo! :D
                 </div>
 
                 <div class="cart-totals-right">
@@ -110,18 +106,18 @@
                             <hr>
                             New Subtotal <br>
                         @endif
-                        Tax ({{--config('cart.tax')--}}%)<br>
+                        Iva ({{config('cart.tax')}}%)<br>
                         <span class="cart-totals-total">Total</span>
                     </div>
                     <div class="cart-totals-subtotal">
-                        {{-- Cart::subtotal() --}} <br>
+                        {{ Cart::subtotal() }} <br>
                         @if (session()->has('coupon'))
                             -{{-- $discount --}} <br>&nbsp;<br>
                             <hr>
                             {{-- $newSubtotal --}} <br>
                         @endif
-                        {{-- $newTax --}} <br>
-                        <span class="cart-totals-total">{{-- $newTotal --}}</span>
+                        {{ Cart::tax() }} <br>
+                        <span class="cart-totals-total">${{ Cart::total() }}</span>
                     </div>
                 </div>
             </div> <!-- end cart-totals -->
@@ -131,14 +127,14 @@
                 <a href="{{-- route('checkout.index') --}}" class="button-primary">Proceed to Checkout</a>
             </div>
 
-{{--            @else--}}
+            @else
 
                 <h3>No items in Cart!</h3>
                 <div class="spacer"></div>
                 <a href="{{ route('store.index') }}" class="button">Continue Shopping</a>
                 <div class="spacer"></div>
 
-{{--            @endif--}}
+            @endif
 
         </div>
 
