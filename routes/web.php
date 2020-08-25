@@ -24,6 +24,8 @@ Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/cart', 'CartController@store')->name('cart.store');
 Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
 
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+
 Route::get('/empty', function (){
     Cart::destroy();
 });
