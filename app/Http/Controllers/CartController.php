@@ -48,4 +48,12 @@ class CartController extends Controller
 
         return back()->with('success_message', 'Producto eliminado');
     }
+
+    public function update(Request $request, $id)
+    {
+        Cart::update($id, $request->quantity);
+        session()->flash('success_message', 'Cantidad actualizada con exito!');
+
+        return response()->json(['success' => true]);
+    }
 }
