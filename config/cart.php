@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'tax' => 21,
+    'tax' => 19,
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
 
         'connection' => null,
 
-        'table' => 'shoppingcart',
+        'table' => 'shopping_cart',
 
     ],
 

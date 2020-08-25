@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/algolia/algoliasearch-client-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/algolia/scout-extended" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hardevine/shoppingcart" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/scout" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/melihovv/laravel-shopping-cart" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
