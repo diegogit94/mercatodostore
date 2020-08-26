@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('short_description', 200);
             $table->string('image', 255)->nullable();
             $table->double('price');
+            $table->unsignedInteger('quantity')->default(1);
             $table->boolean('visible')->default(true);
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')

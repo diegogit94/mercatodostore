@@ -30,11 +30,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/ProductSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProductSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/store/store.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/store.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +151,10 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/laravel/scout" />
       <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
+      <path value="$PROJECT_DIR$/vendor/melihovv/laravel-shopping-cart" />
+      <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
+      <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
+      <path value="$PROJECT_DIR$/vendor/hardevine/shoppingcart" />
     </include_path>
   </component>
   <component name="ProjectId" id="1egkVu8DpwDPiQ98jJW6WBfLtuM" />
@@ -167,7 +168,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/store" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -182,6 +183,7 @@
       <recent name="$PROJECT_DIR$/resources/views/store" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/store" />
       <recent name="$PROJECT_DIR$/storage/app/public" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -264,7 +266,18 @@
       <workItem from="1597247457510" duration="1325000" />
       <workItem from="1597248882106" duration="16360000" />
       <workItem from="1597426261995" duration="15683000" />
-      <workItem from="1597519660922" duration="4942000" />
+      <workItem from="1597519660922" duration="6735000" />
+      <workItem from="1597598437792" duration="8086000" />
+      <workItem from="1597687080533" duration="8212000" />
+      <workItem from="1597701333727" duration="3804000" />
+      <workItem from="1597799941590" duration="5044000" />
+      <workItem from="1597878423485" duration="2370000" />
+      <workItem from="1597933054370" duration="14845000" />
+      <workItem from="1598049500303" duration="10359000" />
+      <workItem from="1598213752950" duration="63000" />
+      <workItem from="1598306987350" duration="9551000" />
+      <workItem from="1598376457041" duration="14427000" />
+      <workItem from="1598444598004" duration="705000" />
     </task>
     <servers />
   </component>
@@ -356,6 +369,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state width="1248" height="204" key="GridCell.Tab.1.right/72.27.1294.741@72.27.1294.741" timestamp="1594854214259" />
+    <state x="394" y="101" width="639" height="600" key="NewPhpClassDialog" timestamp="1598057123644">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="394" y="101" width="639" height="600" key="NewPhpClassDialog/72.27.1294.741@72.27.1294.741" timestamp="1598057123644" />
     <state x="209" y="31" width="1123" height="737" key="SettingsEditor" timestamp="1597175405801">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
@@ -368,17 +385,21 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="89" y="140" width="954" height="685" key="dock-window-1/72.27.1294.741@72.27.1294.741" timestamp="1597249338952" />
+    <state x="0" y="27" width="616" height="741" key="find.popup" timestamp="1597605900623">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="0" y="27" width="616" height="741" key="find.popup/72.27.1294.741@72.27.1294.741" timestamp="1597605900623" />
     <state x="368" y="113" width="700" height="530" key="recent.locations.popup" timestamp="1594844603027">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="368" y="113" width="700" height="530" key="recent.locations.popup/72.27.1294.741@72.27.1294.741" timestamp="1594844603027" />
-    <state x="383" y="174" width="672" height="677" key="run.anything.popup" timestamp="1597101004639">
+    <state x="383" y="174" width="672" height="677" key="run.anything.popup" timestamp="1597936118339">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597101004639" />
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1597537611542">
+    <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597936118339" />
+    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598388776513">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1597537611542" />
+    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598388776513" />
   </component>
 </project>

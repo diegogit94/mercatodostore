@@ -1,5 +1,6 @@
 <?php
 
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 Route::resource('/', 'WelcomeController');
 
-//Route::view('/store', 'store.store')->name('store');
 Route::get('/store', 'StoreController@index')->name('store.index');
 Route::get('/search', 'StoreController@search')->name('store.search');
 Route::get('/store/{product}', 'StoreController@show')->name('store.show');
+
+Route::get('/cart', 'CartController@index')->name('cart.index');
+Route::post('/cart', 'CartController@store')->name('cart.store');
+Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
+Route::patch('/cart/{product}', 'CartController@update')->name('update.cart');
+
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+
+Route::get('/empty', function (){
+    Cart::destroy();
+});
 
 Auth::routes(['verify' => true]);
 

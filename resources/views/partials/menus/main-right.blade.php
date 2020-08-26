@@ -5,7 +5,7 @@
         @endif
         <li><a href="{{ route('store.index') }}">Store</a></li>
         <li><a href="{{ route('home') }}">Home</a></li>
-        <li><a href="#"><img src="/img/cart.png" alt="cart image" width="30px" height="30px"></a></li>
+        <li><a href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="cart image" width="30px" height="30px"></a></li>
 
     @else
         <li><a href="{{ route('store.index') }}">Store</a></li>
