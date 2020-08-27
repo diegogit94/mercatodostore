@@ -29,9 +29,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/mercatodo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mercatodo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2017_06_26_000000_create_shopping_cart_table.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +154,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/laravel/scout" />
       <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
-      <path value="$PROJECT_DIR$/vendor/melihovv/laravel-shopping-cart" />
       <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
       <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
       <path value="$PROJECT_DIR$/vendor/hardevine/shoppingcart" />
@@ -277,7 +279,7 @@
       <workItem from="1598213752950" duration="63000" />
       <workItem from="1598306987350" duration="9551000" />
       <workItem from="1598376457041" duration="14427000" />
-      <workItem from="1598444598004" duration="705000" />
+      <workItem from="1598444598004" duration="4064000" />
     </task>
     <servers />
   </component>
@@ -397,9 +399,9 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597936118339" />
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598388776513">
+    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598454415035">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598388776513" />
+    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598454415035" />
   </component>
 </project>
