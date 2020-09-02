@@ -32,9 +32,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/mercatodo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mercatodo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_06_26_000000_create_shopping_cart_table.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +157,7 @@
       <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
       <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
       <path value="$PROJECT_DIR$/vendor/hardevine/shoppingcart" />
+      <path value="$PROJECT_DIR$/vendor/dnetix/redirection" />
     </include_path>
   </component>
   <component name="ProjectId" id="1egkVu8DpwDPiQ98jJW6WBfLtuM" />
@@ -179,6 +180,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -280,6 +282,7 @@
       <workItem from="1598306987350" duration="9551000" />
       <workItem from="1598376457041" duration="14427000" />
       <workItem from="1598444598004" duration="4064000" />
+      <workItem from="1598550698719" duration="4248000" />
     </task>
     <servers />
   </component>
@@ -399,9 +402,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597936118339" />
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598454415035">
-      <screen x="72" y="27" width="1294" height="741" />
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1598559092064">
+      <screen x="72" y="24" width="1294" height="744" />
     </state>
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1598559092064" />
     <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598454415035" />
   </component>
 </project>
