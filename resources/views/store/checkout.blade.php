@@ -111,9 +111,9 @@
 {{--                @if ($paypalToken)--}}
                     <div class="mt-32">or</div>
                     <div class="mt-32">
-                        <h2>Pay with PayPal</h2>
+                        <h2>Pay with PlaceToPay</h2>
 
-                        <form method="post" id="paypal-payment-form" action="{{-- route('checkout.paypal') --}}">
+                        <form method="post" id="paypal-payment-form" action="{{ route('checkout.placeToPayCheckout') }}">
                             @csrf
                             <section>
                                 <div class="bt-drop-in-wrapper">
@@ -122,7 +122,7 @@
                             </section>
 
                             <input id="nonce" name="payment_method_nonce" type="hidden" />
-                            <button class="button-primary" type="submit"><span>Pay with PayPal</span></button>
+                            <button class="button-primary" type="submit"><span>Pay with PlaceToPay</span></button>
                         </form>
                     </div>
 {{--                @endif--}}
