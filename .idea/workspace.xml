@@ -30,8 +30,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/ProductSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProductSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/store/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,10 +154,10 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/laravel/scout" />
       <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
-      <path value="$PROJECT_DIR$/vendor/melihovv/laravel-shopping-cart" />
       <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
       <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
       <path value="$PROJECT_DIR$/vendor/hardevine/shoppingcart" />
+      <path value="$PROJECT_DIR$/vendor/dnetix/redirection" />
     </include_path>
   </component>
   <component name="ProjectId" id="1egkVu8DpwDPiQ98jJW6WBfLtuM" />
@@ -177,15 +180,16 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/store" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/store" />
       <recent name="$PROJECT_DIR$/storage/app/public" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/store" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -277,7 +281,11 @@
       <workItem from="1598213752950" duration="63000" />
       <workItem from="1598306987350" duration="9551000" />
       <workItem from="1598376457041" duration="14427000" />
-      <workItem from="1598444598004" duration="705000" />
+      <workItem from="1598444598004" duration="4064000" />
+      <workItem from="1598550698719" duration="4248000" />
+      <workItem from="1599669946985" duration="12288000" />
+      <workItem from="1599711947699" duration="2113000" />
+      <workItem from="1599747373203" duration="4084000" />
     </task>
     <servers />
   </component>
@@ -373,9 +381,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="394" y="101" width="639" height="600" key="NewPhpClassDialog/72.27.1294.741@72.27.1294.741" timestamp="1598057123644" />
-    <state x="209" y="31" width="1123" height="737" key="SettingsEditor" timestamp="1597175405801">
-      <screen x="72" y="27" width="1294" height="741" />
+    <state x="209" y="28" width="1123" height="737" key="SettingsEditor" timestamp="1599670820585">
+      <screen x="72" y="24" width="1294" height="744" />
     </state>
+    <state x="209" y="28" key="SettingsEditor/72.24.1294.744@72.24.1294.744" timestamp="1599670820585" />
     <state x="209" y="31" width="1123" height="737" key="SettingsEditor/72.27.1294.741@72.27.1294.741" timestamp="1597175405801" />
     <state x="376" y="27" width="676" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594948685791">
       <screen x="72" y="27" width="1294" height="741" />
@@ -393,13 +402,15 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="368" y="113" width="700" height="530" key="recent.locations.popup/72.27.1294.741@72.27.1294.741" timestamp="1594844603027" />
-    <state x="383" y="174" width="672" height="677" key="run.anything.popup" timestamp="1597936118339">
-      <screen x="72" y="27" width="1294" height="741" />
+    <state x="383" y="172" width="672" height="680" key="run.anything.popup" timestamp="1599670666977">
+      <screen x="72" y="24" width="1294" height="744" />
     </state>
+    <state x="383" y="172" width="672" height="680" key="run.anything.popup/72.24.1294.744@72.24.1294.744" timestamp="1599670666977" />
     <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597936118339" />
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598388776513">
-      <screen x="72" y="27" width="1294" height="741" />
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1599750212635">
+      <screen x="72" y="24" width="1294" height="744" />
     </state>
-    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598388776513" />
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1599750212635" />
+    <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598454415035" />
   </component>
 </project>

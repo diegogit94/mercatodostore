@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d383a7524e80ec33e989abf054b83165",
+    "content-hash": "7ebbcc5b6068dd39c882fe4598f82d45",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -255,6 +255,50 @@
                 }
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "dnetix/redirection",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dnetix/redirection.git",
+                "reference": "93fce47930a8ae50a6d353f9bc5f0eb19cc6e85e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dnetix/redirection/zipball/93fce47930a8ae50a6d353f9bc5f0eb19cc6e85e",
+                "reference": "93fce47930a8ae50a6d353f9bc5f0eb19cc6e85e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-soap": "*",
+                "guzzlehttp/guzzle": ">=5.3",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.4",
+                "squizlabs/php_codesniffer": "3.*",
+                "symfony/var-dumper": "^4.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dnetix\\Redirection\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Diego Calle",
+                    "email": "dnetix@gmail.com"
+                }
+            ],
+            "description": "Library to connect with PlacetoPay Redirection service",
+            "time": "2020-03-04T21:58:06+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1473,64 +1517,6 @@
                 }
             ],
             "time": "2020-07-26T07:20:36+00:00"
-        },
-        {
-            "name": "melihovv/laravel-shopping-cart",
-            "version": "7.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/melihovv/laravel-shopping-cart.git",
-                "reference": "fd43386b191ed07cd0a550aaf33520905b898efc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/melihovv/laravel-shopping-cart/zipball/fd43386b191ed07cd0a550aaf33520905b898efc",
-                "reference": "fd43386b191ed07cd0a550aaf33520905b898efc",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "illuminate/container": "^6.0|^7.0",
-                "illuminate/database": "^6.0|^7.0",
-                "illuminate/redis": "^6.0|^7.0",
-                "illuminate/support": "^6.0|^7.0",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^4.0|^5.0",
-                "phpunit/phpunit": "^8.4|^9.0",
-                "predis/predis": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Melihovv\\ShoppingCart\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Melihovv\\ShoppingCart\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander Melihov",
-                    "email": "amelihovv@ya.ru"
-                }
-            ],
-            "description": "Shopping cart package for laravel",
-            "keywords": [
-                "cart",
-                "laravel",
-                "shopping cart"
-            ],
-            "time": "2020-03-28T07:41:20+00:00"
         },
         {
             "name": "monolog/monolog",

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
