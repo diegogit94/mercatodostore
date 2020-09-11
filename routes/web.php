@@ -27,6 +27,7 @@ Route::patch('/cart/{product}', 'CartController@update')->name('update.cart');
 
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 Route::post('/checkout', 'CheckoutController@placeToPayCheckout')->name('checkout.placeToPayCheckout');
+Route::view('/success/{reference}', 'placeToPaySuccess')->name('placeToPaySuccess');
 
 Route::get('/empty', function (){
     Cart::destroy();
