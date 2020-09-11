@@ -12,6 +12,8 @@ use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
+    public $response = '';
+    public $auth = '';
     /**
      * Display a listing of the resource.
      *
@@ -110,7 +112,7 @@ class CheckoutController extends Controller
 
         $tranKey= base64_encode(sha1($nonce . $seed . $secretKey, true));
 
-        $auth = [
+        $this->auth = [
             'login' => env('PLACETOPAY_LOGIN'),
             'seed' => $seed,
             'nonce' => $nonceBase64,
@@ -118,7 +120,7 @@ class CheckoutController extends Controller
         ];
 
         $data = [
-            'auth' => $auth,
+            'auth' => $this->auth,
 
             'payment' => ['reference' => uniqid(),
                           'description' => 'description test',
@@ -130,19 +132,34 @@ class CheckoutController extends Controller
             'ipAddress' => '127.0.0.1',
             'userAgent' => 'PlacetoPay Sandbox'
         ];
-        
-        $response = Http::post('https://test.placetopay.com/redirection/api/session/', [
-            'auth' => $auth,
-            'payment' => ['reference' => uniqid(),
+
+        $reference = uniqid();
+
+        $this->response = Http::post('https://test.placetopay.com/redirection/api/session/', [
+            'auth' => $this->auth,
+            'payment' => ['reference' => $reference,
                 'description' => 'description test',
                 'amount' => ['currency' => "COP", 'total' => Cart::total()]
             ],
             'expiration' => date('c', strtotime("+6 minutes")),
-            'returnUrl' => 'https://mercatodo.test/checkout/{reference}', //resolver página de retorno
+            'returnUrl' => "http://mercatodo.test:8000/success/$reference", //resolver página de retorno
             'ipAddress' => '127.0.0.1',
             'userAgent' => 'PlacetoPay Sandbox'
         ]);
 
-        return redirect($response['processUrl']);
+        return redirect($this->response['processUrl']);
+    }
+
+    public function placeToPaySuccess()
+    {
+
+        $request = $this->response['requestID'];
+        $response = Http::post("https://test.placetopay.com/redirection/api/session/$request", [
+            'auth' => $this->auth
+        ]);
+
+        dd($response->json());
+
+        return view('placeToPaySuccess');
     }
 }
