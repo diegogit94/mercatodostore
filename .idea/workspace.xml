@@ -31,7 +31,6 @@
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +167,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -284,6 +283,8 @@
       <workItem from="1599711947699" duration="2113000" />
       <workItem from="1599747373203" duration="4084000" />
       <workItem from="1599837942367" duration="8275000" />
+      <workItem from="1600149986886" duration="684000" />
+      <workItem from="1600193722925" duration="1770000" />
     </task>
     <servers />
   </component>
@@ -331,9 +332,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="452" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1294.741@72.27.1294.741" timestamp="1597249517506" />
-    <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597443704141">
-      <screen x="72" y="27" width="1294" height="741" />
+    <state x="452" y="153" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600194894927">
+      <screen x="72" y="24" width="1294" height="744" />
     </state>
+    <state x="452" y="153" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.24.1294.744@72.24.1294.744" timestamp="1600194894927" />
     <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1294.741@72.27.1294.741" timestamp="1597443704141" />
     <state x="323" y="27" width="796" height="741" key="#phpunit.xml" timestamp="1594843431084">
       <screen x="72" y="27" width="1294" height="741" />
@@ -405,10 +407,10 @@
     </state>
     <state x="383" y="172" width="672" height="680" key="run.anything.popup/72.24.1294.744@72.24.1294.744" timestamp="1599670666977" />
     <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597936118339" />
-    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1599771657073">
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1600194595475">
       <screen x="72" y="24" width="1294" height="744" />
     </state>
-    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1599771657073" />
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1600194595475" />
     <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598454415035" />
   </component>
 </project>
