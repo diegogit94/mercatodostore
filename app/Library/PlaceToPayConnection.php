@@ -35,20 +35,6 @@ class PlaceToPayConnection
             'tranKey' => $tranKey
         ];
 
-        $data = [
-            'auth' => $auth,
-
-            'payment' => ['reference' => uniqid(),
-                'description' => 'description test',
-                'amount' => ['currency' => "COP", 'total' => Cart::total()]
-            ],
-
-            'expiration' => date('c', strtotime("+5 minutes")),
-            'returnUrl' => 'https://mercatodo.test/placeToPaySuccess/{reference}', //crear página de pago exitoso
-            'ipAddress' => '127.0.0.1',
-            'userAgent' => 'PlacetoPay Sandbox'
-        ];
-
         $reference = uniqid();
 
         $response = Http::post('https://test.placetopay.com/redirection/api/session/', [
