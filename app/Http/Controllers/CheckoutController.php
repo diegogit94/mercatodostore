@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Library\PlaceToPayConnection;
+use Dnetix\Redirection\PlacetoPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -97,7 +98,8 @@ class CheckoutController extends Controller
 
     public function placeToPayCheckout()
     {
-        return PlaceToPayConnection::connect();
+        $connection = new PlaceToPayConnection();
+        return $connection->connect();
     }
 
     public function placeToPaySuccess()

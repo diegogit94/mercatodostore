@@ -7,10 +7,16 @@ use Illuminate\Support\Facades\Http;
 
 class PlaceToPayConnection
 {
-//    public $response;
-//    public $auth;
+    protected $response;
+    protected $auth;
 
-    public static function connect()
+    public function connect()
+    {
+        $this->authentication();
+        return $this->basicPay();
+    }
+
+    protected function authentication()
     {
         if (function_exists('random_bytes')) {
             $nonce = bin2hex(random_bytes(16));
@@ -21,24 +27,24 @@ class PlaceToPayConnection
         }
 
         $nonceBase64 = base64_encode($nonce);
-
         $seed = date('c');
-
         $secretKey = env('PLACETOPAY_SECRETKEY');
-
         $tranKey= base64_encode(sha1($nonce . $seed . $secretKey, true));
 
-        $auth = [
+        $this->auth = [
             'login' => env('PLACETOPAY_LOGIN'),
             'seed' => $seed,
             'nonce' => $nonceBase64,
             'tranKey' => $tranKey
         ];
+    }
 
+    protected function basicPay()
+    {
         $reference = uniqid();
 
-        $response = Http::post('https://test.placetopay.com/redirection/api/session/', [
-            'auth' => $auth,
+        $this->response = Http::post('https://test.placetopay.com/redirection/api/session/', [
+            'auth' => $this->auth,
             'payment' => ['reference' => $reference,
                 'description' => 'description test',
                 'amount' => ['currency' => "COP", 'total' => Cart::total()]
@@ -49,6 +55,6 @@ class PlaceToPayConnection
             'userAgent' => 'PlacetoPay Sandbox'
         ]);
 
-        return redirect($response['processUrl']);
+        return redirect($this->response['processUrl']);
     }
 }
