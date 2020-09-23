@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Http;
 
 class PlaceToPayConnection
 {
-    protected $response;
-    protected $auth;
+    private $response;
+    private $auth;
 
     public function connect()
     {
@@ -16,7 +16,7 @@ class PlaceToPayConnection
         return $this->basicPay();
     }
 
-    protected function authentication()
+    private function authentication()
     {
         if (function_exists('random_bytes')) {
             $nonce = bin2hex(random_bytes(16));
@@ -39,7 +39,7 @@ class PlaceToPayConnection
         ];
     }
 
-    protected function basicPay()
+    private function basicPay()
     {
         $reference = uniqid();
 
@@ -51,10 +51,10 @@ class PlaceToPayConnection
             ],
             'expiration' => date('c', strtotime("+6 minutes")),
             'returnUrl' => "http://mercatodo.test:8000/success/$reference", //resolver página de retorno
-            'ipAddress' => '127.0.0.1',
-            'userAgent' => 'PlacetoPay Sandbox'
+            'ipAddress' => '127.0.0.1', //sacar de la peticion
+            'userAgent' => 'PlacetoPay Sandbox' //sacar de la peticion, no quemar estos datos
         ]);
-
+        
         return redirect($this->response['processUrl']);
     }
 }

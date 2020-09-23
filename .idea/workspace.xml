@@ -30,8 +30,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Library/PlaceToPayConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Library/PlaceToPayConnection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/placeToPaySuccess.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/placeToPaySuccess.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +286,12 @@
       <workItem from="1599837942367" duration="8275000" />
       <workItem from="1600149986886" duration="684000" />
       <workItem from="1600193722925" duration="10852000" />
-      <workItem from="1600265509632" duration="1036000" />
+      <workItem from="1600265509632" duration="3468000" />
+      <workItem from="1600445250002" duration="1892000" />
+      <workItem from="1600450162763" duration="606000" />
+      <workItem from="1600736225558" duration="5204000" />
+      <workItem from="1600808738966" duration="4182000" />
+      <workItem from="1600879685133" duration="3900000" />
     </task>
     <servers />
   </component>
@@ -383,6 +388,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="394" y="101" width="639" height="600" key="NewPhpClassDialog/72.27.1294.741@72.27.1294.741" timestamp="1598057123644" />
+    <state x="514" y="317" width="399" height="164" key="NewPhpFileDialog" timestamp="1600809443472">
+      <screen x="72" y="24" width="1294" height="744" />
+    </state>
+    <state x="514" y="317" width="399" height="164" key="NewPhpFileDialog/72.24.1294.744@72.24.1294.744" timestamp="1600809443472" />
     <state x="209" y="28" width="1123" height="737" key="SettingsEditor" timestamp="1599670820585">
       <screen x="72" y="24" width="1294" height="744" />
     </state>
@@ -409,10 +418,10 @@
     </state>
     <state x="383" y="172" width="672" height="680" key="run.anything.popup/72.24.1294.744@72.24.1294.744" timestamp="1600266062159" />
     <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597936118339" />
-    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1600194595475">
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1600739328990">
       <screen x="72" y="24" width="1294" height="744" />
     </state>
-    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1600194595475" />
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1600739328990" />
     <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598454415035" />
   </component>
 </project>
