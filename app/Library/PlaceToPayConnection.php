@@ -4,19 +4,20 @@ namespace App\Library;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class PlaceToPayConnection
 {
-    private $response;
-    private $auth;
+    public $response;
+    public $auth;
 
     public function connect()
     {
         $this->authentication();
-        return $this->basicPay();
+        return $this->createRequest();
     }
 
-    private function authentication()
+    public function authentication()
     {
         if (function_exists('random_bytes')) {
             $nonce = bin2hex(random_bytes(16));
@@ -37,9 +38,11 @@ class PlaceToPayConnection
             'nonce' => $nonceBase64,
             'tranKey' => $tranKey
         ];
+
+        return $this->auth;
     }
 
-    private function basicPay()
+    public function createRequest()
     {
         $reference = uniqid();
 
@@ -47,14 +50,26 @@ class PlaceToPayConnection
             'auth' => $this->auth,
             'payment' => ['reference' => $reference,
                 'description' => 'description test',
-                'amount' => ['currency' => "COP", 'total' => Cart::total()]
+//                'amount' => ['currency' => "COP", 'total' => Cart::total()]
+                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
             'expiration' => date('c', strtotime("+6 minutes")),
             'returnUrl' => "http://mercatodo.test:8000/success/$reference", //resolver página de retorno
             'ipAddress' => '127.0.0.1', //sacar de la peticion
             'userAgent' => 'PlacetoPay Sandbox' //sacar de la peticion, no quemar estos datos
         ]);
-        
+
         return redirect($this->response['processUrl']);
+    }
+
+    public function getRequestInformation()
+    {
+        $requestId = $this->response['requestId'];
+
+        $response = Http::post("https://test.placetopay.com/redirection/api/session/$requestId", [
+            'auth' => $this->authentication(),
+        ]);
+
+        return $response['requestId'];
     }
 }
