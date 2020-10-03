@@ -2,7 +2,11 @@
 
 namespace App\Library;
 
+use App\Order;
+use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
@@ -53,23 +57,52 @@ class PlaceToPayConnection
 //                'amount' => ['currency' => "COP", 'total' => Cart::total()]
                 'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
-            'expiration' => date('c', strtotime("+6 minutes")),
+            'expiration' => date('c', strtotime("+1 hour")),
             'returnUrl' => "http://mercatodo.test:8000/success/$reference", //resolver página de retorno
             'ipAddress' => '127.0.0.1', //sacar de la peticion
             'userAgent' => 'PlacetoPay Sandbox' //sacar de la peticion, no quemar estos datos
         ]);
 
+//        $user = Auth::id();
+
+        Order::create([
+            'user_id' => Auth::id(),
+            'request_id' => $this->response['requestId'],
+            'reference' => $reference,
+        ]);
+
+//        return $this->response->json();
         return redirect($this->response['processUrl']);
     }
 
     public function getRequestInformation()
     {
-        $requestId = $this->response['requestId'];
+//        $url = request()->path();
+        $url = request()->path();
+        $parts = explode('/', $url);
+        $reference = $parts[count($parts) -1];
+
+        $requestId = Order::where('user_id', Auth::id())
+            ->where('reference', $reference)
+            ->get()->toArray();
+
+        $requestId = $requestId['0']['request_id'];
 
         $response = Http::post("https://test.placetopay.com/redirection/api/session/$requestId", [
             'auth' => $this->authentication(),
         ]);
 
-        return $response['requestId'];
+//        dd($response->json());
+
+        DB::table('orders')
+            ->where('user_id', Auth::id())
+            ->update(['transaction_information' => $response]);
+
+//        Order::update([
+//            'transaction_information' => $response,
+//        ]);
+
+//        return redirect(route('placeToPaySuccess.index'))->with('transactionInformation', $transactionInformation);
+        return $response->json();
     }
 }
