@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Library\PlaceToPayConnection;
+use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class PlaceToPaySuccessController extends Controller
@@ -14,8 +16,16 @@ class PlaceToPaySuccessController extends Controller
 
         $info = $auth->getRequestInformation();
 
-        return $info;
+        $url = request()->path();
+        $parts = explode('/', $url);
+        $reference = $parts[count($parts) -1];
 
-//        return view('placeToPaySuccess')->with('info', $info);
+        $order = Order::where('user_id', Auth::id())
+            ->where('reference', $reference)
+            ->get()->toArray();
+
+        return $order;
+
+//        return view('placeToPaySuccess', ['info' => $info]);
     }
 }
