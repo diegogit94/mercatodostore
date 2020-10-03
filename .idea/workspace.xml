@@ -29,12 +29,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1657a609-1ce9-43b5-bf26-d280766f44c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/mercatodo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mercatodo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlaceToPaySuccessController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlaceToPaySuccessController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Library/PlaceToPayConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Library/PlaceToPayConnection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/placeToPaySuccess.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/placeToPaySuccess.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/StageThree/PayWithPlaceToPayTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/StageThree/PayWithPlaceToPayTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,13 +187,13 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/store" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/store" />
       <recent name="$PROJECT_DIR$/storage/app/public" />
       <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/store" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -303,6 +304,8 @@
       <workItem from="1601422663938" duration="5558000" />
       <workItem from="1601488688841" duration="13267000" />
       <workItem from="1601565301530" duration="15267000" />
+      <workItem from="1601649419406" duration="29069000" />
+      <workItem from="1601745905660" duration="2033000" />
     </task>
     <servers />
   </component>
@@ -350,10 +353,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="452" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1294.741@72.27.1294.741" timestamp="1597249517506" />
-    <state x="452" y="153" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600887702285">
+    <state x="452" y="153" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601705599438">
       <screen x="72" y="24" width="1294" height="744" />
     </state>
-    <state x="452" y="153" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.24.1294.744@72.24.1294.744" timestamp="1600887702285" />
+    <state x="452" y="153" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.24.1294.744@72.24.1294.744" timestamp="1601705599438" />
     <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1294.741@72.27.1294.741" timestamp="1597443704141" />
     <state x="323" y="27" width="796" height="741" key="#phpunit.xml" timestamp="1594843431084">
       <screen x="72" y="27" width="1294" height="741" />
@@ -424,15 +427,15 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="368" y="113" width="700" height="530" key="recent.locations.popup/72.27.1294.741@72.27.1294.741" timestamp="1594844603027" />
-    <state x="383" y="172" width="672" height="680" key="run.anything.popup" timestamp="1601569190831">
+    <state x="383" y="172" width="672" height="680" key="run.anything.popup" timestamp="1601693805169">
       <screen x="72" y="24" width="1294" height="744" />
     </state>
-    <state x="383" y="172" width="672" height="680" key="run.anything.popup/72.24.1294.744@72.24.1294.744" timestamp="1601569190831" />
+    <state x="383" y="172" width="672" height="680" key="run.anything.popup/72.24.1294.744@72.24.1294.744" timestamp="1601693805169" />
     <state x="383" y="174" width="672" height="677" key="run.anything.popup/72.27.1294.741@72.27.1294.741" timestamp="1597936118339" />
-    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1601602516850">
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup" timestamp="1601746519073">
       <screen x="72" y="24" width="1294" height="744" />
     </state>
-    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1601602516850" />
+    <state x="382" y="86" width="672" height="681" key="search.everywhere.popup/72.24.1294.744@72.24.1294.744" timestamp="1601746519073" />
     <state x="382" y="89" width="672" height="678" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1598454415035" />
   </component>
 </project>
