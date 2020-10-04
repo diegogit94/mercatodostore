@@ -95,7 +95,7 @@ class PlaceToPayConnection
 //        dd($response->json());
 
         DB::table('orders')
-            ->where('user_id', Auth::id())
+            ->where('reference', $reference)
             ->update(['transaction_information' => $response]);
 
 //        Order::update([
