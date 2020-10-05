@@ -9,6 +9,6 @@
 </head>
 <body>
     <h1>ok</h1>
-    {{ $info }}
+    {{ $order }}
 </body>
 </html>

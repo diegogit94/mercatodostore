@@ -27,10 +27,12 @@
                 {{ config('app.name', 'Laravel') }}
             </a>
 
+            @if(Auth::user()['user_type'] == 'admin')
             @auth
             <a class="nav-link" href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a>
             <a class="nav-link" href="{{ route('products.index') }}">Productos <span class="sr-only">(current)</span></a>
             @endauth
+            @endif
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>

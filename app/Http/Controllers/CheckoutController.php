@@ -112,6 +112,6 @@ class CheckoutController extends Controller
 
         dd($response->json());
 
-        return view('placeToPaySuccess');
+//        return view('placeToPaySuccess');
     }
 }

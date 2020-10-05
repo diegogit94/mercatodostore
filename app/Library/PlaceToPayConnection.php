@@ -2,21 +2,41 @@
 
 namespace App\Library;
 
+use App\Order;
+use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class PlaceToPayConnection
+ * @package App\Library
+ */
 class PlaceToPayConnection
 {
     public $response;
     public $auth;
 
+    /**
+     * @return Application|RedirectResponse|Redirector
+     * @throws \Exception
+     */
     public function connect()
     {
         $this->authentication();
         return $this->createRequest();
     }
 
+    /**
+     * Generate all the authentication credentials
+     * @return array
+     * @throws \Exception
+     */
     public function authentication()
     {
         if (function_exists('random_bytes')) {
@@ -42,34 +62,59 @@ class PlaceToPayConnection
         return $this->auth;
     }
 
+    /**
+     * Create a POST petition for P2P webcheckout and save the response on DB
+     * @return Application|RedirectResponse|Redirector
+     */
     public function createRequest()
     {
         $reference = uniqid();
 
-        $this->response = Http::post('https://test.placetopay.com/redirection/api/session/', [
+        $this->response = Http::post(env('PLACETOPAY_BASE_URL'), [
             'auth' => $this->auth,
             'payment' => ['reference' => $reference,
                 'description' => 'description test',
-//                'amount' => ['currency' => "COP", 'total' => Cart::total()]
-                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
+                'amount' => ['currency' => "COP", 'total' => Cart::total()]
+//                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
-            'expiration' => date('c', strtotime("+6 minutes")),
-            'returnUrl' => "http://mercatodo.test:8000/success/$reference", //resolver página de retorno
-            'ipAddress' => '127.0.0.1', //sacar de la peticion
-            'userAgent' => 'PlacetoPay Sandbox' //sacar de la peticion, no quemar estos datos
+            'expiration' => date('c', strtotime("+1 hour")),
+            'returnUrl' => "http://mercatodo.test:8000/success/$reference",
+            'ipAddress' => request()->server('SERVER_ADDR'),
+            'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
 
+        Order::create([
+            'user_id' => Auth::id(),
+            'request_id' => $this->response['requestId'],
+            'reference' => $reference,
+        ]);
+
+//        return $this->response->json();
         return redirect($this->response['processUrl']);
     }
 
+    /**
+     * Makes a post request to p2p to consult the information of the user's transaction
+     * @return array|mixed
+     * @throws \Exception
+     */
     public function getRequestInformation()
     {
-        $requestId = $this->response['requestId'];
+        $requestId = Order::where('user_id', Auth::id())
+            ->where('reference', getUrlReference())
+            ->get()->toArray();
 
-        $response = Http::post("https://test.placetopay.com/redirection/api/session/$requestId", [
+        $requestId = $requestId['0']['request_id'];
+
+        $response = Http::post(env('PLACETOPAY_BASE_URL') . "$requestId", [
             'auth' => $this->authentication(),
         ]);
 
-        return $response['requestId'];
+        DB::table('orders')
+            ->where('reference', getUrlReference())
+            ->update(['transaction_information' => $response]);
+
+//        return redirect(route('placeToPaySuccess.index'))->with('transactionInformation', $transactionInformation);
+        return $response->json();
     }
 }
