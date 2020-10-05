@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('request_id')->nullable();
             $table->string('reference')->nullable();
+            $table->string('status')->nullable()->default('PENDING');
             $table->longText('transaction_information')->nullable();
             $table->timestamps();
 
