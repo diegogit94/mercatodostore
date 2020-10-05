@@ -50,20 +50,18 @@ class PlaceToPayConnection
     {
         $reference = uniqid();
 
-        $this->response = Http::post('https://test.placetopay.com/redirection/api/session/', [
+        $this->response = Http::post(env('PLACETOPAY_BASE_URL'), [
             'auth' => $this->auth,
             'payment' => ['reference' => $reference,
                 'description' => 'description test',
-//                'amount' => ['currency' => "COP", 'total' => Cart::total()]
-                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
+                'amount' => ['currency' => "COP", 'total' => Cart::total()]
+//                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
             'expiration' => date('c', strtotime("+1 hour")),
-            'returnUrl' => "http://mercatodo.test:8000/success/$reference", //resolver página de retorno
-            'ipAddress' => '127.0.0.1', //sacar de la peticion
-            'userAgent' => 'PlacetoPay Sandbox' //sacar de la peticion, no quemar estos datos
+            'returnUrl' => "http://mercatodo.test:8000/success/$reference",
+            'ipAddress' => request()->server('SERVER_ADDR'),
+            'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
-
-//        $user = Auth::id();
 
         Order::create([
             'user_id' => Auth::id(),
@@ -77,7 +75,6 @@ class PlaceToPayConnection
 
     public function getRequestInformation()
     {
-//        $url = request()->path();
         $url = request()->path();
         $parts = explode('/', $url);
         $reference = $parts[count($parts) -1];
@@ -88,19 +85,13 @@ class PlaceToPayConnection
 
         $requestId = $requestId['0']['request_id'];
 
-        $response = Http::post("https://test.placetopay.com/redirection/api/session/$requestId", [
+        $response = Http::post(env('PLACETOPAY_BASE_URL') . "$requestId", [
             'auth' => $this->authentication(),
         ]);
-
-//        dd($response->json());
 
         DB::table('orders')
             ->where('reference', $reference)
             ->update(['transaction_information' => $response]);
-
-//        Order::update([
-//            'transaction_information' => $response,
-//        ]);
 
 //        return redirect(route('placeToPaySuccess.index'))->with('transactionInformation', $transactionInformation);
         return $response->json();
