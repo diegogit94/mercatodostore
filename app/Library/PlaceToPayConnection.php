@@ -37,7 +37,7 @@ class PlaceToPayConnection
      * @return array
      * @throws \Exception
      */
-    public function authentication()
+    public function authentication(): array
     {
         if (function_exists('random_bytes')) {
             $nonce = bin2hex(random_bytes(16));
@@ -66,7 +66,7 @@ class PlaceToPayConnection
      * Create a POST petition for P2P webcheckout and save the response on DB
      * @return Application|RedirectResponse|Redirector
      */
-    public function createRequest()
+    public function createRequest(): RedirectResponse
     {
         $reference = uniqid();
 
@@ -98,7 +98,7 @@ class PlaceToPayConnection
      * @return array|mixed
      * @throws \Exception
      */
-    public function getRequestInformation()
+    public function getRequestInformation(): array
     {
         $requestId = Order::where('user_id', Auth::id())
             ->where('reference', getUrlReference())
