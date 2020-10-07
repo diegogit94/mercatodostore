@@ -94,7 +94,7 @@ class PlaceToPayConnection
             'request_id' => $this->response['requestId'],
             'reference' => $reference,
             'description' => $products,
-            'price' => Cart::total(),
+            'total' => Cart::total(),
         ]);
 
 //        return $this->response->json();

@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('request_id')->nullable();
             $table->string('reference')->nullable();
             $table->string('description')->nullable();
-            $table->double('price')->nullable();
+            $table->double('total')->nullable();
             $table->string('status')->nullable()->default('PENDING');
             $table->longText('transaction_information')->nullable();
             $table->timestamps();
