@@ -7,8 +7,10 @@ use Dnetix\Redirection\PlacetoPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
@@ -96,22 +98,13 @@ class CheckoutController extends Controller
         //
     }
 
+    /**
+     * @return Application|RedirectResponse|Redirector
+     * @throws \Exception
+     */
     public function placeToPayCheckout()
     {
         $connection = new PlaceToPayConnection();
         return $connection->connect();
-    }
-
-    public function placeToPaySuccess()
-    {
-
-        $request = $this->response['requestID'];
-        $response = Http::post("https://test.placetopay.com/redirection/api/session/$request", [
-            'auth' => $this->auth
-        ]);
-
-        dd($response->json());
-
-//        return view('placeToPaySuccess');
     }
 }
