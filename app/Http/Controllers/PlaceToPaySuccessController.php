@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Library\PlaceToPayConnection;
 use App\Order;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -34,6 +35,8 @@ class PlaceToPaySuccessController extends Controller
 
 //        return $order[0]['transaction_information']; //Acceder a la información de la transacción desde la DB
 
-        return view('placeToPaySuccess', ['order' => $order]);
+        Cart::destroy();
+
+        return view('thankyou', ['order' => $order]);
     }
 }

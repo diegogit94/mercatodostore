@@ -40,7 +40,7 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success_message', 'Item añadido a tu carrito');
     }
 
-    public function destroy($rowId)
+    public function remove($rowId)
     {
         Cart::remove($rowId);
 
