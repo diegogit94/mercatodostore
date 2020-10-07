@@ -17,6 +17,7 @@ class Order extends Model
 
     protected $casts = [
         'transaction_information' => 'array',
+        'description' => 'array'
     ];
 
     public function user()
