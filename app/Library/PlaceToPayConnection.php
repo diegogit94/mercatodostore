@@ -3,6 +3,7 @@
 namespace App\Library;
 
 use App\Order;
+use App\Product;
 use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
@@ -83,10 +84,17 @@ class PlaceToPayConnection
             'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
 
+        foreach (Cart::content() as $item)
+        {
+            $products[] = $item->name;
+        }
+
         Order::create([
             'user_id' => Auth::id(),
             'request_id' => $this->response['requestId'],
             'reference' => $reference,
+            'description' => $products,
+            'price' => Cart::total(),
         ]);
 
 //        return $this->response->json();
