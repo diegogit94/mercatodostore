@@ -79,7 +79,7 @@ class PlaceToPayConnection
 //                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
             'expiration' => date('c', strtotime("+3 days")),
-            'returnUrl' => route('placeToPaySuccess.index', "$reference"),
+            'returnUrl' => route('thankyou.index', "$reference"),
             'ipAddress' => request()->server('SERVER_ADDR'),
             'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
@@ -125,6 +125,28 @@ class PlaceToPayConnection
         DB::table('orders')
             ->where('reference', getUrlReference())
             ->update(['status' => $response['status']['status']]);
+
+        return $response->json();
+    }
+
+    /**
+     * @param Order $order
+     * @return array|mixed
+     * @throws \Exception
+     */
+    public function retryPayment(Order $order)
+    {
+        $response = Http::post(env('PLACETOPAY_BASE_URL'), [
+            'auth' => $this->authentication(),
+            'payment' => ['reference' => $order['reference'],
+                'description' => implode($order['description']),
+                'amount' => ['currency' => "COP", 'total' => $order['total']]
+            ],
+            'expiration' => date('c', strtotime("+3 days")),
+            'returnUrl' => route('thankyou.index',  $order['reference']),
+            'ipAddress' => request()->server('SERVER_ADDR'),
+            'userAgent' => request()->server('HTTP_USER_AGENT')
+        ]);
 
         return $response->json();
     }
