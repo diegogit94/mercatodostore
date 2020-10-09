@@ -13,6 +13,13 @@ class ThankYouController extends Controller
 {
     public function index()
     {
+        $info = new PlaceToPayConnection();
+
+        try {
+            $info->getRequestInformation();
+        } catch (\Exception $e) {
+        }
+
         $status = Order::where('user_id', Auth::id()) //Muestra solo los datos de la transacción que acaba de hacer el usuario
             ->where('reference', getUrlReference())
             ->get();
