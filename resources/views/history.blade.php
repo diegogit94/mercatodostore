@@ -16,6 +16,7 @@
 
 </head>
 <body>
+@if(!empty(null))
 <div class="container">
     <div class="row">
         <div class="col-sm-12 mx-auto">
@@ -54,12 +55,15 @@
         </div>
     </div>
 </div>
+@else
+    <div class="thank-you-section">
+        <h1>There's no purchases :c</h1>
+        <div class="spacer"></div>
+        <div>
+            <a href="{{ route('store.index') }}" class="button">Buy something</a>
+        </div>
+    </div>
+@endif
 </body>
 </html>
 @endsection
-
-{{--      @if ($user->active==1)
- value="Desactivar"
- @else
- value="Activar      "
- @endif  --}}
