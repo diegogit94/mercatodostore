@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\PlaceToPayConnection;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use phpDocumentor\Reflection\DocBlock\Tags\Method;
 
 class HistoryController extends Controller
 {
@@ -16,15 +18,15 @@ class HistoryController extends Controller
         return view('history', ['orders' => $orders]);
     }
 
-    public function retryPayment(Order $order)
+    /**
+     * @param Order $order
+     * @return array|mixed
+     * @throws \Exception
+     */
+    public function retryPayment(Order $order): Method
     {
-        $retry = Order::where('user_id', Auth::id())
-            ->where('request_id', $order->request_id)
-            ->where('reference', $order->reference)
-            ->get();
+        $retry = new PlaceToPayConnection();
 
-        dd($retry);
-
-        return $response = Http::post(env('PLACETOPAY_BASE_URL') . $order->request_id . "/" . $order->reference );
+        return $retry->retryPayment($order);
     }
 }

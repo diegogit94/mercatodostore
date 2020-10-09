@@ -27,7 +27,7 @@ Route::patch('/cart/{product}', 'CartController@update')->name('update.cart');
 
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 Route::post('/checkout', 'CheckoutController@placeToPayCheckout')->name('checkout.placeToPayCheckout');
-Route::get('/success/{reference}', 'PlaceToPaySuccessController@index')->name('placeToPaySuccess.index');
+Route::get('/success/{reference}', 'ThankYouController@index')->name('thankyou.index');
 
 Route::get('/history', 'HistoryController@index')->name('history.index');
 Route::get('/history/{order}', 'HistoryController@retryPayment')->name('history.retryPayment');
