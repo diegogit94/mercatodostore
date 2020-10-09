@@ -141,7 +141,7 @@
                             <div class="checkout-item-details">
                                 <div class="checkout-table-item">{{ $item->model->name }}</div>
                                 <div class="checkout-table-description">{{ $item->model->short_description }}</div>
-                                <div class="checkout-table-price">{{ $item->model->price }}</div>
+                                <div class="checkout-table-price">{{ "$" . $item->model->price }}</div>
                             </div>
                         </div> <!-- end checkout-table -->
 
@@ -168,14 +168,14 @@
                     </div>
 
                     <div class="checkout-totals-right">
-                        {{ Cart::subtotal() }} <br>
+                        {{ "$" . Cart::subtotal() }} <br>
                         @if (session()->has('coupon'))
                             -{{-- presentPrice($discount) --}} <br>
                             <hr>
                             {{-- presentPrice($newSubtotal) --}} <br>
                         @endif
-                        {{ Cart::tax() }} <br>
-                        <span class="checkout-totals-total">{{ Cart::total() }}</span>
+                        {{ "$" . Cart::tax() }} <br>
+                        <span class="checkout-totals-total">{{ "$" . Cart::total() }}</span>
 
                     </div>
                 </div> <!-- end checkout-totals -->
