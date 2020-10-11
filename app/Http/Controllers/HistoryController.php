@@ -23,7 +23,7 @@ class HistoryController extends Controller
      * @return array|mixed
      * @throws \Exception
      */
-    public function retryPayment(Order $order): Method
+    public function retryPayment(Order $order): array
     {
         $retry = new PlaceToPayConnection();
 
