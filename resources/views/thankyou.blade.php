@@ -11,7 +11,7 @@
 @section('content')
 
    <div class="thank-you-section">
-       <h1>Your order was <br> {{ $status[0]['status'] }}</h1>
+       <h1>Your order was <br> {{ $status }}</h1>
        <div class="spacer"></div>
        <div>
            <a href="{{ url('/') }}" class="button">Home Page</a>
