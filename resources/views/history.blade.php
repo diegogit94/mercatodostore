@@ -16,7 +16,7 @@
 
 </head>
 <body>
-@if(!empty(null))
+@if(!empty($orders))
 <div class="container">
     <div class="row">
         <div class="col-sm-12 mx-auto">
@@ -41,7 +41,7 @@
                             <form action="{{ route('history.retryPayment', $order) }}" method="GET">
                                 @method('GET')
                                 @csrf
-                                @if($order->status == 'REJECTED')
+                                @if($order->status == 'REJECTED' || $order->status =='PENDING' || $order->status =='FAILED')
                                 <a href="{{ route('history.retryPayment', $order->id) }}"
                                    type="submit"
                                    class="btn btn-sm btn-info">Reintentar pago</a>
