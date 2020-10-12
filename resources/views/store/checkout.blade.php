@@ -52,7 +52,11 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                        @if (auth()->user())
+                            <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" required>
+                        @else
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>

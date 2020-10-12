@@ -55,7 +55,6 @@ class PlaceToPayConnection
         return $this->auth;
     }
 
-
     /**
      * Create a POST petition for P2P webcheckout and save the response on DB
      * @param $total
@@ -70,7 +69,6 @@ class PlaceToPayConnection
             'payment' => ['reference' => $this->reference,
                 'description' => 'description test',
                 'amount' => ['currency' => "COP", 'total' => $total]
-//                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
             'expiration' => date('c', strtotime("+3 days")),
             'returnUrl' => route('thankyou.index', "$this->reference"),
@@ -80,7 +78,6 @@ class PlaceToPayConnection
 
         return $this->response->json();
     }
-
 
     /**
      * @param $requestId

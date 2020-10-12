@@ -50,52 +50,13 @@ class   CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return void
-     */
-    public function show(int $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return void
-     */
-    public function edit(int $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return void
-     */
-    public function update(Request $request, int $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return void
-     */
-    public function destroy(int $id)
-    {
-        //
+//        Order::create([
+//            'address' => $request->address,
+//            'city' => $request->city,
+//            'province' => $request->province,
+//            'postal_code' => $request->postalcode,
+//            'phone' => $request->phone,
+//        ]);
     }
 
     /**
