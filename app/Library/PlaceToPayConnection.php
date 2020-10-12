@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use phpDocumentor\Reflection\Types\Mixed_;
 
 /**
  * Class PlaceToPayConnection
@@ -54,11 +55,13 @@ class PlaceToPayConnection
         return $this->auth;
     }
 
+
     /**
      * Create a POST petition for P2P webcheckout and save the response on DB
-     * @return Application|RedirectResponse|Redirector
+     * @param $total
+     * @return array|mixed
      */
-    public function createRequest($total)/*: RedirectResponse*/
+    public function createRequest($total): array
     {
         $this->reference = uniqid();
 
@@ -78,12 +81,13 @@ class PlaceToPayConnection
         return $this->response->json();
     }
 
-//    /**
-//     * Makes a post request to p2p to consult the information of the user's transaction
-//     * @return array|mixed
-//     * @throws \Exception
-//     */
-    public function getRequestInformation($requestId)/*: array*/
+
+    /**
+     * @param $requestId
+     * @return array|mixed
+     * @throws \Exception
+     */
+    public function getRequestInformation($requestId): array
     {
         $response = Http::post(env('PLACETOPAY_BASE_URL') . "$requestId", [
             'auth' => $this->authentication(),
