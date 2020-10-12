@@ -21,15 +21,15 @@ Route::get('/search', 'StoreController@search')->name('store.search');
 Route::get('/store/{product}', 'StoreController@show')->name('store.show');
 
 Route::get('/cart', 'CartController@index')->name('cart.index');
-Route::post('/cart', 'CartController@store')->name('cart.store');
+Route::post('/cart', 'CartController@store')->name('cart.store')->middleware('auth');
 Route::delete('/cart/{product}', 'CartController@remove')->name('cart.remove');
 Route::patch('/cart/{product}', 'CartController@update')->name('update.cart');
 
-Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
 Route::post('/checkout', 'CheckoutController@placeToPayCheckout')->name('checkout.placeToPayCheckout');
 Route::get('/success/{reference}', 'ThankYouController@index')->name('thankyou.index');
 
-Route::get('/history', 'HistoryController@index')->name('history.index');
+Route::get('/history', 'HistoryController@index')->name('history.index')->middleware('auth');
 Route::get('/history/{order}', 'HistoryController@retryPayment')->name('history.retryPayment');
 
 Auth::routes(['verify' => true]);
