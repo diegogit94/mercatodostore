@@ -35,7 +35,7 @@
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>{{ implode(", ", $order->description) }}</td>
-                        <td>{{ "$" . $order->total }}</td>
+                        <td>{{ formatPrice($order->total) }}</td>
                         <td>{{ $order->status }}</td>
                         <td>
                             <form action="{{ route('history.retryPayment', $order) }}" method="GET">

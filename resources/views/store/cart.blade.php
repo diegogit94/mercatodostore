@@ -70,7 +70,7 @@
                                     </select>
                                 </label>
                         </div>
-                        <div>${{ $item->subtotal }}</div>
+                        <div>{{ formatPrice($item->subtotal) }}</div>
                     </div>
                 </div> <!-- end cart-table-row -->
                 @endforeach
@@ -92,7 +92,7 @@
 
             <div class="cart-totals">
                 <div class="cart-totals-left">
-                    El envío no tiene costo! :D
+                    Free shipping! :D
                 </div>
 
                 <div class="cart-totals-right">
@@ -112,14 +112,14 @@
                         <span class="cart-totals-total">Total</span>
                     </div>
                     <div class="cart-totals-subtotal">
-                        {{ Cart::subtotal() }} <br>
+                        {{ formatPrice(Cart::subtotal()) }} <br>
                         @if (session()->has('coupon'))
                             -{{-- $discount --}} <br>&nbsp;<br>
                             <hr>
                             {{-- $newSubtotal --}} <br>
                         @endif
-                        {{ Cart::tax() }} <br>
-                        <span class="cart-totals-total">${{ Cart::total() }}</span>
+                        {{ formatPrice(Cart::tax()) }} <br>
+                        <span class="cart-totals-total">{{ formatPrice(Cart::total()) }}</span>
                     </div>
                 </div>
             </div> <!-- end cart-totals -->
