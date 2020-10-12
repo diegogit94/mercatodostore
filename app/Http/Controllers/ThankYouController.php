@@ -22,13 +22,9 @@ class ThankYouController extends Controller
 
         $response = $info->getRequestInformation($requestId[0]['request_id']);
 
-        DB::table('orders') //poner estos dos queries en uno solo
+        DB::table('orders')
         ->where('reference', getUrlReference())
             ->update(['transaction_information' => $response, 'status' => $response['status']['status']]);
-
-//        $status = Order::where('user_id', Auth::id()) //Muestra solo los datos de la transacción que acaba de hacer el usuario
-//            ->where('reference', getUrlReference())
-//            ->get();
 
         Cart::destroy();
 

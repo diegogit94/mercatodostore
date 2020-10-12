@@ -66,4 +66,6 @@
 @endif
 </body>
 </html>
+<div class="pagination"></div>
+{{ $orders->links() }}
 @endsection
