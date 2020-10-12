@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel Ecommerce Example</title>
+        <title>Mercatodo</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet">
@@ -68,7 +68,7 @@
             <div class="featured-section">
 
                 <div class="container">
-                    <h1 class="text-center">Laravel Ecommerce</h1>
+                    <h1 class="text-center">Mercatodo</h1>
 
                     <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore vitae nisi, consequuntur illum dolores cumque pariatur quis provident deleniti nesciunt officia est reprehenderit sunt aliquid possimus temporibus enim eum hic lorem.</p>
 
@@ -91,7 +91,7 @@
                             <div class="product">
                                 <a href="{{ route('store.show', $product->slug) }}"><img src="{{ $product->image }}" alt="product" class="product-section-image"></a>
                                 <a href="{{ route('store.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>
-                                <div class="product-price">{{ $product->price }}</div>
+                                <div class="product-price">{{ formatPrice($product->price) }}</div>
                             </div>
                         @empty
                             <div>No items found</div>

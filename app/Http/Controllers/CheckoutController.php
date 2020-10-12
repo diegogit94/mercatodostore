@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Library\PlaceToPayConnection;
+use App\Order;
 use Dnetix\Redirection\PlacetoPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
-class CheckoutController extends Controller
+class   CheckoutController extends Controller
 {
-    public $response = '';
-    public $auth = '';
     /**
      * Display a listing of the resource.
      *
@@ -96,22 +98,32 @@ class CheckoutController extends Controller
         //
     }
 
+    /**
+     * @return Application|RedirectResponse|Redirector
+     * @throws \Exception
+     */
     public function placeToPayCheckout()
     {
         $connection = new PlaceToPayConnection();
-        return $connection->connect();
-    }
 
-    public function placeToPaySuccess()
-    {
+        $connection->authentication();
 
-        $request = $this->response['requestID'];
-        $response = Http::post("https://test.placetopay.com/redirection/api/session/$request", [
-            'auth' => $this->auth
+        $response = $connection->createRequest(Cart::total());
+
+        foreach (Cart::content() as $item)
+        {
+            $products[] = $item->name;
+        }
+
+        Order::create([
+            'user_id' => Auth::id(),
+            'request_id' => $response['requestId'],
+            'reference' => $connection->reference,
+            'description' => $products,
+            'total' => Cart::total(),
         ]);
 
-        dd($response->json());
-
-//        return view('placeToPaySuccess');
+        return redirect($response['processUrl']);
+//        return $connection->connect();
     }
 }

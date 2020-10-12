@@ -10,3 +10,12 @@ function getUrlReference()
     $parts = explode('/', $url);
     return $reference = $parts[count($parts) -1];
 }
+
+/**
+ * @param $price
+ * @return string
+ */
+function formatPrice($price)
+{
+    return "$ " . number_format($price / 1);
+}
