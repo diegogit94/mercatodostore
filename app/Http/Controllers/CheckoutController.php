@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Library\PlaceToPayConnection;
+use App\Order;
 use Dnetix\Redirection\PlacetoPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
@@ -11,13 +12,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
-class CheckoutController extends Controller
+class   CheckoutController extends Controller
 {
-    public $response = '';
-    public $auth = '';
     /**
      * Display a listing of the resource.
      *
@@ -105,6 +105,25 @@ class CheckoutController extends Controller
     public function placeToPayCheckout()
     {
         $connection = new PlaceToPayConnection();
-        return $connection->connect();
+
+        $connection->authentication();
+
+        $response = $connection->createRequest(Cart::total());
+
+        foreach (Cart::content() as $item)
+        {
+            $products[] = $item->name;
+        }
+
+        Order::create([
+            'user_id' => Auth::id(),
+            'request_id' => $response['requestId'],
+            'reference' => $connection->reference,
+            'description' => $products,
+            'total' => Cart::total(),
+        ]);
+
+        return redirect($response['processUrl']);
+//        return $connection->connect();
     }
 }
