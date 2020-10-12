@@ -22,16 +22,7 @@ class PlaceToPayConnection
 {
     public $response;
     public $auth;
-
-    /**
-     * @return Application|RedirectResponse|Redirector
-     * @throws \Exception
-     */
-    public function connect()
-    {
-        $this->authentication();
-        return $this->createRequest();
-    }
+    public $reference;
 
     /**
      * Generate all the authentication credentials
@@ -67,85 +58,35 @@ class PlaceToPayConnection
      * Create a POST petition for P2P webcheckout and save the response on DB
      * @return Application|RedirectResponse|Redirector
      */
-    public function createRequest(): RedirectResponse
+    public function createRequest($total)/*: RedirectResponse*/
     {
-        $reference = uniqid();
+        $this->reference = uniqid();
 
         $this->response = Http::post(env('PLACETOPAY_BASE_URL'), [
             'auth' => $this->auth,
-            'payment' => ['reference' => $reference,
+            'payment' => ['reference' => $this->reference,
                 'description' => 'description test',
-                'amount' => ['currency' => "COP", 'total' => Cart::total()]
+                'amount' => ['currency' => "COP", 'total' => $total]
 //                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
             'expiration' => date('c', strtotime("+3 days")),
-            'returnUrl' => route('thankyou.index', "$reference"),
+            'returnUrl' => route('thankyou.index', "$this->reference"),
             'ipAddress' => request()->server('SERVER_ADDR'),
             'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
 
-        foreach (Cart::content() as $item)
-        {
-            $products[] = $item->name;
-        }
-
-        Order::create([
-            'user_id' => Auth::id(),
-            'request_id' => $this->response['requestId'],
-            'reference' => $reference,
-            'description' => $products,
-            'total' => Cart::total(),
-        ]);
-
-//        return $this->response->json();
-        return redirect($this->response['processUrl']);
+        return $this->response->json();
     }
 
-    /**
-     * Makes a post request to p2p to consult the information of the user's transaction
-     * @return array|mixed
-     * @throws \Exception
-     */
-    public function getRequestInformation(): array
+//    /**
+//     * Makes a post request to p2p to consult the information of the user's transaction
+//     * @return array|mixed
+//     * @throws \Exception
+//     */
+    public function getRequestInformation($requestId)/*: array*/
     {
-        $requestId = Order::where('user_id', Auth::id())
-            ->where('reference', getUrlReference())
-            ->get()->toArray();
-
-        $requestId = $requestId['0']['request_id'];
-
         $response = Http::post(env('PLACETOPAY_BASE_URL') . "$requestId", [
             'auth' => $this->authentication(),
-        ]);
-
-        DB::table('orders')
-            ->where('reference', getUrlReference())
-            ->update(['transaction_information' => $response]);
-
-        DB::table('orders')
-            ->where('reference', getUrlReference())
-            ->update(['status' => $response['status']['status']]);
-
-        return $response->json();
-    }
-
-    /**
-     * @param Order $order
-     * @return array|mixed
-     * @throws \Exception
-     */
-    public function retryPayment(Order $order)
-    {
-        $response = Http::post(env('PLACETOPAY_BASE_URL'), [
-            'auth' => $this->authentication(),
-            'payment' => ['reference' => $order['reference'],
-                'description' => implode($order['description']),
-                'amount' => ['currency' => "COP", 'total' => $order['total']]
-            ],
-            'expiration' => date('c', strtotime("+3 days")),
-            'returnUrl' => route('thankyou.index',  $order['reference']),
-            'ipAddress' => request()->server('SERVER_ADDR'),
-            'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
 
         return $response->json();

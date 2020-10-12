@@ -56,7 +56,7 @@
                     <div class="product">
                         <a href="{{ route('store.show', $product->slug) }}"><img href="{{ route('store.show', $product->slug) }}" src="{{ $product->image }}" alt="product" class="product-section-image"></a>
                         <a href="{{ route('store.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>
-                        <div class="product-price">{{ $product->price }}</div>
+                        <div class="product-price">{{ "$" . $product->price }}</div>
                     </div>
                 @empty
                     <div style="text-align: left">No items found</div>
