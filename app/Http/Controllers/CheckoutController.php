@@ -102,12 +102,15 @@ class   CheckoutController extends Controller
      * @return Application|RedirectResponse|Redirector
      * @throws \Exception
      */
-    public function placeToPayCheckout()
+    public function placeToPayCheckout(): RedirectResponse
     {
+        if (!Cart::count())
+        {
+            return back()->with('success_message', 'First add something to your car, sugar ;)');
+        }
+
         $connection = new PlaceToPayConnection();
-
         $connection->authentication();
-
         $response = $connection->createRequest(Cart::total());
 
         foreach (Cart::content() as $item)
@@ -124,6 +127,5 @@ class   CheckoutController extends Controller
         ]);
 
         return redirect($response['processUrl']);
-//        return $connection->connect();
     }
 }
