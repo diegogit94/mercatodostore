@@ -12,15 +12,17 @@ use Illuminate\Support\Facades\Http;
 
 class ThankYouController extends Controller
 {
-    public function index()
+    public function index(string $reference)
     {
-        $requestId = Order::where('user_id', Auth::id())
-            ->where('reference', getUrlReference())
-            ->get();
+        $order = Order::where('user_id', Auth::id())
+            ->where('reference', $reference)
+            ->firstOrFail();
 
         $info = new PlaceToPayConnection();
 
-        $response = $info->getRequestInformation($requestId[0]['request_id']);
+        $response = $info->getRequestInformation($order['request_id']);
+
+//        $order->update(['transaction_information' => $response, 'status' => $response['status']['status']]);
 
         DB::table('orders')
         ->where('reference', getUrlReference())
