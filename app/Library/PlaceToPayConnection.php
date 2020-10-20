@@ -60,19 +60,20 @@ class PlaceToPayConnection
      * @param $total
      * @return array|mixed
      */
-    public function createRequest($total): array
+    public function createRequest(float $total): array
     {
         $this->reference = uniqid();
 
         $this->response = Http::post(env('PLACETOPAY_BASE_URL'), [
             'auth' => $this->auth,
-            'payment' => ['reference' => $this->reference,
+            'payment' => [
+                'reference' => $this->reference,
                 'description' => 'description test',
                 'amount' => ['currency' => "COP", 'total' => $total]
             ],
-            'expiration' => date('c', strtotime("+3 days")),
-            'returnUrl' => route('thankyou.index', "$this->reference"),
-            'ipAddress' => request()->server('SERVER_ADDR'),
+            'expiration' => date('c', strtotime("+15 minutes")),
+            'returnUrl' => route('thankyou.index', $this->reference),
+            'ipAddress' => request()->ip(),
             'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
 
