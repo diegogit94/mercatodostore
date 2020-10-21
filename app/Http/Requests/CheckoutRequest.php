@@ -24,11 +24,14 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
+            'last_name' => 'required|min:2|max:70',
             'address' => 'required|min:6|max:100',
             'city' => 'required|min:6|max:50',
             'province' => 'required|min:6|max:50',
             'postal_code' => 'required|numeric',
             'phone' => 'required|numeric',
+            'document_type' => 'required|',
+            'document_number' => 'required|numeric'
         ];
     }
 }
