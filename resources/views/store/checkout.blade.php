@@ -59,6 +59,10 @@
                         @endif
                     </div>
                     <div class="form-group">
+                        <label for="name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
+                    </div>
+                    <div class="form-group">
                         <label for="address">Address</label>
                         <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
                     </div>
@@ -83,56 +87,31 @@
                             <label for="phone">Phone</label>
                             <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
                         </div>
+                    </div>
+
+                    <div class="half-form">
+                        <div class="form-group">
+                            <label for="document_type">Document Type</label>
+                            <select name="document_type" class="form-control" id="document_type" required>
+                                <option value="" selected>...</option>
+                                <option value="CC">Cedula de Ciudadania</option>
+                                <option value="CE">Cedula de extranjería</option>
+                                <option value="PPN">Pasaporte</option>
+                                <option value="RUT">RUT</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="document_number">Document Number</label>
+                            <input type="text" class="form-control" id="document_number" name="document_number" value="{{ old('document_number') }}" required>
+                        </div>
                     </div> <!-- end half-form -->
 
                     <div class="spacer"></div>
 
-                    <h2>Payment Details</h2>
-
-                    <div class="form-group">
-                        <label for="name_on_card">Name on Card</label>
-                        <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="card-element">
-                          Credit or debit card
-                        </label>
-                        <div id="card-element">
-                          <!-- a Stripe Element will be inserted here. -->
-                        </div>
-
-                        <!-- Used to display form errors -->
-                        <div id="card-errors" role="alert"></div>
-                    </div>
-                    <div class="spacer"></div>
-
-                    <button type="submit" id="complete-order" class="button-primary full-width">Complete Order</button>
-
+                    <button type="submit" id="complete-order" class="button-primary full-width">Pay with PlaceToPay</button>
 
                 </form>
-
-{{--                @if ($paypalToken)--}}
-                    <div class="mt-32">or</div>
-                    <div class="mt-32">
-                        <h2>Pay with PlaceToPay</h2>
-
-                        <form method="post" id="paypal-payment-form" action="{{ route('checkout.placeToPayCheckout') }}">
-                            @csrf
-                            <section>
-                                <div class="bt-drop-in-wrapper">
-                                    <div id="bt-dropin"></div>
-                                </div>
-                            </section>
-
-                            <input id="nonce" name="payment_method_nonce" type="hidden" />
-                            <button class="button-primary" type="submit"><span>Pay with PlaceToPay</span></button>
-                        </form>
-                    </div>
-{{--                @endif--}}
             </div>
-
-
 
             <div class="checkout-table-container">
                 <h2>Your Order</h2>
