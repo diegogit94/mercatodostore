@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckoutRequest;
 use App\Library\PlaceToPayConnection;
 use App\Order;
 use Dnetix\Redirection\PlacetoPay;
@@ -60,11 +61,14 @@ class   CheckoutController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return Application|RedirectResponse|Redirector
      * @throws \Exception
      */
-    public function placeToPayCheckout(): RedirectResponse
+    public function placeToPayCheckout(CheckoutRequest $request): RedirectResponse
     {
+        $request->validated();
+
         if (!Cart::count())
         {
             return back()->with('success_message', 'First add something to your car, sugar ;)');
@@ -85,6 +89,11 @@ class   CheckoutController extends Controller
             'reference' => $connection->reference,
             'description' => $products,
             'total' => Cart::total(),
+            'address' => $request['address'],
+            'city' => $request['city'],
+            'province' => $request['province'],
+            'postal_code' => $request['postal_code'],
+            'phone' => $request['phone'],
         ]);
 
         return redirect($response['processUrl']);
