@@ -21,11 +21,11 @@ class CreateOrdersTable extends Migration
             $table->string('description')->nullable();
             $table->double('total')->nullable();
             $table->string('status')->nullable()->default('PENDING');
-//            $table->string('address')->nullable();
-//            $table->string('city')->nullable();
-//            $table->string('province')->nullable();
-//            $table->integer('postal_code')->nullable();
-//            $table->integer('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->bigInteger('postal_code')->nullable();
+            $table->bigInteger('phone')->nullable();
             $table->longText('transaction_information')->nullable();
             $table->timestamps();
 
