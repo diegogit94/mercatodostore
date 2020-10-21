@@ -76,7 +76,7 @@ class   CheckoutController extends Controller
 
         $connection = new PlaceToPayConnection();
         $connection->authentication();
-        $response = $connection->createRequest(Cart::total());
+        $response = $connection->createRequest(Cart::total(), $request);
 
         foreach (Cart::content() as $item)
         {
