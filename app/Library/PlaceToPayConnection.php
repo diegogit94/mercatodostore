@@ -2,10 +2,12 @@
 
 namespace App\Library;
 
+use App\Http\Requests\CheckoutRequest;
 use App\Order;
 use App\Product;
 use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Mixed_;
+use Ramsey\Collection\Collection;
 
 /**
  * Class PlaceToPayConnection
@@ -57,10 +60,11 @@ class PlaceToPayConnection
 
     /**
      * Create a POST petition for P2P webcheckout and save the response on DB
-     * @param $total
+     * @param float $total
+     * @param $request
      * @return array|mixed
      */
-    public function createRequest(float $total): array
+    public function createRequest(float $total, CheckoutRequest $request): array
     {
         $this->reference = uniqid();
 
@@ -71,6 +75,21 @@ class PlaceToPayConnection
                 'description' => 'description test',
                 'amount' => ['currency' => "COP", 'total' => $total]
             ],
+            'buyer' => [
+                'name' => $request['name'],
+                'surname' => $request['last_name'],
+                'email' => $request['email'],
+                'documentType' => $request['document_type'],
+                'document' => $request['document_number'],
+                'mobile' => $request['phone'],
+                'address' => [
+                    'street' => $request['addresss'],
+                    'city' => $request['city'],
+                    'state' => $request['Province'],
+                    'postalCode' => $request['postal_code'],
+//                    'country' => 'US',
+//                    'phone' => '363-547-1441 x383',
+                ]],
             'expiration' => date('c', strtotime("+15 minutes")),
             'returnUrl' => route('thankyou.index', $this->reference),
             'ipAddress' => request()->ip(),
