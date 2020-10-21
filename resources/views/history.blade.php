@@ -41,7 +41,7 @@
                             <form action="{{ route('history.retryPayment', $order) }}" method="GET">
                                 @method('GET')
                                 @csrf
-                                @if($order->status == 'REJECTED' || $order->status =='PENDING' || $order->status =='FAILED')
+                                @if($order->status == 'REJECTED' || $order->status =='FAILED')
                                 <a href="{{ route('history.retryPayment', $order->id) }}"
                                    type="submit"
                                    class="btn btn-sm btn-info">Reintentar pago</a>
