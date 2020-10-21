@@ -61,7 +61,7 @@ class   CheckoutController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param CheckoutRequest $request
      * @return Application|RedirectResponse|Redirector
      * @throws \Exception
      */
