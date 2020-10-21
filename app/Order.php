@@ -12,7 +12,16 @@ class Order extends Model
     public $request_id;
 
     protected $fillable = [
-        'user_id', 'request_id', 'reference', 'description', 'total'
+        'user_id',
+        'request_id',
+        'reference',
+        'description',
+        'total',
+        'address',
+        'city',
+        'province',
+        'postal_code',
+        'phone',
     ];
 
     protected $casts = [
