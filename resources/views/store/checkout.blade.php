@@ -38,8 +38,8 @@
         <h1 class="checkout-heading stylish-heading">Checkout</h1>
         <div class="checkout-section">
             <div>
-                <form action="{{-- route('checkout.store') --}}" method="POST" id="payment-form">
-                    {{ csrf_field() }}
+                <form action="{{ route('checkout.placeToPayCheckout') }}" method="POST" id="payment-form">
+                    @csrf
                     <h2>Billing Details</h2>
 
                     <div class="form-group">
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label for="name">Name</label>
                         @if (auth()->user())
-                            <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" required>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" readonly>
                         @else
                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                         @endif
@@ -77,7 +77,7 @@
                     <div class="half-form">
                         <div class="form-group">
                             <label for="postalcode">Postal Code</label>
-                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{ old('postalcode') }}" required>
+                            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ old('postal_code') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
