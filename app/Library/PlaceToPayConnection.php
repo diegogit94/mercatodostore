@@ -64,7 +64,7 @@ class PlaceToPayConnection
      * @param $request
      * @return array|mixed
      */
-    public function createRequest(float $total, CheckoutRequest $request): array
+    public function createRequest(float $total, $request): array //Tipo de dato del segundo parametro
     {
         $this->reference = uniqid();
 
