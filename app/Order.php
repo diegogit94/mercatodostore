@@ -16,6 +16,7 @@ class Order extends Model
         'request_id',
         'reference',
         'description',
+        'quantity',
         'total',
         'address',
         'city',
