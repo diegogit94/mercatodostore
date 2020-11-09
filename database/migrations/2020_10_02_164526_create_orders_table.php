@@ -19,7 +19,6 @@ class CreateOrdersTable extends Migration
             $table->string('request_id')->nullable();
             $table->string('reference')->nullable();
             $table->string('description')->nullable();
-            $table->unsignedInteger('quantity')->nullable();
             $table->double('total')->nullable();
             $table->string('status')->nullable()->default('PENDING');
             $table->string('address')->nullable();
