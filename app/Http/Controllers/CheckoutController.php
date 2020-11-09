@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CheckoutRequest;
 use App\Library\PlaceToPayConnection;
 use App\Order;
+use App\OrderProduct;
 use Dnetix\Redirection\PlacetoPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
@@ -78,16 +79,19 @@ class   CheckoutController extends Controller
         $connection->authentication();
         $response = $connection->createRequest(Cart::total(), $request);
 
-        foreach (Cart::content() as $item)
+        $products = [];
+
+        foreach (Cart::content() as $product)
         {
-            $products[] = $item->name;
+            $products[$product->id] = ['quantity' => $product->qty, 'unit_price' => $product->price];
+            $names[] = $product->name;
         }
 
-        Order::create([
+        $order = Order::create([
             'user_id' => Auth::id(),
             'request_id' => $response['requestId'],
             'reference' => $connection->reference,
-            'description' => $products,
+            'description' => $names,
             'total' => Cart::total(),
             'address' => $request['address'],
             'city' => $request['city'],
@@ -95,6 +99,9 @@ class   CheckoutController extends Controller
             'postal_code' => $request['postal_code'],
             'phone' => $request['phone'],
         ]);
+
+
+        $order->products()->attach($products);
 
         return redirect($response['processUrl']);
     }
