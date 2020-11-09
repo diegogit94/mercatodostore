@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
 
 class Product extends Model
@@ -25,5 +26,10 @@ class Product extends Model
     public function toggleVisibility(): bool
     {
         return $this->update(['visible' => !$this->visible]);
+    }
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class);
     }
 }
