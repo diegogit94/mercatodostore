@@ -50,11 +50,12 @@ class CheckPendingOrders extends Command
 
             if ($response['status']['status'] !== $order['status'])
             {
+                event(new StatusUpdatedEvent($response));
+
                 DB::table('orders')
                     ->where('request_id', $order['request_id'])
                     ->update(['transaction_information' => $response, 'status' => $response['status']['status']]);
 
-                event(new StatusUpdatedEvent($response));
             }
         });
     }
