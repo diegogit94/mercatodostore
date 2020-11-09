@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Library\PlaceToPayConnection;
 use App\Order;
+use App\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,23 +13,30 @@ use Illuminate\Support\Facades\Http;
 
 class ThankYouController extends Controller
 {
-    public function index()
+    public const STATUS_APPROVED = "APPROVED";
+
+    public function index(string $reference)
     {
-        $requestId = Order::where('user_id', Auth::id())
-            ->where('reference', getUrlReference())
-            ->get();
+        $order = Order::where('user_id', Auth::id())
+            ->where('reference', $reference)
+            ->firstOrFail();
 
         $info = new PlaceToPayConnection();
 
-        $response = $info->getRequestInformation($requestId[0]['request_id']);
+        $response = $info->getRequestInformation($order['request_id']);
 
-        DB::table('orders') //poner estos dos queries en uno solo
+//        $order->update(['transaction_information' => $response, 'status' => $response['status']['status']]);
+
+        DB::table('orders')
         ->where('reference', getUrlReference())
             ->update(['transaction_information' => $response, 'status' => $response['status']['status']]);
 
-//        $status = Order::where('user_id', Auth::id()) //Muestra solo los datos de la transacción que acaba de hacer el usuario
-//            ->where('reference', getUrlReference())
-//            ->get();
+        if ($response['status']['status'] == self::STATUS_APPROVED && $order->status != self::STATUS_APPROVED) {
+
+            $order->products->each(function ($product) {
+                $product->decrement('quantity', $product->pivot->quantity);
+            });
+        }
 
         Cart::destroy();
 

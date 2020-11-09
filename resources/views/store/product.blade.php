@@ -65,7 +65,7 @@
 
             <p>&nbsp;</p>
 
-{{--            @if ($product->quantity > 0)--}}
+            @if ($product->quantity > 0)
                 <form action="{{ route('cart.store') }}" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $product->id }}">
@@ -73,7 +73,9 @@
                     <input type="hidden" name="price" value="{{ $product->price }}">
                     <button type="submit" class="button button-plain">Agregar al carrito</button>
                 </form>
-{{--            @endif--}}
+                @else
+                <div><h2>This Product is no longer available</h2></div>
+            @endif
         </div>
     </div> <!-- end product-section -->
 

@@ -15,7 +15,7 @@ class HistoryController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('user_id', Auth::id())->get();
+        $orders = Order::where('user_id', Auth::id())->paginate(8);
 
         return view('history', ['orders' => $orders]);
     }
@@ -26,7 +26,7 @@ class HistoryController extends Controller
 
         $retry->authentication();
 
-        $response = $retry->createRequest($order['total']);
+        $response = $retry->createRequest($order['total'], $order);
 
         DB::table('orders')->where('user_id', Auth::id())
         ->where('request_id', $order['request_id'])

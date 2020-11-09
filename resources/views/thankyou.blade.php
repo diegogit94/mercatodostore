@@ -11,7 +11,13 @@
 @section('content')
 
    <div class="thank-you-section">
-       <h1>Your order was <br> {{ $status }}</h1>
+       @if ($status == 'PENDING')
+           <h1>Your order was <br> {{ $status }}</h1>
+           <p>We will notify to your email when the order status has change,
+           also you can check the history.</p>
+       @else
+           <h1>Your order was <br> {{ $status }}</h1>
+       @endif
        <div class="spacer"></div>
        <div>
            <a href="{{ url('/') }}" class="button">Home Page</a>

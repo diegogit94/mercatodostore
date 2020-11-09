@@ -2,10 +2,12 @@
 
 namespace App\Library;
 
+use App\Http\Requests\CheckoutRequest;
 use App\Order;
 use App\Product;
 use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use phpDocumentor\Reflection\Types\Mixed_;
+use Ramsey\Collection\Collection;
 
 /**
  * Class PlaceToPayConnection
@@ -56,34 +60,51 @@ class PlaceToPayConnection
 
     /**
      * Create a POST petition for P2P webcheckout and save the response on DB
-     * @return Application|RedirectResponse|Redirector
+     * @param float $total
+     * @param $request
+     * @return array|mixed
      */
-    public function createRequest($total)/*: RedirectResponse*/
+    public function createRequest(float $total, $request): array //Tipo de dato del segundo parametro
     {
         $this->reference = uniqid();
 
         $this->response = Http::post(env('PLACETOPAY_BASE_URL'), [
             'auth' => $this->auth,
-            'payment' => ['reference' => $this->reference,
+            'payment' => [
+                'reference' => $this->reference,
                 'description' => 'description test',
                 'amount' => ['currency' => "COP", 'total' => $total]
-//                'amount' => ['currency' => "COP", 'total' => 15000] //valor para pruebas con tinker
             ],
-            'expiration' => date('c', strtotime("+3 days")),
-            'returnUrl' => route('thankyou.index', "$this->reference"),
-            'ipAddress' => request()->server('SERVER_ADDR'),
+            'buyer' => [
+                'name' => $request['name'],
+                'surname' => $request['last_name'],
+                'email' => $request['email'],
+                'documentType' => $request['document_type'],
+                'document' => $request['document_number'],
+                'mobile' => $request['phone'],
+                'address' => [
+                    'street' => $request['addresss'],
+                    'city' => $request['city'],
+                    'state' => $request['Province'],
+                    'postalCode' => $request['postal_code'],
+//                    'country' => 'US',
+//                    'phone' => '363-547-1441 x383',
+                ]],
+            'expiration' => date('c', strtotime("+15 minutes")),
+            'returnUrl' => route('thankyou.index', $this->reference),
+            'ipAddress' => request()->ip(),
             'userAgent' => request()->server('HTTP_USER_AGENT')
         ]);
 
         return $this->response->json();
     }
 
-//    /**
-//     * Makes a post request to p2p to consult the information of the user's transaction
-//     * @return array|mixed
-//     * @throws \Exception
-//     */
-    public function getRequestInformation($requestId)/*: array*/
+    /**
+     * @param $requestId
+     * @return array|mixed
+     * @throws \Exception
+     */
+    public function getRequestInformation($requestId): array
     {
         $response = Http::post(env('PLACETOPAY_BASE_URL') . "$requestId", [
             'auth' => $this->authentication(),

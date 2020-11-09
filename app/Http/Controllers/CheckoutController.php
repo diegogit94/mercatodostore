@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckoutRequest;
 use App\Library\PlaceToPayConnection;
 use App\Order;
+use App\OrderProduct;
 use Dnetix\Redirection\PlacetoPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Foundation\Application;
@@ -50,80 +52,57 @@ class   CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        Order::create([
+//            'address' => $request->address,
+//            'city' => $request->city,
+//            'province' => $request->province,
+//            'postal_code' => $request->postalcode,
+//            'phone' => $request->phone,
+//        ]);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return void
-     */
-    public function show(int $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return void
-     */
-    public function edit(int $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return void
-     */
-    public function update(Request $request, int $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return void
-     */
-    public function destroy(int $id)
-    {
-        //
-    }
-
-    /**
+     * @param CheckoutRequest $request
      * @return Application|RedirectResponse|Redirector
      * @throws \Exception
      */
-    public function placeToPayCheckout()
+    public function placeToPayCheckout(CheckoutRequest $request): RedirectResponse
     {
-        $connection = new PlaceToPayConnection();
+        $request->validated();
 
-        $connection->authentication();
-
-        $response = $connection->createRequest(Cart::total());
-
-        foreach (Cart::content() as $item)
+        if (!Cart::count())
         {
-            $products[] = $item->name;
+            return back()->with('success_message', 'First add something to your car, sugar ;)');
         }
 
-        Order::create([
+        $connection = new PlaceToPayConnection();
+        $connection->authentication();
+        $response = $connection->createRequest(Cart::total(), $request);
+
+        $products = [];
+
+        foreach (Cart::content() as $product)
+        {
+            $products[$product->id] = ['quantity' => $product->qty, 'unit_price' => $product->price];
+            $names[] = $product->name;
+        }
+
+        $order = Order::create([
             'user_id' => Auth::id(),
             'request_id' => $response['requestId'],
             'reference' => $connection->reference,
-            'description' => $products,
+            'description' => $names,
             'total' => Cart::total(),
+            'address' => $request['address'],
+            'city' => $request['city'],
+            'province' => $request['province'],
+            'postal_code' => $request['postal_code'],
+            'phone' => $request['phone'],
         ]);
 
+
+        $order->products()->attach($products);
+
         return redirect($response['processUrl']);
-//        return $connection->connect();
     }
 }
