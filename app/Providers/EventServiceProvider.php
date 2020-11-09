@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\StatusUpdatedEvent;
+use App\Listeners\DiscountStockItemListener;
 use App\Listeners\SendStatusEmailListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         StatusUpdatedEvent::class => [
             SendStatusEmailListener::class,
+            DiscountStockItemListener::class,
         ]
     ];
 
