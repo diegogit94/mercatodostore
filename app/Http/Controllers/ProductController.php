@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -125,5 +128,10 @@ class ProductController extends Controller
         $product->toggleVisibility();
 
         return redirect()->route('products.index', $product);
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProductsExport, 'products-' . date('Y-m-d H:i:s') .  '.xlsx');
     }
 }
