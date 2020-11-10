@@ -20,7 +20,7 @@
         <div class="container">
             <br><h2>Productos</h2>
             <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
-            <a class="btn btn-mid btn-success" href="#" role="button">Exportar ⇩</a>
+            <a class="btn btn-mid btn-success" href="{{ route('products.export') }}" role="button">Exportar ⇩</a>
             <a class="btn btn-mid btn-success" href="#" role="button">Importar ⇧</a>
         </div>
         <div class="container">
