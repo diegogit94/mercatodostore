@@ -11,6 +11,11 @@
 
     </head>
     <body>
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <div class="container">
             <h2>Usuarios</h2>
             <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
