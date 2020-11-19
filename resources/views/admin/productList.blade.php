@@ -36,6 +36,60 @@
 
     <div class="row">
         <div class="col-sm-12 mx-auto">
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-funnel-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+                    </svg>
+                </a>
+            </p>
+            <div class="container text-right">
+                <a href="{{ route('products.export', request()->all()) }}" class="btn btn-success">Exportar</a>
+                <a href="#" class="btn btn-success">Importar</a>
+            </div>
+            <div class="collapse" id="collapseExample">
+                <form action="#">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="name">name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="category">Categoria</label>
+                            <select id="category" name="category" class="form-control">
+                                <option value data-isdefault="true">Todas</option>
+                                <option value="1">shooters</option>
+                                <option value="2">horror</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="price">Precio</label>
+                            <input type="number" class="form-control" id="price" name="price" placeholder="$">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="visible">Disponibilidad</label>
+                            <select id="visible" name="visible" class="form-control">
+                                <option value data-isdefault="null">Todos</option>
+                                <option value="1">En stock</option>
+                                <option value=false>Fuera de stock</option>
+                            </select>
+                        </div>
+                    </div>
+{{--                    <div class="form-row">--}}
+{{--                        <div class="form-group col-md-4">--}}
+{{--                            <label for="date-from">Fecha desde</label>--}}
+{{--                            <input type="date" class="form-control" id="date-from" name="date-from" placeholder="">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group col-md-4">--}}
+{{--                            <label for="date-to">Fecha hasta</label>--}}
+{{--                            <input type="date" class="form-control" id="date-to" name="date-to" placeholder="">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                    <button type="submit" class="btn btn-primary">Filtrar ✓</button>
+                </form>
+            </div>
             <table class="table">
                 <thead>
                 <tr>
@@ -48,6 +102,7 @@
                     <th><a href="{{ route('products.create') }}" class="btn btn-sm btn-dark">Agregar Producto</a></th>
                 </tr>
                 </thead>
+                @include('admin.filter')
                 <tbody>
                 @foreach($products as $product)
                     <tr>
