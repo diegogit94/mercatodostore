@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
             'name' => 'game2',
             'slug' => 'game-2',
             'image' => 'public/game2.jpeg',
-            'price' => 10000,
+            'price' => 11000,
             'quantity' => 5]);
 
         factory(Product::class)->create([
@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
             'name' => 'game3',
             'slug' => 'game-3',
             'image' => 'public/game3.jpg',
-            'price' => 10000,
+            'price' => 12000,
             'quantity' => 5]);
 
         factory(Product::class)->create([
@@ -41,7 +41,7 @@ class ProductSeeder extends Seeder
             'name' => 'game4',
             'slug' => 'game-4',
             'image' => 'public/game4.png',
-            'price' => 10000,
+            'price' => 13000,
             'quantity' => 5]);
     }
 }
