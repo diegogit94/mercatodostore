@@ -6,7 +6,6 @@ use App\Exports\ProductsExport;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,11 +18,22 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(8);
+        $name = $request->get('name');
+        $category = $request->get('category');
+        $price = $request->get('price');
+        $visible = $request->get('visible');
+
+        $products = Product::orderBy('id', 'ASC')
+            ->name($name)
+            ->category($category)
+            ->price($price)
+            ->visible($visible)
+            ->paginate(8);
 
         return view('admin.productList', [
            'products' => $products
@@ -130,8 +140,8 @@ class ProductController extends Controller
         return redirect()->route('products.index', $product);
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new ProductsExport, 'products-' . date('Y-m-d H:i:s') .  '.xlsx');
+        return (new ProductsExport($request->all()))->download('products-' . date('Y-m-d H:i:s') .  '.xlsx');
     }
 }
