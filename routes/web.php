@@ -50,7 +50,7 @@ Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('us
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
 
 Route::get('/admin/export/usersExport', 'UserController@export')->name('users.export');
-Route::get('/admin/export/productsExport', 'ProductController@export')->name('products.export');
+Route::get('/products/productsExport', 'ProductController@export')->name('products.export');
 
 Route::get('/admin/infoManage', 'InfoManageController@index')->name('infoManage.index');
 
