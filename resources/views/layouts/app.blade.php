@@ -31,7 +31,6 @@
             @auth
             <a class="nav-link" href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a>
             <a class="nav-link" href="{{ route('products.index') }}">Productos <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="{{ route('infoManage.index') }}">Importacion/Exportación <span class="sr-only">(current)</span></a>
             @endauth
             @endif
 
