@@ -87,16 +87,17 @@
 {{--                    </div>--}}
 
                     <div class="products text-center">
-                        @forelse ($products as $product)
+                        @if($products)
+                        @foreach ($products as $product)
                             <div class="product">
                                 <a href="{{ route('store.show', $product->slug) }}"><img src="{{ $product->image }}" alt="product" class="product-section-image"></a>
                                 <a href="{{ route('store.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>
                                 <div class="product-price">{{ formatPrice($product->price) }}</div>
                             </div>
-                        @empty
-                            <div>No items found</div>
-                        @endforelse
-
+                        @endforeach
+                        @else
+                            <h3>No hay productos disponibles</h3>
+                        @endif
                     </div> <!-- end products -->
 
                     <div class="text-center button-container">
