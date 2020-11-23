@@ -36,17 +36,16 @@
 
     <div class="row">
         <div class="col-sm-12 mx-auto">
-            <p>
                 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-funnel-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
                     </svg>
                 </a>
-            </p>
-            <div class="container text-right">
+{{--            <div class="container text-right">--}}
                 <a href="{{ route('products.export', request()->all()) }}" class="btn btn-success">Exportar</a>
-                <a href="#" class="btn btn-success">Importar</a>
-            </div>
+                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#import">Importar</a>
+{{--            </div>--}}
+            @include('admin.import')
             <div class="collapse" id="collapseExample">
                 <form action="#">
                     <div class="form-row">
@@ -102,7 +101,7 @@
                     <th><a href="{{ route('products.create') }}" class="btn btn-sm btn-dark">Agregar Producto</a></th>
                 </tr>
                 </thead>
-                @include('admin.filter')
+                @include('admin.import')
                 <tbody>
                 @foreach($products as $product)
                     <tr>
