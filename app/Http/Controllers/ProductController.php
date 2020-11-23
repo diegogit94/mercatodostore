@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ProductsExport;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Imports\ProductsImport;
 use App\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -143,5 +144,14 @@ class ProductController extends Controller
     public function export(Request $request)
     {
         return (new ProductsExport($request->all()))->download('products-' . date('Y-m-d H:i:s') .  '.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new ProductsImport, $file);
+
+        return redirect()->back()->with('success_message', 'Importación exitosa');
     }
 }
