@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use PhpOffice\PhpSpreadsheet\Worksheet\BaseDrawing;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class ProductsExport implements FromQuery, ShouldAutoSize, WithDrawings, WithHeadings
+class ProductsExport implements FromQuery, WithDrawings, WithHeadings
 {
     use Exportable;
 
@@ -64,7 +64,7 @@ class ProductsExport implements FromQuery, ShouldAutoSize, WithDrawings, WithHea
         $drawing->setDescription('This is my logo');
         $drawing->setPath(public_path('/img/store-logo.png'));
         $drawing->setHeight(60);
-        $drawing->setCoordinates('J2');
+        $drawing->setCoordinates('P2');
 
         return $drawing;
     }
@@ -74,12 +74,16 @@ class ProductsExport implements FromQuery, ShouldAutoSize, WithDrawings, WithHea
         return ([
             'id',
             'name',
+            'slug',
             'description',
             'short_description',
             'image',
             'price',
             'quantity',
             'visible',
+            'category_id',
+            'created_at',
+            'updated_at'
         ]);
     }
 }
