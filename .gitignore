@@ -13,3 +13,5 @@ yarn-error.log
 /.idea/workspace.xml
 
 .idea/
+
+storage/framework/laravel-excel/
