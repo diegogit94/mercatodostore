@@ -49,10 +49,8 @@ Route::get('/admin/{user}/admin.editUsers', 'UserController@edit')->name('users.
 Route::patch('/admin/{user}/admin.editUsers', 'UserController@update')->name('users.update');
 Route::patch('/admin/{user}', 'UserController@activate')->name('users.activate');
 
-Route::get('/admin/export/usersExport', 'UserController@export')->name('users.export');
 Route::get('/products/productsExport', 'ProductController@export')->name('products.export');
-
-Route::get('/admin/infoManage', 'InfoManageController@index')->name('infoManage.index');
+Route::post('/products/productsImport', 'ProductController@import')->name('products.import');
 
 //product routes
 Route::get('/products' , 'ProductController@index')->name('products.index')->middleware('admin');
