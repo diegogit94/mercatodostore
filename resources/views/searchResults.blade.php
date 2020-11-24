@@ -51,7 +51,7 @@
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <th><a href="{{ route('store.index', $product->slug) }}">{{ $product->name }}</a></th>
+                        <th><a href="{{ route('store.show', $product->slug) }}">{{ $product->name }}</a></th>
                         <td>{{ $product->short_description }}</td>
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}</td>
