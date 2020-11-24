@@ -144,6 +144,16 @@ class ProductController extends Controller
     public function export(Request $request)
     {
         return (new ProductsExport($request->all()))->download('products-' . date('Y-m-d H:i:s') .  '.xlsx');
+        $user = Auth::user();
+        $filePath = 'public/products-' . date('Y-m-d H:i:s') .  '.xlsx';
+
+        (new ProductsExport($request->all()))
+            ->queue($filePath)
+            ->chain([
+                new SendExportCompleteNotification($user, asset($filePath))
+            ]);
+
+        return back()->with('success_message', 'El archivo se está exportando, recibirá un correo con el link al archivo en un momento');
     }
 
     public function import(Request $request)
