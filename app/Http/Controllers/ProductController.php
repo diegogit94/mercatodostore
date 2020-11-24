@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductsExport;
+use App\Http\Requests\ExportRequest;
+use App\Http\Requests\ImportFileRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Imports\ProductsImport;
+use App\Jobs\SendExportCompleteNotification;
 use App\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -141,9 +145,10 @@ class ProductController extends Controller
         return redirect()->route('products.index', $product);
     }
 
-    public function export(Request $request)
+    public function export(ExportRequest $request)
     {
-        return (new ProductsExport($request->all()))->download('products-' . date('Y-m-d H:i:s') .  '.xlsx');
+        $request->validated();
+
         $user = Auth::user();
         $filePath = 'public/products-' . date('Y-m-d H:i:s') .  '.xlsx';
 
@@ -156,8 +161,10 @@ class ProductController extends Controller
         return back()->with('success_message', 'El archivo se está exportando, recibirá un correo con el link al archivo en un momento');
     }
 
-    public function import(Request $request)
+    public function import(ImportFileRequest $request)
     {
+        $request->validated();
+
         $file = $request->file('file');
 
         Excel::import(new ProductsImport, $file);
