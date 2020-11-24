@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use PhpOffice\PhpSpreadsheet\Worksheet\BaseDrawing;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class ProductsExport implements FromQuery, WithDrawings, WithHeadings
+class ProductsExport implements FromQuery, WithHeadings
 {
     use Exportable;
 
@@ -55,18 +55,6 @@ class ProductsExport implements FromQuery, WithDrawings, WithHeadings
         }
 
         return Product::query();
-    }
-
-    public function drawings()
-    {
-        $drawing = new Drawing();
-        $drawing->setName('Logo');
-        $drawing->setDescription('This is my logo');
-        $drawing->setPath(public_path('/img/store-logo.png'));
-        $drawing->setHeight(60);
-        $drawing->setCoordinates('P2');
-
-        return $drawing;
     }
 
     public function headings(): array
