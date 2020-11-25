@@ -16,12 +16,11 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all()->random(4);
+        $products = count(Product::all()) ? Product::all()->random(4) : '';
 
         return view('welcome', [
            'products' => $products
         ]);
-
     }
 
     /**

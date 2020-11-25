@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MessageAdmin;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -88,4 +90,9 @@ class UserController extends Controller
 
    		return redirect()->route('users.index', $user);
    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users-' . date('Y-m-d H:i:s') . '.xlsx');
+    }
 }
