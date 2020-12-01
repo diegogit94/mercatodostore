@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
 class Product extends Model
@@ -71,6 +72,23 @@ class Product extends Model
         }
 
         return $query;
+    }
+
+    public function scopeApplySorts(Builder $productQuery, string $sort)
+    {
+        $sortFields = Str::of($sort)->explode(',');
+
+        foreach ($sortFields as $sortField)
+        {
+            $direction = 'asc';
+
+            if (Str::of($sortField)->startsWith('-'))
+            {
+                $direction = 'desc';
+                $sortField = Str::of($sortField)->substr(1);
+            }
+            $productQuery->orderBy($sortField, $direction);
+        }
     }
 
     public function orders(): BelongsToMany
