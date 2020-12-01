@@ -76,4 +76,14 @@ class SortProductsTest extends TestCase
             'A content',
         ]);
     }
+
+    /** @test */
+    public function it_cannot_sort_products_by_unknown_fields()
+    {
+        factory(Product::class)->times(3)->create();
+
+        $url = route('api.v1.products.index', ['sort' => 'unknown']);
+
+        $this->getJson($url)->assertStatus(400);
+    }
 }
