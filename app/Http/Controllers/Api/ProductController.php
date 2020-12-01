@@ -13,22 +13,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $sortFields = Str::of(request('sort'))->explode(',');
-        $productQuery = Product::query();
+        $products = Product::applySorts(request('sort'))->get();
 
-        foreach ($sortFields as $sortField)
-        {
-            $direction = 'asc';
-
-            if (Str::of($sortField)->startsWith('-'))
-            {
-                $direction = 'desc';
-                $sortField = Str::of($sortField)->substr(1);
-            }
-            $productQuery->orderBy($sortField, $direction);
-        }
-
-        return ProductCollection::make($productQuery->get());
+        return ProductCollection::make($products);
     }
 
     public function show(Product $product)
