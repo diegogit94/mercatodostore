@@ -11,6 +11,10 @@ trait HasSorts
 {
     public function scopeApplySorts(Builder $query, string $sort = null)
     {
+        if ( ! property_exists($this, 'allowedSorts')) {
+            abort (500, 'Please, set the public property "$allowedSorts" inside ' . get_class($this));
+        }
+
         $sortFields = Str::of($sort)->explode(',');
 
         foreach ($sortFields as $sortField)
@@ -23,7 +27,7 @@ trait HasSorts
             }
 
             if ( ! collect($this->allowedSorts)->contains($sortField)) {
-                abort(400);
+                abort(400, "Invalid query parameter, {$sortField} is not allowed");
             }
 
             $query->orderBy($sortField, $direction);
