@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Exports\ProductsExport;
 use App\Http\Requests\ExportRequest;
 use App\Http\Requests\ImportFileRequest;
@@ -32,6 +33,7 @@ class ProductController extends Controller
         $category = $request->get('category');
         $price = $request->get('price');
         $visible = $request->get('visible');
+        $categories = Category::all();
 
         $products = Product::orderBy('id', 'ASC')
             ->name($name)
@@ -41,7 +43,8 @@ class ProductController extends Controller
             ->paginate(8);
 
         return view('admin.productList', [
-           'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
 
