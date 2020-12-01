@@ -51,28 +51,29 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="name">name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') ?? request('name') }}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="category">Categoria</label>
                             <select id="category" name="category" class="form-control">
                                 <option value data-isdefault="true">Todas</option>
-                                <option value="1">shooters</option>
-                                <option value="2">horror</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }} >{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="price">Precio</label>
-                            <input type="number" class="form-control" id="price" name="price" placeholder="$">
+                            <input type="number" class="form-control" id="price" name="price" placeholder="$" value="{{ old('price') ?? request('price') }}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="visible">Disponibilidad</label>
                             <select id="visible" name="visible" class="form-control">
                                 <option value data-isdefault="null">Todos</option>
-                                <option value="1">En stock</option>
-                                <option value=false>Fuera de stock</option>
+                                <option value="true" {{ request('visible') === "true" ? 'selected' : '' }}>En stock</option>
+                                <option value="false" {{ request('visible') === "false" ? 'selected' : '' }}>Fuera de stock</option>
                             </select>
                         </div>
                     </div>
