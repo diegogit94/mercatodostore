@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'name' => $faker->word(),
+        'name' => $faker->colorName,
         'description' => $faker->paragraph(3),
         'short_description' => $faker->paragraph(1),
         'image' => $faker->imageUrl(370, 403, 'abstract'),
         'price' => $faker->randomFloat(2, 1),
-        'category_id' => rand(1, 2),
+//        'category_id' => rand(1, 2),
         'visible' => true,
     ];
 });
