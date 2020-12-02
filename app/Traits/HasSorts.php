@@ -15,6 +15,10 @@ trait HasSorts
             abort (500, 'Please, set the public property "$allowedSorts" inside ' . get_class($this));
         }
 
+        if (is_null($sort)) {
+            return $query;
+        }
+
         $sortFields = Str::of($sort)->explode(',');
 
         foreach ($sortFields as $sortField)
