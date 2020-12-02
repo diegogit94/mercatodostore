@@ -13,7 +13,8 @@ $factory->define(Product::class, function (Faker $faker) {
         'short_description' => $faker->paragraph(1),
         'image' => $faker->imageUrl(370, 403, 'abstract'),
         'price' => $faker->randomFloat(2, 1),
+        'quantity' => 5,
 //        'category_id' => rand(1, 2),
-        'visible' => true,
+        'visible' => 1,
     ];
 });
