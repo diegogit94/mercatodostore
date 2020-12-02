@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Traits\HasSorts;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,7 +10,7 @@ use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-    use Searchable, HasSorts;
+    use Searchable;
     /**
      * @var string[]
      */
