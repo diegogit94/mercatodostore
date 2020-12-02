@@ -14,7 +14,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::applySorts(request('sort'))
-            ->paginate(request('page.size'));
+            ->paginate(
+                $perPage = request('page.size'),
+                $columns = ['*'],
+                $pageName = 'page[number]',
+                $page = request('page.number')
+            )->appends(request()->except('page.number'));
 
         return ProductCollection::make($products);
     }
