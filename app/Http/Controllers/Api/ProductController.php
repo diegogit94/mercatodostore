@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::applySorts(request('sort'))
+        $products = Product::applySorts()
             ->jsonPaginate();
 
         return ProductCollection::make($products);
