@@ -32,10 +32,6 @@ class PaginateProductsTest extends TestCase
             ->assertDontSee($products[8]->name)
             ->assertDontSee($products[9]->name);
 
-//        foreach ($response->json('links') as $link) {
-//            dump(urldecode($link));
-//        }
-
         $response->assertJsonStructure([
             'links' => ['first', 'last', 'prev', 'next']
         ]);
