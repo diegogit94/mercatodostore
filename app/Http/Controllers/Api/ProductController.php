@@ -13,7 +13,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::applySorts(request('sort'))->get();
+        $products = Product::applySorts(request('sort'))
+            ->paginate(request('page.size'));
 
         return ProductCollection::make($products);
     }
