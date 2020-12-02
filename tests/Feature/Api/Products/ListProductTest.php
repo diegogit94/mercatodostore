@@ -44,7 +44,7 @@ class ListProductTest extends TestCase
 
         $response = $this->getJson(route('api.v1.products.index'));
 
-        $response->assertExactJson([
+        $response->assertJsonFragment([
             'data' => [
                 [
                 'type' => 'products',
@@ -83,9 +83,6 @@ class ListProductTest extends TestCase
                     ]
                 ],
             ],
-            'links' => [
-                'self' => route('api.v1.products.index')
-            ]
         ]);
     }
 }
