@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use App\Product;
 use App\Observers\ProductObserver;
@@ -29,5 +30,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Product::observe(ProductObserver::class);
         Category::observe((CategoryObserver::class));
+
+        Builder::macro('jsonPaginate', function () {
+            return $this->paginate(
+                $perPage = request('page.size'),
+                $columns = ['*'],
+                $pageName = 'page[number]',
+                $page = request('page.number')
+            )->appends(request()->except('page.number'));
+        });
     }
 }
