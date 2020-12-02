@@ -21,6 +21,11 @@ class ProductResource extends JsonResource
                     'name' => $this->resource->name,
                     'slug' => $this->resource->slug,
                     'description' => $this->resource->description,
+                    'image' => $this->resource->image,
+                    'price' => $this->resource->price,
+                    'quantity' => $this->resource->quantity,
+                    'visible' => $this->resource->visible,
+//                    'category' => $this->resource->category_id,
                 ],
                 'links' => [
                     'self' => route('api.v1.products.show', $this->resource)
