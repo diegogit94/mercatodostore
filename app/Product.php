@@ -49,6 +49,15 @@ class Product extends Model
         return $query;
     }
 
+    public function scopeDescription(Builder $query, string $description = null): Builder
+    {
+        if ($description) {
+            return $query->where('description', 'LIKE', "%$description%");
+        }
+
+        return $query;
+    }
+
     public function scopePrice(Builder $query, float $price = null): Builder
     {
         if ($price) {
@@ -71,6 +80,24 @@ class Product extends Model
     {
         if ($category) {
             return $query->where('category_id', $category);
+        }
+
+        return $query;
+    }
+
+    public function scopeMonth(Builder $query, string $month = null): Builder
+    {
+        if ($month) {
+            return $query->whereMonth('created_at', $month);
+        }
+
+        return $query;
+    }
+
+    public function scopeYear(Builder $query, string $year = null): Builder
+    {
+        if ($year) {
+            return $query->whereYear('created_at', $year);
         }
 
         return $query;
