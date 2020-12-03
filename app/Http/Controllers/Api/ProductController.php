@@ -13,8 +13,19 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::applySorts()
-            ->jsonPaginate();
+        $query = Product::query();
+
+        foreach (request('filter', []) as $filter => $value) {
+            if ($filter === 'year') {
+                $query->whereYear('created_at', $value);
+            } elseif ($filter === 'month') {
+                $query->whereMonth('created_at', $value);
+            } else {
+                $query->where($filter, 'LIKE', "%$value%");
+            }
+        }
+
+        $products = $query->applySorts()->jsonPaginate();
 
         return ProductCollection::make($products);
     }
