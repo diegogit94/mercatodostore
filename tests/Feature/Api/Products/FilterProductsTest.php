@@ -96,4 +96,14 @@ class FilterProductsTest extends TestCase
             ->assertSee('Another product from March')
             ->assertDontSee('Product from December');
     }
+
+    /** @test */
+    public function cannot_filter_products_by_unknown_filter()
+    {
+        factory(Product::class)->create([]);
+
+        $url = route('api.v1.products.index', ['filter[unknown]' => 'value']);
+
+        $this->getJson($url)->assertStatus(400);
+    }
 }
