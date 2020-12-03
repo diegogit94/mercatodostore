@@ -40,6 +40,18 @@ class Product extends Model
         return $this->update(['visible' => !$this->visible]);
     }
 
+    public function scopeSearch(Builder $query, string $values = null): Builder
+    {
+        foreach (Str::of($values)->explode(' ') as $value) {
+            if ($value) {
+                return $query->orWhere('name', 'LIKE', "%$value%")
+                    ->orWhere('description', 'LIKE', "%$value%");
+            }
+        }
+
+        return $query;
+    }
+
     public function scopeName(Builder $query, string $name = null): Builder
     {
         if ($name) {
