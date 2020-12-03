@@ -106,4 +106,64 @@ class FilterProductsTest extends TestCase
 
         $this->getJson($url)->assertStatus(400);
     }
+
+    /** @test */
+    public function can_search_products_by_name_and_description()
+    {
+        factory(Product::class)->create([
+            'name' => 'First product test',
+            'description' => 'First description'
+        ]);
+
+        factory(Product::class)->create([
+            'name' => 'Other element',
+            'description' => 'Other description test'
+        ]);
+
+        factory(Product::class)->create([
+            'name' => 'Generic name',
+            'description' => 'Generic description'
+        ]);
+
+        $url = route('api.v1.products.index', ['filter[search]' => 'test']);
+
+        $this->getJson($url)
+            ->assertJsonCount(2, 'data')
+            ->assertSee('First product test')
+            ->assertSee('Other element')
+            ->assertDontSee('Generic name');
+    }
+
+    /** @test */
+    public function can_search_products_by__with_multiple_terms()
+    {
+        factory(Product::class)->create([
+            'name' => 'First product test',
+            'description' => 'First description'
+        ]);
+
+        factory(Product::class)->create([
+            'name' => 'Other element',
+            'description' => 'Other description test'
+        ]);
+
+        factory(Product::class)->create([
+            'name' => 'Different element',
+            'description' => 'Different description test'
+        ]);
+
+        factory(Product::class)->create([
+            'name' => 'Generic name',
+            'description' => 'Generic empty'
+        ]);
+
+        $url = route('api.v1.products.index', ['filter[search]' => 'test description']);
+
+        $this->getJson($url)
+            ->assertJsonCount(3, 'data')
+            ->assertSee('First product test')
+            ->assertSee('Other description test')
+            ->assertSee('Different description test')
+            ->assertDontSee('Generic name');
+    }
 }
