@@ -57,9 +57,7 @@ class JsonApiBuilder
     {
         return function () {
             foreach (request('filter', []) as $filter => $value) {
-                $scope = 'scope' . ucfirst($filter);
-
-                if ( ! method_exists($this->model, $scope)) {
+                if ( ! $this->hasNamedScope($filter)) {
                     abort(400, "The filter '{$filter}' is not valid.");
                 }
 
