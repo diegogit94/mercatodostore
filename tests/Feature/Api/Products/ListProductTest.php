@@ -16,7 +16,7 @@ class ListProductTest extends TestCase
     {
         $product = factory(Product::class)->create();
 
-        $response = $this->jsonApi()->get(route('api.v1.products.show', $product));
+        $response = $this->jsonApi()->get(route('api.v1.products.read', $product));
 
         $response->assertSee($product->name);
         $response->assertExactJson([
@@ -34,7 +34,7 @@ class ListProductTest extends TestCase
 //                    'category' => $product->category_id,
                 ],
                 'links' => [
-                    'self' => route('api.v1.products.show', $product)
+                    'self' => route('api.v1.products.read', $product)
                 ]
             ]
         ]);
@@ -65,7 +65,7 @@ class ListProductTest extends TestCase
 //                    'category' => $products[0]->category_id,
                 ],
                 'links' => [
-                    'self' => route('api.v1.products.show', $products[0])
+                    'self' => route('api.v1.products.read', $products[0])
                     ]
                 ],
                 [
@@ -82,7 +82,7 @@ class ListProductTest extends TestCase
 //                    'category' => $products[1]->category_id,
                 ],
                 'links' => [
-                    'self' => route('api.v1.products.show', $products[1])
+                    'self' => route('api.v1.products.read', $products[1])
                     ]
                 ],
                 [
@@ -99,7 +99,7 @@ class ListProductTest extends TestCase
 //                    'category' => $products[2]->category_id,
                 ],
                 'links' => [
-                    'self' => route('api.v1.products.show', $products[2])
+                    'self' => route('api.v1.products.read', $products[2])
                     ]
                 ],
             ],

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-//Route::get('products/{product}', 'ProductController@show')->name('api.v1.products.show');
+//Route::get('products/{product}', 'ProductController@show')->name('api.v1.products.read');
 //Route::get('products', 'ProductController@index')->name('api.v1.products.index');
 
 JsonApi::register('v1')->routes( function($api) {
