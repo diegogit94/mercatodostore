@@ -32,6 +32,8 @@ class ListProductTest extends TestCase
                     'quantity' => $product->quantity,
                     'visible' => $product->visible,
 //                    'category' => $product->category_id,
+                    'created-at' => $product->created_at->toAtomString(),
+                    'updated-at' => $product->updated_at->toAtomString(),
                 ],
                 'links' => [
                     'self' => route('api.v1.products.read', $product)
@@ -63,6 +65,8 @@ class ListProductTest extends TestCase
                     'quantity' => $products[0]->quantity,
                     'visible' => $products[0]->visible,
 //                    'category' => $products[0]->category_id,
+                    'created-at' => $products[0]->created_at->toAtomString(),
+                    'updated-at' => $products[0]->updated_at->toAtomString(),
                 ],
                 'links' => [
                     'self' => route('api.v1.products.read', $products[0])
@@ -80,6 +84,8 @@ class ListProductTest extends TestCase
                     'quantity' => $products[1]->quantity,
                     'visible' => $products[1]->visible,
 //                    'category' => $products[1]->category_id,
+                    'created-at' => $products[1]->created_at->toAtomString(),
+                    'updated-at' => $products[1]->updated_at->toAtomString(),
                 ],
                 'links' => [
                     'self' => route('api.v1.products.read', $products[1])
@@ -97,6 +103,8 @@ class ListProductTest extends TestCase
                     'quantity' => $products[2]->quantity,
                     'visible' => $products[2]->visible,
 //                    'category' => $products[2]->category_id,
+                    'created-at' => $products[2]->created_at->toAtomString(),
+                    'updated-at' => $products[2]->updated_at->toAtomString(),
                 ],
                 'links' => [
                     'self' => route('api.v1.products.read', $products[2])
