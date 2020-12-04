@@ -21,7 +21,7 @@ class PayWithPlaceToPayTest extends TestCase
 //        $response->assertJson(['status' => ['status' => 'OK']]);
     }
 
-    /** @test */
+//    /** @test */
     public function redirect_user_to_web_checkout()
     {
         $user = factory(User::class)->create();
