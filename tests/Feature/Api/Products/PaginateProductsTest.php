@@ -37,10 +37,10 @@ class PaginateProductsTest extends TestCase
         ]);
 
         $response->assertJsonFragment([
-            'first' => route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 1]),
-            'last' => route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 5]),
-            'prev' => route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 2]),
-            'next' => route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 4]),
+            'first' => route('api.v1.products.index', ['page[number]' => 1, 'page[size]' => 2]),
+            'last' => route('api.v1.products.index', ['page[number]' => 5, 'page[size]' => 2]),
+            'prev' => route('api.v1.products.index', ['page[number]' => 2, 'page[size]' => 2]),
+            'next' => route('api.v1.products.index', ['page[number]' => 4, 'page[size]' => 2]),
         ]);
     }
 }
