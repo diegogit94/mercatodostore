@@ -33,8 +33,6 @@ class Product extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public $allowedSorts = ['name', 'description'];
-
     public function toggleVisibility(): bool
     {
         return $this->update(['visible' => !$this->visible]);
