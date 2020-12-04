@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use CloudCreativity\LaravelJsonApi\LaravelJsonApi;
 use Illuminate\Support\ServiceProvider;
 use App\Product;
 use App\Observers\ProductObserver;
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Product::observe(ProductObserver::class);
         Category::observe((CategoryObserver::class));
+        LaravelJsonApi::defaultApi('v1');
     }
 }
