@@ -178,8 +178,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
-        //JsonApiProvider
-        App\Providers\JsonApiServiceProvider::class,
 
 
     ],
