@@ -16,7 +16,7 @@ class ListProductTest extends TestCase
     {
         $product = factory(Product::class)->create();
 
-        $response = $this->getJson(route('api.v1.products.show', $product));
+        $response = $this->jsonApi()->get(route('api.v1.products.show', $product));
 
         $response->assertSee($product->name);
         $response->assertExactJson([
@@ -47,7 +47,7 @@ class ListProductTest extends TestCase
 
         $products = factory(Product::class)->times(3)->create();
 
-        $response = $this->getJson(route('api.v1.products.index'));
+        $response = $this->jsonApi()->get(route('api.v1.products.index'));
 
         $response->assertJsonFragment([
             'data' => [

@@ -24,7 +24,7 @@ class FilterProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['filter[name]' => 'element']);
 
-        $this->getJson($url)
+        $this->jsonApi()->get($url)
             ->assertJsonCount(1, 'data')
             ->assertSee('Other element')
             ->assertDontSee('First product');
@@ -43,7 +43,7 @@ class FilterProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['filter[description]' => 'element']);
 
-        $this->getJson($url)
+        $this->jsonApi()->get($url)
             ->assertJsonCount(1, 'data')
             ->assertSee('Other element')
             ->assertDontSee('First product');
@@ -64,7 +64,7 @@ class FilterProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['filter[year]' => 2020]);
 
-        $this->getJson($url)
+        $this->jsonApi()->get($url)
             ->assertJsonCount(1, 'data')
             ->assertSee('Product from 2020')
             ->assertDontSee('Product from 2021');
@@ -90,7 +90,7 @@ class FilterProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['filter[month]' => 3]);
 
-        $this->getJson($url)
+        $this->jsonApi()->get($url)
             ->assertJsonCount(2, 'data')
             ->assertSee('Product from March')
             ->assertSee('Another product from March')
@@ -104,7 +104,7 @@ class FilterProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['filter[unknown]' => 'value']);
 
-        $this->getJson($url)->assertStatus(400);
+        $this->jsonApi()->get($url)->assertStatus(400);
     }
 
     /** @test */
@@ -127,7 +127,7 @@ class FilterProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['filter[search]' => 'test']);
 
-        $this->getJson($url)
+        $this->jsonApi()->get($url)
             ->assertJsonCount(2, 'data')
             ->assertSee('First product test')
             ->assertSee('Other element')
@@ -159,7 +159,7 @@ class FilterProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['filter[search]' => 'test description']);
 
-        $this->getJson($url)
+        $this->jsonApi()->get($url)
             ->assertJsonCount(3, 'data')
             ->assertSee('First product test')
             ->assertSee('Other description test')

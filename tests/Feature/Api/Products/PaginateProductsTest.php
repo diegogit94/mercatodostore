@@ -18,7 +18,7 @@ class PaginateProductsTest extends TestCase
 
         $url = route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 3]);
 
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         $response->assertJsonCount(2, 'data')
             ->assertDontSee($products[0]->name)
