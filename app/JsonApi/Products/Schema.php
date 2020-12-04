@@ -27,11 +27,19 @@ class Schema extends SchemaProvider
      *      the domain record being serialized.
      * @return array
      */
-    public function getAttributes($resource)
+    public function getAttributes($product)
     {
         return [
-            'created-at' => $resource->created_at->toAtomString(),
-            'updated-at' => $resource->updated_at->toAtomString(),
+            'name' => $product->name,
+            'slug' => $product->slug,
+            'description' => $product->description,
+            'image' => $product->image,
+            'price' => $product->price,
+            'quantity' => $product->quantity,
+            'visible' => $product->visible,
+//                    'category' => $product->category_id,
+            'created-at' => $product->created_at->toAtomString(),
+            'updated-at' => $product->updated_at->toAtomString(),
         ];
     }
 }
