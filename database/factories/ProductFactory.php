@@ -3,6 +3,7 @@
 /** @var Factory $factory */
 
 use App\Product;
+use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -15,6 +16,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'price' => $faker->randomFloat(2, 1),
         'quantity' => 5,
 //        'category_id' => rand(1, 2),
+        'user_id' => 1,
         'visible' => 1,
     ];
 });
