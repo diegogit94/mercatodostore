@@ -44,9 +44,26 @@ class CreateProductsTest extends TestCase
     }
 
     /** @test */
+    public function a_non_authenticated_user_cannot_create_a_product()
+    {
+        $product = factory(Product::class)->raw(['user_id' => null]); //Raw method gives an array with the attributes of a product
+
+        $this->jsonApi()->content([
+            'data' => [
+                'type' => 'products',
+                'attributes' => $product,
+            ]
+        ])->post(route('api.v1.products.create'))->assertStatus(401);
+
+        $this->assertDatabaseMissing('products', $product);
+    }
+
+    /** @test */
     public function name_is_required()
     {
         $product = factory(Product::class)->raw(['name' => '']);
+
+        Sanctum::actingAs(factory(User::class)->create());
 
         $this->jsonApi()->content([
             'data' => [
@@ -65,6 +82,8 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['short_description' => '']);
 
+        Sanctum::actingAs(factory(User::class)->create());
+
         $this->jsonApi()->content([
             'data' => [
                 'type' => 'products',
@@ -81,6 +100,8 @@ class CreateProductsTest extends TestCase
     public function description_is_required()
     {
         $product = factory(Product::class)->raw(['description' => '']);
+
+        Sanctum::actingAs(factory(User::class)->create());
 
         $this->jsonApi()->content([
             'data' => [
@@ -99,6 +120,8 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['price' => null]);
 
+        Sanctum::actingAs(factory(User::class)->create());
+
         $this->jsonApi()->content([
             'data' => [
                 'type' => 'products',
@@ -115,6 +138,8 @@ class CreateProductsTest extends TestCase
     public function quantity_is_required()
     {
         $product = factory(Product::class)->raw(['quantity' => null]);
+
+        Sanctum::actingAs(factory(User::class)->create());
 
         $this->jsonApi()->content([
             'data' => [
