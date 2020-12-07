@@ -3,8 +3,10 @@
 namespace Tests\Feature\Api\Products;
 
 use App\Product;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class CreateProductsTest extends TestCase
@@ -12,11 +14,15 @@ class CreateProductsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function can_create_a_product()
+    public function an_authenticated_user_can_create_a_product()
     {
-        $product = factory(Product::class)->raw(); //Raw method gives an array with the attributes of a product
+        $user = factory(User::class)->create();
+
+        $product = factory(Product::class)->raw(['user_id' => null]); //Raw method gives an array with the attributes of a product
 
         $this->assertDatabaseMissing('products', $product);
+
+        Sanctum::actingAs($user);
 
         $this->jsonApi()->content([
             'data' => [
@@ -25,7 +31,16 @@ class CreateProductsTest extends TestCase
             ]
         ])->post(route('api.v1.products.create'))->assertCreated();
 
-        $this->assertDatabaseHas('products', $product);
+        $this->assertDatabaseHas('products', [
+            'name' => $product['name'],
+            'short_description' => $product['short_description'],
+            'description' => $product['description'],
+            'image' => $product['image'],
+            'price' => $product['price'],
+            'quantity' => $product['quantity'],
+            'visible' => $product['visible'],
+            'user_id' => $user->id,
+        ]);
     }
 
     /** @test */
