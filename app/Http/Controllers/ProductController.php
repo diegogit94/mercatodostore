@@ -147,7 +147,7 @@ class ProductController extends Controller
      * @param Product $product
      * @return RedirectResponse
      */
-    public function visible (Product $product)
+    public function visible (Product $product): RedirectResponse
     {
         $product->toggleVisibility();
 
