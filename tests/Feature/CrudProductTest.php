@@ -62,7 +62,7 @@ class CrudProductTest extends TestCase
     public function anAuthenticatedAdminCanDeleteProducts()
     {
         $user = factory(User::class)->create(['user_type' => 'admin']);
-        $product = factory(Product::class)->create(['name' => 'juego']);
+        $product = factory(Product::class)->create(['name' => 'juego', 'user_id' => $user->id]);
 
         $response = $this->actingAs($user)
             ->delete($product);
@@ -74,7 +74,7 @@ class CrudProductTest extends TestCase
     public function anAuthenticatedAdminCanUpdateProducts()
     {
         $user = factory(User::class)->create(['user_type' => 'admin']);
-        $product = factory(Product::class)->create();
+        $product = factory(Product::class)->create(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)
             ->patch("/admin/" . $product . "/admin.editProduct", $product = [

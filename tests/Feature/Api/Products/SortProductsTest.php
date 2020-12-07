@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api\Products;
 
 use App\Product;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +16,11 @@ class SortProductsTest extends TestCase
     /** @test */
     public function it_can_sort_products_by_name_asc()
     {
-        factory(Product::class)->create(['name' => 'C name']);
-        factory(Product::class)->create(['name' => 'A name']);
-        factory(Product::class)->create(['name' => 'B name']);
+        $user = factory(User::class)->create();
+
+        factory(Product::class)->create(['name' => 'C name', 'user_id' => $user->id]);
+        factory(Product::class)->create(['name' => 'A name', 'user_id' => $user->id]);
+        factory(Product::class)->create(['name' => 'B name', 'user_id' => $user->id]);
 
         $url = route('api.v1.products.index', ['sort' => 'name']);
 
@@ -31,9 +34,11 @@ class SortProductsTest extends TestCase
     /** @test */
     public function it_can_sort_products_by_name_desc()
     {
-        factory(Product::class)->create(['name' => 'C name']);
-        factory(Product::class)->create(['name' => 'A name']);
-        factory(Product::class)->create(['name' => 'B name']);
+        $user = factory(User::class)->create();
+
+        factory(Product::class)->create(['name' => 'C name', 'user_id' => $user->id]);
+        factory(Product::class)->create(['name' => 'A name', 'user_id' => $user->id]);
+        factory(Product::class)->create(['name' => 'B name', 'user_id' => $user->id]);
 
         $url = route('api.v1.products.index', ['sort' => '-name']);
 
@@ -47,17 +52,22 @@ class SortProductsTest extends TestCase
     /** @test */
     public function it_can_sort_products_by_name_and_description()
     {
+        $user = factory(User::class)->create();
+
         factory(Product::class)->create([
             'name' => 'C name',
-            'description' => 'B content'
+            'description' => 'B content',
+            'user_id' => $user->id,
             ]);
         factory(Product::class)->create([
             'name' => 'A name',
-            'description' => 'A content'
+            'description' => 'A content',
+            'user_id' => $user->id,
             ]);
         factory(Product::class)->create([
             'name' => 'B name',
-            'description' => 'D content'
+            'description' => 'D content',
+            'user_id' => $user->id,
             ]);
 
         $url = route('api.v1.products.index', ['sort' => 'name,-description']);
@@ -80,7 +90,9 @@ class SortProductsTest extends TestCase
     /** @test */
     public function it_cannot_sort_products_by_unknown_fields()
     {
-        factory(Product::class)->times(3)->create();
+        $user = factory(User::class)->create();
+
+        factory(Product::class)->times(3)->create(['user_id' => $user->id]);
 
         $url = route('api.v1.products.index', ['sort' => 'unknown']);
 

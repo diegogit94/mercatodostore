@@ -15,8 +15,8 @@ $factory->define(Product::class, function (Faker $faker) {
         'image' => $faker->imageUrl(370, 403, 'abstract'),
         'price' => $faker->randomFloat(2, 1),
         'quantity' => 5,
+        'visible' => 1,
 //        'category_id' => rand(1, 2),
         'user_id' => 1,
-        'visible' => 1,
     ];
 });

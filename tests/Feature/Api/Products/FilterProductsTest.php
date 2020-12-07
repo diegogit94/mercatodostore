@@ -3,8 +3,10 @@
 namespace Tests\Feature\Api\Products;
 
 use App\Product;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class FilterProductsTest extends TestCase
@@ -14,13 +16,19 @@ class FilterProductsTest extends TestCase
     /** @test */
     public function can_filter_products_by_name()
     {
+        $user = factory(User::class)->create();
+
         factory(Product::class)->create([
-            'name' => 'First product'
+            'name' => 'First product',
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
-            'name' => 'Other element'
+            'name' => 'Other element',
+            'user_id' => $user->id,
         ]);
+
+        $this->actingAs($user);
 
         $url = route('api.v1.products.index', ['filter[name]' => 'element']);
 
@@ -33,13 +41,20 @@ class FilterProductsTest extends TestCase
     /** @test */
     public function can_filter_products_by_description()
     {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user);
+
         factory(Product::class)->create([
-            'description' => "<div>First product</div>"
+            'description' => "<div>First product</div>",
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
-            'description' => '<div>Other element</div>'
+            'description' => '<div>Other element</div>',
+            'user_id' => $user->id,
         ]);
+
 
         $url = route('api.v1.products.index', ['filter[description]' => 'element']);
 
@@ -52,15 +67,22 @@ class FilterProductsTest extends TestCase
     /** @test */
     public function can_filter_products_by_year()
     {
+        $user = factory(User::class)->create();
+
         factory(Product::class)->create([
             'name' => 'Product from 2020',
-            'created_at' => now()->year(2020)
+            'created_at' => now()->year(2020),
+            'user_id' => $user->id,
+
         ]);
 
         factory(Product::class)->create([
             'name' => 'Product from 2021',
-            'created_at' => now()->year(2021)
+            'created_at' => now()->year(2021),
+            'user_id' => $user->id,
         ]);
+
+        $this->actingAs($user);
 
         $url = route('api.v1.products.index', ['filter[year]' => 2020]);
 
@@ -73,20 +95,27 @@ class FilterProductsTest extends TestCase
     /** @test */
     public function can_filter_products_by_month()
     {
+        $user = factory(User::class)->create();
+
         factory(Product::class)->create([
             'name' => 'Product from March',
-            'created_at' => now()->month(3)
+            'created_at' => now()->month(3),
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
             'name' => 'Another product from March',
-            'created_at' => now()->month(3)
+            'created_at' => now()->month(3),
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
             'name' => 'Product from December',
-            'created_at' => now()->month(12)
+            'created_at' => now()->month(12),
+            'user_id' => $user->id,
         ]);
+
+        $this->actingAs($user);
 
         $url = route('api.v1.products.index', ['filter[month]' => 3]);
 
@@ -100,7 +129,11 @@ class FilterProductsTest extends TestCase
     /** @test */
     public function cannot_filter_products_by_unknown_filter()
     {
-        factory(Product::class)->create([]);
+        $user = factory(User::class)->create();
+
+        factory(Product::class)->create(['user_id' => $user->id]);
+
+        $this->actingAs($user);
 
         $url = route('api.v1.products.index', ['filter[unknown]' => 'value']);
 
@@ -110,20 +143,27 @@ class FilterProductsTest extends TestCase
     /** @test */
     public function can_search_products_by_name_and_description()
     {
+        $user = factory(User::class)->create();
+
         factory(Product::class)->create([
             'name' => 'First product test',
-            'description' => 'First description'
+            'description' => 'First description',
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
             'name' => 'Other element',
-            'description' => 'Other description test'
+            'description' => 'Other description test',
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
             'name' => 'Generic name',
-            'description' => 'Generic description'
+            'description' => 'Generic description',
+            'user_id' => $user->id,
         ]);
+
+        $this->actingAs($user);
 
         $url = route('api.v1.products.index', ['filter[search]' => 'test']);
 
@@ -135,27 +175,35 @@ class FilterProductsTest extends TestCase
     }
 
     /** @test */
-    public function can_search_products_by__with_multiple_terms()
+    public function can_search_products_by_with_multiple_terms()
     {
+        $user = factory(User::class)->create();
+
         factory(Product::class)->create([
             'name' => 'First product test',
-            'description' => 'First description'
+            'description' => 'First description',
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
             'name' => 'Other element',
-            'description' => 'Other description test'
+            'description' => 'Other description test',
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
             'name' => 'Different element',
-            'description' => 'Different description test'
+            'description' => 'Different description test',
+            'user_id' => $user->id,
         ]);
 
         factory(Product::class)->create([
             'name' => 'Generic name',
-            'description' => 'Generic empty'
+            'description' => 'Generic empty',
+            'user_id' => $user->id,
         ]);
+
+        $this->actingAs($user);
 
         $url = route('api.v1.products.index', ['filter[search]' => 'test description']);
 

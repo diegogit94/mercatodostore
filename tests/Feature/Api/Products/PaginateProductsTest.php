@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api\Products;
 
 use App\Product;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,7 +15,9 @@ class PaginateProductsTest extends TestCase
     /** @test */
     public function can_fetch_paginated_products()
     {
-        $products = factory(Product::class)->times(10)->create();
+        $user = factory(User::class)->create();
+
+        $products = factory(Product::class)->times(10)->create(['user_id' => $user->id]);
 
         $url = route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 3]);
 

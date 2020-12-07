@@ -3,6 +3,7 @@
 namespace Tests\Feature\Products;
 
 use App\Product;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,7 +15,9 @@ class ListProductTest extends TestCase
     /** @test */
     public function can_fetch_single_product()
     {
-        $product = factory(Product::class)->create();
+        $user = factory(User::class)->create();
+
+        $product = factory(Product::class)->create(['user_id' => $user->id]);
 
         $response = $this->jsonApi()->get(route('api.v1.products.read', $product));
 
@@ -45,9 +48,9 @@ class ListProductTest extends TestCase
     /** @test */
     public function can_fetch_all_articles()
     {
-        $this->withoutExceptionHandling();
+        $user = factory(User::class)->create();
 
-        $products = factory(Product::class)->times(3)->create();
+        $products = factory(Product::class)->times(3)->create(['user_id' => $user->id]);
 
         $response = $this->jsonApi()->get(route('api.v1.products.index'));
 
