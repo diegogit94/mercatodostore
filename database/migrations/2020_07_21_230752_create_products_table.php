@@ -23,10 +23,17 @@ class CreateProductsTable extends Migration
             $table->double('price');
             $table->unsignedInteger('quantity')->default(1);
             $table->boolean('visible')->default(true);
+
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
             $table->timestamps();
         });
     }
