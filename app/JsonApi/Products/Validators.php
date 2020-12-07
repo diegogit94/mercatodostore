@@ -42,7 +42,7 @@ class Validators extends AbstractValidators
     {
         return [
             'name' => 'required|unique:products',
-            'short_description' => 'min:2|max:100',
+            'short_description' => 'min:2|max:150',
             'description' => 'min:2|max:200',
             'price' => 'required|numeric',
             'quantity' => 'required'
