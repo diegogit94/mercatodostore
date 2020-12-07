@@ -38,6 +38,7 @@ class Schema extends SchemaProvider
             'quantity' => $product->quantity,
             'visible' => $product->visible,
 //                    'category' => $product->category_id,
+            'user_id' => $product->user_id,
             'created-at' => $product->created_at->toAtomString(),
             'updated-at' => $product->updated_at->toAtomString(),
         ];
