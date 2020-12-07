@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
@@ -23,7 +24,8 @@ class Product extends Model
         'price',
         'visible',
         'quantity',
-        'category_id'
+        'category_id',
+        'user_id'
     ];
 
     /**
@@ -116,5 +118,10 @@ class Product extends Model
     public function orders(): BelongsToMany
     {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
