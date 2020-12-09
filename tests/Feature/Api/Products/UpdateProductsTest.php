@@ -26,7 +26,7 @@ class UpdateProductsTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_user_cannot_update_products()
+    public function an_authenticated_user_can_update_products()
     {
         $user = factory(User::class)->create();
 
