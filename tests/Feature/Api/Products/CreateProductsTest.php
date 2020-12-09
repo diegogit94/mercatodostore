@@ -16,7 +16,7 @@ class CreateProductsTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_create_a_product()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['user_type' => 'admin']);
 
         $product = factory(Product::class)->raw(['user_id' => null]); //Raw method gives an array with the attributes of a product
 
