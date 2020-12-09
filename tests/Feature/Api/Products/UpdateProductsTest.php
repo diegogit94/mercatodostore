@@ -28,7 +28,7 @@ class UpdateProductsTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_update_products()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['user_type' => 'admin']);
 
         $product = factory(Product::class)->create(['user_id' => $user->id]);
 
@@ -57,7 +57,7 @@ class UpdateProductsTest extends TestCase
     /** @test */
     public function can_update_name_only()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['user_type' => 'admin']);
 
         $product = factory(Product::class)->create(['user_id' => $user->id]);
 
@@ -84,7 +84,7 @@ class UpdateProductsTest extends TestCase
     /** @test */
     public function can_update_description_only()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['user_type' => 'admin']);
 
         $product = factory(Product::class)->create(['user_id' => $user->id]);
 
