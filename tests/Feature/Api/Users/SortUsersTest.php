@@ -42,4 +42,40 @@ class SortUsersTest extends TestCase
             'A name',
         ]);
     }
+
+    /** @test */
+    public function it_can_sort_users_by_name_and_status()
+    {
+        factory(User::class)->create([
+            'name' => 'User D',
+            'active' => false,
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User A',
+            'active' => true,
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User C',
+            'active' => false,
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User B',
+            'active' => true,
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User E',
+            'active' => false,
+        ]);
+
+        $url = route('api.v1.users.index', ['sort' => 'name,active']);
+
+        $this->jsonApi()->get($url)->assertSeeInOrder([
+            'User A',
+            'User B',
+        ]);
+    }
 }
