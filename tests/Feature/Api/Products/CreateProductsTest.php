@@ -57,12 +57,14 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['user_id' => null]); //Raw method gives an array with the attributes of a product
 
+        Sanctum::actingAs(factory(User::class)->create());
+
         $this->jsonApi()->content([
             'data' => [
                 'type' => 'products',
                 'attributes' => $product,
             ]
-        ])->post(route('api.v1.products.create'))->assertStatus(401);
+        ])->post(route('api.v1.products.create'))->assertStatus(302);
 
         $this->assertDatabaseMissing('products', $product);
     }
