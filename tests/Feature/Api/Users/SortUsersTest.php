@@ -86,4 +86,15 @@ class SortUsersTest extends TestCase
             'User C',
         ]);
     }
+
+    /** @test */
+    public function it_cannot_sort_users_by_unknown_fields()
+    {
+        factory(User::class)->create();
+
+        $url = route('api.v1.users.index', ['sort' => 'unknown']);
+
+        $this->jsonApi()->get($url)
+            ->assertStatus(400);
+    }
 }
