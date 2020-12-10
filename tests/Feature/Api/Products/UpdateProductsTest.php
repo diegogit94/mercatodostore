@@ -22,7 +22,7 @@ class UpdateProductsTest extends TestCase
 
         $this->jsonApi()
             ->patch(route('api.v1.products.update', $product))
-            ->assertStatus(401);
+            ->assertStatus(302);
     }
 
     /** @test */
