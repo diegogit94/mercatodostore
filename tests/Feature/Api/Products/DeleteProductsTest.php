@@ -14,19 +14,21 @@ class DeleteProductsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_non_authenticated_users_cannot_delete_products()
+    public function a_non_authenticated_user_cannot_delete_products()
     {
         $user = factory(User::class)->create();
 
         $product = factory(Product::class)->create(['user_id' => $user->id]);
 
+        Sanctum::actingAs(factory(User::class)->create());
+
         $this->jsonApi()
             ->delete(route('api.v1.products.delete', $product))
-            ->assertStatus(401);
+            ->assertStatus(302);
     }
 
     /** @test */
-    public function an_authenticated_users_can_delete_products()
+    public function an_authenticated_user_can_delete_products()
     {
         $user = factory(User::class)->create(['user_type' => 'admin']);
 
