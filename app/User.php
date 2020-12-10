@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -38,6 +39,18 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeSearch(Builder $query, string $values = null): Builder
+    {
+        foreach (Str::of($values)->explode(' ') as $value) {
+            if ($value) {
+                return $query->orWhere('name', 'LIKE', "%$value%")
+                    ->orWhere('email', 'LIKE', "%$value%");
+            }
+        }
+
+        return $query;
+    }
 
     public function scopeName(Builder $query, string $name = null): Builder
     {
