@@ -15,6 +15,11 @@ class FilterUsersTest extends TestCase
     /** @test */
     public function an_admin_can_filter_users_by_name()
     {
+        $admin = factory(User::class)
+            ->create([
+                'name' => 'Admin',
+                'user_type' => 'admin']);
+
         factory(User::class)->create([
             'name' => 'User A'
         ]);
@@ -27,13 +32,14 @@ class FilterUsersTest extends TestCase
             'name' => 'User B'
         ]);
 
-        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+        Sanctum::actingAs($admin);
 
         $url = route('api.v1.users.index', ['filter[name]' => 'B']);
 
         $this->jsonApi()->get($url)
-            ->assertJsonCount(2, 'data')
+            ->assertJsonCount(2, 'data') //This include the actingAs user
             ->assertDontSee('User A')
+            ->assertDontSee('Admin')
             ->assertSee('User B');
     }
 
