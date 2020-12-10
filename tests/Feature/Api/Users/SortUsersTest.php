@@ -77,5 +77,13 @@ class SortUsersTest extends TestCase
             'User A',
             'User B',
         ]);
+
+        $url = route('api.v1.users.index', ['sort' => 'active,-name']);
+
+        $this->jsonApi()->get($url)->assertSeeInOrder([
+            'User E',
+            'User D',
+            'User C',
+        ]);
     }
 }
