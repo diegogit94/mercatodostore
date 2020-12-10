@@ -43,5 +43,7 @@ class ProductSeeder extends Seeder
             'image' => 'public/game4.png',
             'price' => 13000,
             'quantity' => 5]);
+
+        factory(Product::class)->times(36)->create();
     }
 }
