@@ -44,6 +44,29 @@ class FilterUsersTest extends TestCase
     }
 
     /** @test */
+    public function a_non_admin_cannot_filter_users_by_name()
+    {
+        factory(User::class)->create([
+            'name' => 'User A'
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User B'
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User B'
+        ]);
+
+        Sanctum::actingAs(factory(User::class)->create());
+
+        $url = route('api.v1.users.index', ['filter[name]' => 'B']);
+
+        $this->jsonApi()->get($url)
+            ->assertStatus(302);
+    }
+
+    /** @test */
     public function an_admin_can_filter_users_by_email()
     {
         factory(User::class)->create([
