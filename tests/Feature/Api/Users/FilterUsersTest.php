@@ -34,4 +34,32 @@ class FilterUsersTest extends TestCase
             ->assertDontSee('User A')
             ->assertSee('User B');
     }
+
+    /** @test */
+    public function can_filter_users_by_active()
+    {
+        factory(User::class)->create([
+            'name' => 'User A',
+            'active' => true
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User B',
+            'active' => false
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User C',
+            'active' => false
+        ]);
+
+        $url = route('api.v1.users.index', ['filter[active]' => true]);
+
+        $this->jsonApi()->get($url)
+            ->assertJsonCount(1, 'data')
+            ->assertSee('User A')
+            ->assertDontSee('User B')
+            ->assertDontSee('User C');
+
+    }
 }
