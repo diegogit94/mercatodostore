@@ -13,7 +13,7 @@ class FilterUsersTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function can_filter_users_by_name()
+    public function an_admin_can_filter_users_by_name()
     {
         factory(User::class)->create([
             'name' => 'User A'
@@ -27,6 +27,8 @@ class FilterUsersTest extends TestCase
             'name' => 'User B'
         ]);
 
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+
         $url = route('api.v1.users.index', ['filter[name]' => 'B']);
 
         $this->jsonApi()->get($url)
@@ -36,7 +38,7 @@ class FilterUsersTest extends TestCase
     }
 
     /** @test */
-    public function can_filter_users_by_email()
+    public function an_admin_can_filter_users_by_email()
     {
         factory(User::class)->create([
             'name' => 'User A',
@@ -53,6 +55,8 @@ class FilterUsersTest extends TestCase
             'email' => 'test@tienda.com'
         ]);
 
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+
         $url = route('api.v1.users.index', ['filter[email]' => 'mercatodo']);
 
         $this->jsonApi()->get($url)
@@ -63,7 +67,7 @@ class FilterUsersTest extends TestCase
     }
 
     /** @test */
-    public function can_filter_users_by_active()
+    public function an_admin_can_filter_users_by_active()
     {
         factory(User::class)->create([
             'name' => 'User A',
@@ -80,10 +84,12 @@ class FilterUsersTest extends TestCase
             'active' => false
         ]);
 
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+
         $url = route('api.v1.users.index', ['filter[active]' => true]);
 
         $this->jsonApi()->get($url)
-            ->assertJsonCount(1, 'data')
+            ->assertJsonCount(2, 'data') //This count include the actingAs user
             ->assertSee('User A')
             ->assertDontSee('User B')
             ->assertDontSee('User C');
@@ -105,6 +111,8 @@ class FilterUsersTest extends TestCase
             'name' => 'User C',
         ]);
 
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+
         $url = route('api.v1.users.index', ['filter[unknown]' => 'value']);
 
         $this->jsonApi()->get($url)
@@ -112,7 +120,7 @@ class FilterUsersTest extends TestCase
     }
 
     /** @test */
-    public function can_search_users_by_name_and_email()
+    public function an_admin_can_search_users_by_name_and_email()
     {
         factory(User::class)->create([
             'name' => 'User A',
@@ -133,6 +141,8 @@ class FilterUsersTest extends TestCase
             'name' => 'User D',
             'email' => 'test2@tienda.com'
         ]);
+
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
 
         $url = route('api.v1.users.index', ['filter[search]' => 'user mercatodo']);
 
