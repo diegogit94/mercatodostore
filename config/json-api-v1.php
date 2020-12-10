@@ -67,6 +67,7 @@ return [
     */
     'resources' => [
         'products' => \App\Product::class,
+        'users' => \App\User::class,
     ],
 
     /*
