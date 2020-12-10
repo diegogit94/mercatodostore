@@ -51,7 +51,6 @@ class FilterUsersTest extends TestCase
         factory(User::class)->create([
             'name' => 'User C',
             'email' => 'test@tienda.com'
-
         ]);
 
         $url = route('api.v1.users.index', ['filter[email]' => 'mercatodo']);
@@ -110,5 +109,38 @@ class FilterUsersTest extends TestCase
 
         $this->jsonApi()->get($url)
             ->assertStatus(400);
+    }
+
+    /** @test */
+    public function can_search_users_by_name_and_email()
+    {
+        factory(User::class)->create([
+            'name' => 'User A',
+            'email' => 'test1@mercatodo.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User B',
+            'email' => 'test2@mercatodo.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'Person',
+            'email' => 'test1@tienda.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'User D',
+            'email' => 'test2@tienda.com'
+        ]);
+
+        $url = route('api.v1.users.index', ['filter[search]' => 'user mercatodo']);
+
+        $this->jsonApi()->get($url)
+            ->assertJsonCount(3, 'data')
+            ->assertSee('User A')
+            ->assertSee('User B')
+            ->assertSee('User D')
+            ->assertDontSee('User C');
     }
 }
