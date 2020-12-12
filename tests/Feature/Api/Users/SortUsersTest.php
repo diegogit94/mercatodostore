@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\Users;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class SortUsersTest extends TestCase
@@ -19,6 +20,8 @@ class SortUsersTest extends TestCase
         factory(User::class)->create(['name' => 'B name']);
 
         $url = route('api.v1.users.index', ['sort' => 'name']);
+
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
 
         $this->jsonApi()->get($url)->assertSeeInOrder([
             'A name',
@@ -35,6 +38,8 @@ class SortUsersTest extends TestCase
         factory(User::class)->create(['name' => 'B name']);
 
         $url = route('api.v1.users.index', ['sort' => '-name']);
+
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
 
         $this->jsonApi()->get($url)->assertSeeInOrder([
             'C name',
@@ -73,6 +78,8 @@ class SortUsersTest extends TestCase
 
         $url = route('api.v1.users.index', ['sort' => 'name,active']);
 
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+
         $this->jsonApi()->get($url)->assertSeeInOrder([
             'User A',
             'User B',
@@ -93,6 +100,8 @@ class SortUsersTest extends TestCase
         factory(User::class)->create();
 
         $url = route('api.v1.users.index', ['sort' => 'unknown']);
+
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
 
         $this->jsonApi()->get($url)
             ->assertStatus(400);
