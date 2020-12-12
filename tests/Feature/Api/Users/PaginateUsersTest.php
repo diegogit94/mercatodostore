@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\Users;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class PaginateUsersTest extends TestCase
@@ -17,6 +18,8 @@ class PaginateUsersTest extends TestCase
         $users = factory(User::class)->times(10)->create();
 
         $url = route('api.v1.users.index', ['page[size]' => 2, 'page[number]' => 4]);
+
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
 
         $response = $this->jsonApi()->get($url);
 
@@ -38,7 +41,7 @@ class PaginateUsersTest extends TestCase
 
         $response->assertJsonFragment([
             'first' => route('api.v1.users.index', ['page[number]' => 1, 'page[size]' => 2]),
-            'last' => route('api.v1.users.index', ['page[number]' => 5, 'page[size]' => 2]),
+            'last' => route('api.v1.users.index', ['page[number]' => 6, 'page[size]' => 2]),
             'prev' => route('api.v1.users.index', ['page[number]' => 3, 'page[size]' => 2]),
             'next' => route('api.v1.users.index', ['page[number]' => 5, 'page[size]' => 2]),
         ]);
