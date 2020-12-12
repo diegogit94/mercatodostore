@@ -17,23 +17,19 @@ class PaginateProductsTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $products = factory(Product::class)->times(10)->create(['user_id' => $user->id]);
+        $products = factory(Product::class)->times(6)->create(['user_id' => $user->id]);
 
-        $url = route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 3]);
+        $url = route('api.v1.products.index', ['page[size]' => 2, 'page[number]' => 2]);
 
         $response = $this->jsonApi()->get($url);
 
         $response->assertJsonCount(2, 'data')
             ->assertDontSee($products[0]->name)
             ->assertDontSee($products[1]->name)
-            ->assertDontSee($products[2]->name)
-            ->assertDontSee($products[3]->name)
-            ->assertSee($products[4]->name)
-            ->assertSee($products[5]->name)
-            ->assertDontSee($products[6]->name)
-            ->assertDontSee($products[7]->name)
-            ->assertDontSee($products[8]->name)
-            ->assertDontSee($products[9]->name);
+            ->assertSee($products[2]->name)
+            ->assertSee($products[3]->name)
+            ->assertDontSee($products[4]->name)
+            ->assertDontSee($products[5]->name);
 
         $response->assertJsonStructure([
             'links' => ['first', 'last', 'prev', 'next']
@@ -41,9 +37,9 @@ class PaginateProductsTest extends TestCase
 
         $response->assertJsonFragment([
             'first' => route('api.v1.products.index', ['page[number]' => 1, 'page[size]' => 2]),
-            'last' => route('api.v1.products.index', ['page[number]' => 5, 'page[size]' => 2]),
-            'prev' => route('api.v1.products.index', ['page[number]' => 2, 'page[size]' => 2]),
-            'next' => route('api.v1.products.index', ['page[number]' => 4, 'page[size]' => 2]),
+            'last' => route('api.v1.products.index', ['page[number]' => 3, 'page[size]' => 2]),
+            'prev' => route('api.v1.products.index', ['page[number]' => 1, 'page[size]' => 2]),
+            'next' => route('api.v1.products.index', ['page[number]' => 3, 'page[size]' => 2]),
         ]);
     }
 }
