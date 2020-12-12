@@ -18,7 +18,7 @@ class CreateProductsTest extends TestCase
     {
         $user = factory(User::class)->create(['user_type' => 'admin']);
 
-        $product = factory(Product::class)->raw(['user_id' => null]); //Raw method gives an array with the attributes of a product
+        $product = factory(Product::class)->raw(['user_id' => $user->id]); //Raw method gives an array with the attributes of a product
 
         $this->assertDatabaseMissing('products', $product);
 
