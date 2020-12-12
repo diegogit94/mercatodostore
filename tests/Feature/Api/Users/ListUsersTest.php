@@ -31,6 +31,8 @@ class ListUsersTest extends TestCase
     {
         $user = factory(User::class)->create();
 
+        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+
         $this->jsonApi()->get(route('api.v1.users.read', $user))
             ->assertSee($user['name'])
             ->assertSee($user['email'])
