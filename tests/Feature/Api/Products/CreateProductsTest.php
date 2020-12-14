@@ -22,6 +22,8 @@ class CreateProductsTest extends TestCase
 
         $this->assertDatabaseMissing('products', $product);
 
+        $user->createToken('total-access');
+
         Sanctum::actingAs($user);
 
         $this->jsonApi()->content([
@@ -64,7 +66,7 @@ class CreateProductsTest extends TestCase
                 'type' => 'products',
                 'attributes' => $product,
             ]
-        ])->post(route('api.v1.products.create'))->assertStatus(302);
+        ])->post(route('api.v1.products.create'))->assertStatus(403);
 
         $this->assertDatabaseMissing('products', $product);
     }
@@ -74,7 +76,11 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['name' => '']);
 
-        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+        $user = factory(User::class)->create(['user_type' => 'admin']);
+
+        $user->createToken('total-access');
+
+        Sanctum::actingAs($user);
 
         $this->jsonApi()->content([
             'data' => [
@@ -93,7 +99,11 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['short_description' => '']);
 
-        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+        $user = factory(User::class)->create(['user_type' => 'admin']);
+
+        $user->createToken('total-access');
+
+        Sanctum::actingAs($user);
 
         $this->jsonApi()->content([
             'data' => [
@@ -112,7 +122,11 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['description' => '']);
 
-        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+        $user = factory(User::class)->create(['user_type' => 'admin']);
+
+        $user->createToken('total-access');
+
+        Sanctum::actingAs($user);
 
         $this->jsonApi()->content([
             'data' => [
@@ -131,7 +145,11 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['price' => null]);
 
-        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+        $user = factory(User::class)->create(['user_type' => 'admin']);
+
+        $user->createToken('total-access');
+
+        Sanctum::actingAs($user);
 
         $this->jsonApi()->content([
             'data' => [
@@ -150,7 +168,11 @@ class CreateProductsTest extends TestCase
     {
         $product = factory(Product::class)->raw(['quantity' => null]);
 
-        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+        $user = factory(User::class)->create(['user_type' => 'admin']);
+
+        $user->createToken('total-access');
+
+        Sanctum::actingAs($user);
 
         $this->jsonApi()->content([
             'data' => [
