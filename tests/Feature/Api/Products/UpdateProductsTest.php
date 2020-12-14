@@ -20,9 +20,11 @@ class UpdateProductsTest extends TestCase
 
         $product = factory(Product::class)->create(['user_id' => $user->id]);
 
+        Sanctum::actingAs($user);
+
         $this->jsonApi()
             ->patch(route('api.v1.products.update', $product))
-            ->assertStatus(302);
+            ->assertStatus(403);
     }
 
     /** @test */
