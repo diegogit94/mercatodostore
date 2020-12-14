@@ -24,7 +24,7 @@ class DeleteProductsTest extends TestCase
 
         $this->jsonApi()
             ->delete(route('api.v1.products.delete', $product))
-            ->assertStatus(302);
+            ->assertStatus(403);
     }
 
     /** @test */
