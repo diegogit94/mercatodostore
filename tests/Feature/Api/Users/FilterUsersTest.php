@@ -63,7 +63,7 @@ class FilterUsersTest extends TestCase
         $url = route('api.v1.users.index', ['filter[name]' => 'B']);
 
         $this->jsonApi()->get($url)
-            ->assertStatus(302);
+            ->assertStatus(403);
     }
 
     /** @test */
