@@ -55,7 +55,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function read($record, $request)
     {
-        $this->authorize('read', request()->user());
+        $this->authorize('viewAny', request()->user());
     }
 
     /**

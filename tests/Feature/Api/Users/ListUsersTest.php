@@ -27,11 +27,15 @@ class ListUsersTest extends TestCase
     }
 
     /** @test */
-    public function can_fetch_a_single_users()
+    public function can_fetch_a_single_user()
     {
+        $admin = factory(User::class)->create(['user_type' => 'admin']);
+
+        $admin->createToken('admin-access');
+
         $user = factory(User::class)->create();
 
-        Sanctum::actingAs(factory(User::class)->create(['user_type' => 'admin']));
+        Sanctum::actingAs($admin);
 
         $this->jsonApi()->get(route('api.v1.users.read', $user))
             ->assertSee($user['name'])
