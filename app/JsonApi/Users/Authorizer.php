@@ -39,7 +39,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function create($type, $request)
     {
-        // TODO: Implement create() method.
+        $this->authorize('create', request()->user());
     }
 
     /**
@@ -55,7 +55,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function read($record, $request)
     {
-        // TODO: Implement read() method.
+        $this->authorize('read', request()->user());
     }
 
     /**
@@ -71,7 +71,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function update($record, $request)
     {
-        // TODO: Implement update() method.
+        $this->authorize('update', request()->user());
     }
 
     /**
@@ -87,7 +87,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function delete($record, $request)
     {
-        // TODO: Implement delete() method.
+        $this->authorize('delete', request()->user());
     }
 
 }
