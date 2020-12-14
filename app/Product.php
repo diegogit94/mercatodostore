@@ -2,8 +2,12 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
 class Product extends Model
@@ -21,7 +25,8 @@ class Product extends Model
         'price',
         'visible',
         'quantity',
-        'category_id'
+        'category_id',
+        'user_id'
     ];
 
     /**
@@ -36,32 +41,88 @@ class Product extends Model
         return $this->update(['visible' => !$this->visible]);
     }
 
-    public function scopeName($query, $name)
+    public function scopeSearch(Builder $query, string $values = null): Builder
     {
-        if ($name)
+        foreach (Str::of($values)->explode(' ') as $value) {
+            if ($value) {
+                return $query->orWhere('name', 'LIKE', "%$value%")
+                    ->orWhere('description', 'LIKE', "%$value%");
+            }
+        }
+
+        return $query;
+    }
+
+    public function scopeName(Builder $query, string $name = null): Builder
+    {
+        if ($name) {
             return $query->where('name', 'LIKE', "%$name%");
+        }
+
+        return $query;
     }
 
-    public function scopePrice($query, $price)
+    public function scopeDescription(Builder $query, string $description = null): Builder
     {
-        if ($price)
-            return $query->where('price', 'LIKE', "%$price%");
+        if ($description) {
+            return $query->where('description', 'LIKE', "%$description%");
+        }
+
+        return $query;
     }
 
-    public function scopeVisible($query, $visible)
+    public function scopePrice(Builder $query, float $price = null): Builder
     {
-        if ($visible)
-            return $query->where('visible', '=' , $visible);
+        if ($price) {
+            return $query->where('price', $price);
+        }
+
+        return $query;
     }
 
-    public function scopeCategory($query, $category)
+    public function scopeVisible(Builder $query, string $visible = null): Builder
     {
-        if ($category)
-            return $query->where('category_id', 'LIKE', "%$category%");
+        if ($visible) {
+            return $query->where('visible', $visible === 'true');
+        }
+
+        return $query;
+    }
+
+    public function scopeCategory(Builder $query, int $category = null): Builder
+    {
+        if ($category) {
+            return $query->where('category_id', $category);
+        }
+
+        return $query;
+    }
+
+    public function scopeMonth(Builder $query, string $month = null): Builder
+    {
+        if ($month) {
+            return $query->whereMonth('created_at', $month);
+        }
+
+        return $query;
+    }
+
+    public function scopeYear(Builder $query, string $year = null): Builder
+    {
+        if ($year) {
+            return $query->whereYear('created_at', $year);
+        }
+
+        return $query;
     }
 
     public function orders(): BelongsToMany
     {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

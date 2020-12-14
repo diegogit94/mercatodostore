@@ -1,7 +1,9 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -33,5 +35,7 @@ class UserSeeder extends Seeder
             'created_at' => '2020-07-24 21:34:47',
             'updated_at' => '2020-07-24 21:34:47'
         ]);
+
+        factory(User::class)->times(38)->create();
     }
 }

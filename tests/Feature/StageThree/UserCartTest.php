@@ -18,12 +18,9 @@ class UserCartTest extends TestCase
     /** @test */
     public function an_user_can_add_a_product_to_cart()
     {
-//        $this->withoutExceptionHandling();
-        $product = factory(Product::class)->create();
-
-//        $cart = factory(Cart::class)->create();
-
         $user = factory(User::class)->create();
+
+        $product = factory(Product::class)->create(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)
             ->post(route('cart.store'), [
@@ -56,7 +53,7 @@ class UserCartTest extends TestCase
         $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
 
-        $product = factory(Product::class)->create(['id' => 1]);
+        $product = factory(Product::class)->create(['id' => 1, 'user_id' => $user->id]);
 
         $cart = $this->actingAs($user)
             ->post(route('cart.store'), [

@@ -13,15 +13,15 @@ class PayWithPlaceToPayTest extends TestCase
     /** @test */
     public function can_make_a_request_to_place_to_pay_endpoint()
     {
-        $this->withoutExceptionHandling();
-        $response = $this->json('POST', route('checkout.placeToPayCheckout'));
+//        $this->withoutExceptionHandling();
+//        $response = $this->json('POST', route('checkout.placeToPayCheckout'));
 
 //        $response->assertRedirect($response['processUrl']);
 //        $response->assertJsonStructure();
 //        $response->assertJson(['status' => ['status' => 'OK']]);
     }
 
-    /** @test */
+//    /** @test */
     public function redirect_user_to_web_checkout()
     {
         $user = factory(User::class)->create();

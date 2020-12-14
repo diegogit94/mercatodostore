@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Exports\ProductsExport;
 use App\Http\Requests\ExportRequest;
 use App\Http\Requests\ImportFileRequest;
@@ -32,6 +33,7 @@ class ProductController extends Controller
         $category = $request->get('category');
         $price = $request->get('price');
         $visible = $request->get('visible');
+        $categories = Category::all();
 
         $products = Product::orderBy('id', 'ASC')
             ->name($name)
@@ -41,7 +43,8 @@ class ProductController extends Controller
             ->paginate(8);
 
         return view('admin.productList', [
-           'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
 
@@ -63,7 +66,13 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->validated());
+        $product = Product::create([
+            'name' => $request['name'],
+            'short_description' => $request['short_description'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'user_id' => Auth::id(),
+        ]);
 
         if ($request->hasFile('image')) {
             $product->image = $request->file('image')->store('public');
@@ -138,7 +147,7 @@ class ProductController extends Controller
      * @param Product $product
      * @return RedirectResponse
      */
-    public function visible (Product $product)
+    public function visible (Product $product): RedirectResponse
     {
         $product->toggleVisibility();
 

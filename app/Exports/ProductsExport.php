@@ -32,29 +32,10 @@ class ProductsExport implements FromQuery, WithHeadings
     {
         $request = $this->request;
 
-        if (array_key_exists('name', $request))
-        {
-            return Product::query()
-            ->Where('name', $request['name']);
-
-        }elseif (array_key_exists('category', $request))
-        {
-            return Product::query()
-                ->where('category_id', $request['category']);
-
-        }elseif (array_key_exists('price', $request))
-        {
-            return Product::query()
-                ->where('price', $request['price']);
-
-        }elseif (array_key_exists('visible', $request))
-        {
-            return Product::query()
-                ->orwhere('visible', $request['visible']);
-
-        }
-
-        return Product::query();
+        return Product::name($request->name)
+            ->price($request->price)
+            ->visible($request->visible)
+            ->category($request->category_id);
     }
 
     public function headings(): array
